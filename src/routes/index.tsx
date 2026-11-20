@@ -42,8 +42,8 @@ function Index() {
             </div>
             <div className="value-band [border-block:1px_solid_rgb(217,223,204)]">
               <div className="wrap value-items items-center grid mx-auto [@media(width_<=_650px)]:py-[10px]">
-                <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" /><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" /><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" /><circle cx="12" cy="12" r="10" /></svg>4 languages</div>
-                <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 18v-7" /><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" /></svg>Official scheme sources</div>
+                <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" /><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" /><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" /><circle cx="12" cy="12" r="10" /></svg>Hindi & English voice</div>
+                <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 18v-7" /><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" /></svg>{VERIFIED_COUNT} schemes checked against official sources</div>
                 <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>Voice and text</div>
                 <div className="items-center flex"><svg className="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><path d="M16 3.128a4 4 0 0 1 0 7.744" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><circle cx="9" cy="7" r="4" /></svg>Support for the whole family</div>
               </div>
@@ -119,7 +119,7 @@ function ImportedHeader() {
               <path d="m6 9 6 6 6-6" />
             </svg>
           </label>
-          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button header-cta items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>Get started</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.setTimeout(() => window.dispatchEvent(new Event("arceus:start")), 0); }} className={"button header-cta items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>Get started</button>
           <button className={"icon-button menu-toggle items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-label="Menu" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(value => !value)}>
             <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M4 5h16" />
@@ -139,9 +139,9 @@ function ImportedSectionYourVoiceYourBenefits() {
       <div className="hero-copy" style={{ transform: "translateY(0px)", opacity: "1" }}>
         <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />INDIAN GOVERNMENT SCHEMES</div>
         <h1>Your voice.<br /><em>Your benefits.</em></h1>
-        <p className="max-w-[420px]">Find schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.</p>
+        <p className="max-w-[420px]">Find schemes for you and your family. Speak or type in Hindi or English (more languages via translation) to check eligibility and learn how to apply.</p>
         <div className="actions items-center flex flex-wrap">
-          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to ARCEUS</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.setTimeout(() => window.dispatchEvent(new Event("arceus:start")), 0); }} className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to ARCEUS</button>
           <button className={"button \x6futline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>Explore schemes</button>
         </div>
         <div className="source-line items-center flex gap-[7px]"><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>Guidance based on official government sources</div>
@@ -203,7 +203,7 @@ function ImportedSectionYourVoiceYourBenefits() {
             <span className="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style={{ "--height": "16px", "--bar": "23", transform: "scaleY(1)" } as CSSProperties} />
             <span className="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style={{ "--height": "9px", "--bar": "24", transform: "scaleY(1)" } as CSSProperties} />
           </div>
-          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"voice-card-action items-center border border-solid border-[#a6c4a469] rounded-[6px] flex gap-[8px] py-[6px] px-[8px] text-left w-full [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>Ask about a scheme</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.setTimeout(() => window.dispatchEvent(new Event("arceus:start")), 0); }} className={"voice-card-action items-center border border-solid border-[#a6c4a469] rounded-[6px] flex gap-[8px] py-[6px] px-[8px] text-left w-full [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>Ask about a scheme</button>
         </div>
       </div>
       <button onClick={() => document.getElementById("how-arceus-works")?.scrollIntoView({ behavior: "smooth" })} className={"journey-link items-center inline-flex gap-[8px] left-0 min-h-[34px] pt-[3px] pr-[5px] pb-[3px] pl-0 absolute [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>See how it works</button>
@@ -338,7 +338,7 @@ function ImportedSectionFromAQuestionTo() {
           </article>
         </div>
       </div>
-      <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Start an eligibility check</button>
+      <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.setTimeout(() => window.dispatchEvent(new Event("arceus:start")), 0); }} className={"button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Start an eligibility check</button>
     </section>
   );
 }
@@ -363,7 +363,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Agriculture</b>
-          <span>1 ARCEUS check</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("farming")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-education flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -374,7 +374,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Education</b>
-          <span>1 ARCEUS check</span>
+          <span>{(() => { const n = 0; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-health flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -384,7 +384,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Healthcare</b>
-          <span>1 ARCEUS check</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("health")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-business flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -394,7 +394,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Business &amp; loans</b>
-          <span>2 ARCEUS checks</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("business")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-marriage flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -403,7 +403,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Marriage</b>
-          <span>1 ARCEUS check</span>
+          <span>{(() => { const n = 0; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-insurance flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -413,7 +413,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Insurance</b>
-          <span>2 ARCEUS checks</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("insurance")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card tint-savings flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -424,7 +424,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Savings</b>
-          <span>2 ARCEUS checks</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("pension")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
         <button className={"category-card flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <div className="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]">
@@ -433,7 +433,7 @@ function ImportedSectionExploreByCategory() {
             </svg>
           </div>
           <b>Utilities</b>
-          <span>1 ARCEUS check</span>
+          <span>{(() => { const n = SCHEMES.filter(x => x.verified && x.goals.includes("lpg")).length; return n ? `${n} verified check${n > 1 ? "s" : ""}` : "Discovery links only"; })()}</span>
         </button>
       </div>
     </section>
@@ -476,7 +476,7 @@ function ImportedSectionPlanningALifeEvent() {
             <path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" />
           </svg>
           <b>Preparing for marriage</b>
-          <span>Check Telangana marriage assistance and the documents you need.</span>
+          <span>Find state marriage assistance on official portals.</span>
         </button>
         <button className={"life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
           <svg className="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

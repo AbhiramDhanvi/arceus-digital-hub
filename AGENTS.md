@@ -31,3 +31,6 @@ use the editor.
 
 - Keep imported markup and interaction repairs in its route file and retain source CSS separately to preserve the captured cascade.
 - Eligibility decisions live only in src/lib/eligibility.ts (deterministic); AI only extracts facts and translates. Why: trustworthy results.
+- Eligibility criteria records must cite an official source URL, faithful excerpt and checked date; unverified schemes may never reach "likely eligible". Why: users act on these results.
+- The interview (src/lib/interview.ts, src/lib/parse.ts) must work without AI; AI may only extract one typed value for the current question after the deterministic parse fails, and the user must confirm it. Why: reliability and privacy.
+- Sarvam speech goes only through src/lib/voice.functions.ts with an allow-listed voice set and the database daily quota (consume_voice_quota, bucket derived from auth.uid()). Why: cost control without spoofable client identifiers.

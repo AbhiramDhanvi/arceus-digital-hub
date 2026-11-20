@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { evaluateAll, type Facts, type Result } from "@/lib/eligibility";
+import { decisionSentence } from "@/lib/decision-text";
 
 export const Route = createFileRoute("/_authenticated/workspace")({
   head: () => ({ meta: [
@@ -43,7 +44,7 @@ function Workspace() {
         <section className="rounded-2xl border border-border bg-card p-5">
           <div className="flex justify-between"><h2 className="font-semibold text-foreground">Household details</h2><button onClick={clear} className="text-sm underline text-muted-foreground">Clear</button></div>
           {Object.keys(facts).length === 0 ? <p className="text-muted-foreground mt-2">Nothing saved yet. <a href="/#assistant" className="underline">Talk to ARCEUS</a> to get started.</p> :
-            <dl className="mt-2 grid grid-cols-2 gap-1 text-sm">{Object.entries(facts).map(([k, v]) => <><dt className="text-muted-foreground">{k}</dt><dd className="text-foreground">{String(v)}</dd></>)}</dl>}
+            <dl className="mt-2 grid grid-cols-2 gap-1 text-sm">{Object.entries(facts).map(([k, v]) => <div key={k} className="contents"><dt className="text-muted-foreground">{k}</dt><dd className="text-foreground">{String(v)}</dd></div>)}</dl>}
         </section>
         <section className="grid gap-3">
           <h2 className="font-semibold text-foreground">Verified schemes</h2>
@@ -51,6 +52,7 @@ function Workspace() {
             <div key={r.scheme.id} className="rounded-xl border border-border bg-card p-4 text-sm">
               <div className="flex justify-between"><b className="text-foreground">{r.scheme.name}</b><span className="text-primary">{LABEL[r.status]}</span></div>
               <p className="text-muted-foreground">{r.scheme.benefit}</p>
+              <p className="text-foreground">{decisionSentence(r, "en")}</p>
               <a className="underline" href={r.scheme.link} target="_blank" rel="noreferrer">Official website</a>
             </div>))}
         </section>

@@ -79,10 +79,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      consume_voice_quota: {
-        Args: { _bucket: string; _max: number }
-        Returns: boolean
-      }
+      consume_voice_quota: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

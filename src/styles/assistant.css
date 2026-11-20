@@ -77,16 +77,16 @@
   radial-gradient(120% 90% at 85% 10%, #2f6f5f 0%, transparent 55%),
   radial-gradient(80% 70% at 10% 100%, #12403a 0%, transparent 60%),
   repeating-linear-gradient(135deg, #ffffff08 0 2px, transparent 2px 12px), var(--deep); }
-.hv-wave { position: absolute; left: 8%; right: 8%; top: 18%; height: 38%; display: flex; align-items: center; gap: 1.2%; }
+.hv-wave { position: absolute; left: 8%; right: 46%; top: 22%; height: 34%; z-index: 0; display: flex; align-items: center; gap: 1.2%; }
 .hv-wave span { flex: 1; border-radius: 99px; background: linear-gradient(var(--signal), #9fd3a5); opacity: .85; animation: hv-bar 2.4s ease-in-out infinite; }
 @keyframes hv-bar { 0%, 100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
-.hv-evidence { position: absolute; right: 7%; top: 9%; width: min(60%, 260px); background: #fffef8f2; color: var(--ink); border-radius: 12px; padding: 12px 14px; font-size: 12px; box-shadow: 0 18px 40px -20px #000a; }
+.hv-evidence { position: absolute; z-index: 1; right: 6%; top: 8%; width: min(44%, 260px); background: var(--white); color: var(--ink); border-radius: 12px; padding: 12px 14px; font-size: 12px; box-shadow: 0 18px 40px -20px #000a; }
 .hv-evidence b { font-size: 13px; display: block; margin-bottom: 6px; }
-.hv-evidence p { margin: 3px 0; display: flex; gap: 6px; align-items: center; }
+.hv-evidence p { margin: 3px 0 !important; display: flex; gap: 6px; align-items: center; color: var(--ink) !important; font-size: 12px !important; line-height: 1.35 !important; max-width: none !important; opacity: 1 !important; }
 .hv-evidence i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--signal); font-size: 10px; flex: none; }
 .hv-evidence i.q { background: var(--accent-soft); }
 .hv-evidence small { color: var(--muted); display: block; margin-top: 6px; }
-@media (max-width: 650px) { .hv-evidence { display: none; } }
+@media (max-width: 650px) { .hv-evidence { display: none; } .hv-wave { right: 8%; } }
 .hv-family { aspect-ratio: 3 / 2; width: 100%; border-radius: 18px; background: var(--accent-soft); background-image: radial-gradient(circle at 1px 1px, #28625822 1px, transparent 0); background-size: 18px 18px; display: grid; place-items: center; padding: 6%; }
 .hv-family svg { width: 100%; height: auto; max-width: 460px; }
 @media (prefers-reduced-motion: reduce) { .hv-wave span, .av-progress span { animation: none; transition: none; } }
