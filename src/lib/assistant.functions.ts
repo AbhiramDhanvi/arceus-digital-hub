@@ -23,10 +23,10 @@ export const extractWithAI = createServerFn({ method: "POST" })
         data.text,
       );
       const json = out.match(/\{[\s\S]*\}/)?.[0];
-      return { facts: json ? (JSON.parse(json) as Record<string, unknown>) : {}, error: null };
+      return { facts: json ? (JSON.parse(json) as Record<string, string | number | boolean>) : {}, error: null as string | null };
     } catch (e) {
       console.error("extractWithAI", e);
-      return { facts: {}, error: "AI is unavailable right now." };
+      return { facts: {} as Record<string, string | number | boolean>, error: "AI is unavailable right now." as string | null };
     }
   });
 
