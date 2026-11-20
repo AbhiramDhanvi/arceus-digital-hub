@@ -268,7 +268,7 @@ export function Assistant() {
 
 function ReportCard({ r, advice }: { r: Result; advice?: string | undefined }) {
   return (
-    <div className="rounded-lg border p-3 text-sm grid gap-2 bg-card">
+    <div className="rounded-lg border p-3 text-sm grid gap-2">
       <div className="flex justify-between items-start gap-3">
         <div><small className="uppercase tracking-wider opacity-70">{r.scheme.ministry}</small><b className="block text-base">{r.scheme.name}</b></div>
         <div className="text-right shrink-0"><small className="opacity-70">MATCH</small><b className="block text-xl">{r.score}%</b></div>
@@ -280,7 +280,7 @@ function ReportCard({ r, advice }: { r: Result; advice?: string | undefined }) {
         {r.failed.map(c => <p key={c} className="flex gap-1 items-center"><X size={14} />{c}</p>)}
         {r.missing.map(c => <p key={c} className="flex gap-1 items-center opacity-70"><X size={14} />Not answered: {c}</p>)}
       </div>}
-      {advice && <p className="rounded-md bg-muted p-2 flex gap-2"><Sparkles size={14} className="shrink-0 mt-0.5" /><span><b>AI advice:</b> {advice}</span></p>}
+      {advice && <p className="rounded-md border border-dashed p-2 flex gap-2"><Sparkles size={14} className="shrink-0 mt-0.5" /><span><b>AI advice:</b> {advice}</span></p>}
       {r.status !== "ineligible" && <><p><b>Documents:</b> {r.scheme.documents.join(", ")}</p><p><b>How to apply:</b> {r.scheme.steps.join(" → ")}</p></>}
       <a className="inline-flex items-center gap-1 underline" href={r.scheme.link} target="_blank" rel="noreferrer">Official website <ExternalLink size={13} /></a>
     </div>
