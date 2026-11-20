@@ -9,9 +9,9 @@ import { SCHEMES, VERIFIED_COUNT } from "@/lib/eligibility";
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
     { title: "ARCEUS | Your voice. Your benefits." },
-    { name: "description", content: "Discover Indian government schemes and eligibility guidance for you and your family in four languages." },
+    { name: "description", content: "Search 2,066 Indian government schemes and check source-cited eligibility for key central schemes by voice or text in Hindi and English." },
     { property: "og:title", content: "ARCEUS | Your voice. Your benefits." },
-    { property: "og:description", content: "Explore government benefits with multilingual voice and text guidance." },
+    { property: "og:description", content: "Search government schemes and check eligibility with official sources, by voice or text." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
