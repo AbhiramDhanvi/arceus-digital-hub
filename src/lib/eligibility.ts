@@ -106,7 +106,7 @@ export const SCHEMES: Scheme[] = [
   },
   {
     id: "pmfby", name: "PM Fasal Bima Yojana", ministry: "Ministry of Agriculture & Farmers Welfare", benefit: "Crop insurance for notified crops at a fixed farmer premium",
-    link: "https://pmfby.gov.in/", goals: ["farming", "insurance"], aliases: ["fasal bima", "pmfby", "crop insurance", "फसल बीमा"],
+    link: "https://pmfby.gov.in/", goals: ["farming"], aliases: ["fasal bima", "pmfby", "crop insurance", "फसल बीमा"],
     documents: ["Aadhaar", "Land record or tenancy/sharecropping agreement accepted by the state", "Sowing declaration", "Bank account"],
     steps: ["Check on pmfby.gov.in whether your crop is notified for your area and season", "Apply through your bank, CSC or pmfby.gov.in before the cut-off date", "Pay the farmer share of premium"],
     verified: false,

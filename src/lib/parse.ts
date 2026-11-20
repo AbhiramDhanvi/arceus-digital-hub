@@ -7,13 +7,13 @@ const HI: Record<string, number> = {
 };
 const DEV_DIGITS = "०१२३४५६७८९";
 export function normalize(text: string) {
-  return text.toLowerCase().replace(/[०-९]/g, d => String(DEV_DIGITS.indexOf(d))).replace(/[.,!?।]/g, " ").replace(/\s+/g, " ").trim();
+  return text.toLowerCase().replace(/[०-९]/g, d => String(DEV_DIGITS.indexOf(d))).replace(/(\d)[.,](\d)/g, "$1\u0000$2").replace(/[.,!?।]/g, " ").replace(/\u0000/g, ".").replace(/\s+/g, " ").trim();
 }
 const words = (t: string) => t.split(" ");
 
 /** Returns a plain number (digits or common number words), or null. */
 export function parseNumber(text: string): number | null {
-  const t = normalize(text).replace(/(\d),(\d)/g, "$1$2");
+  const t = normalize(text);
   const d = t.match(/\d+(?:\.\d+)?/);
   let n: number | null = d ? Number(d[0]) : null;
   if (n === null) {
@@ -22,9 +22,9 @@ export function parseNumber(text: string): number | null {
     if (hit) n = sum;
   }
   if (n === null) return null;
-  if (/\b(lakh|lac|लाख)/.test(t)) n *= 100000;
-  else if (/\b(crore|करोड़)/.test(t)) n *= 10000000;
-  else if (/\b(thousand|hazaar|hazar|हज़ार|हजार|k)\b/.test(t)) n *= 1000;
+  if (/\b(lakh|lac)|लाख/.test(t)) n *= 100000;
+  else if (/\bcrore|करोड़/.test(t)) n *= 10000000;
+  else if (/\b(thousand|hazaar|hazar|k)\b|हज़ार|हजार/.test(t)) n *= 1000;
   return n;
 }
 export function isApprox(text: string) { return /\b(about|around|approx|approximately|nearly|almost|roughly|lagbhag|karib|kareeb)\b|लगभग|करीब|क़रीब|तकरीबन/.test(normalize(text)); }
