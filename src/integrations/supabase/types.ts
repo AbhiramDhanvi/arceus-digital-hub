@@ -56,12 +56,33 @@ export type Database = {
         }
         Relationships: []
       }
+      voice_usage: {
+        Row: {
+          bucket: string
+          count: number
+          day: string
+        }
+        Insert: {
+          bucket: string
+          count?: number
+          day?: string
+        }
+        Update: {
+          bucket?: string
+          count?: number
+          day?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      consume_voice_quota: {
+        Args: { _bucket: string; _max: number }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
