@@ -10,6 +10,7 @@ import { STATUS_TEXT, decisionSentence, summarySpeech } from "@/lib/decision-tex
 import { extractAnswer, translateReply } from "@/lib/assistant.functions";
 import { transcribeSpeech, synthesizeSpeech } from "@/lib/voice.functions";
 import { useVoice } from "@/hooks/use-voice";
+import { useAutoVoice } from "@/hooks/use-auto-voice";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdaptivePlannerEnabled } from "@/lib/feature-flags";
 import { AdaptiveAssistant } from "./AdaptiveAssistant";
@@ -68,7 +69,9 @@ function LegacyAssistant() {
   const [lang, setLang] = useState<Lang>("en");
   const ui: UiLang = lang === "hi" ? "hi" : "en";
   const [voiceId, setVoiceId] = useState<VoiceId>("ishita");
-  const [handsFree, setHandsFree] = useState(false);
+  const [handsFree, setHandsFree] = useState(true);
+  const handsFreeRef = useRef(true);
+  handsFreeRef.current = handsFree;
   const [readAloud, setReadAloud] = useState(true);
   const [iv, setIv] = useState<Interview>(newInterview);
   const [editing, setEditing] = useState<FactKey | null>(null);
@@ -100,6 +103,13 @@ function LegacyAssistant() {
         handleRef.current(r.text, true);
       }).catch(() => { voice.setState("ready"); setAlert(ERR["unavailable"]!); });
     },
+  });
+
+  const autoVoice = useAutoVoice({
+    locale,
+    onFinalTranscript: text => handleRef.current(text, true),
+    onFallbackListen: () => void voice.listen(),
+    onError: msg => setAlert(msg),
   });
 
   // Saved household (signed-in "me" only); never overwritten by a new-person check.
@@ -143,9 +153,10 @@ function LegacyAssistant() {
   async function say(text: string, reopen: boolean) {
     const t = await tr(text);
     setTurns(m => [...m, { role: "agent", text: t }]);
-    if (!readAloud) return;
-    const done = await voice.speak(t);
-    if (done && reopen && handsFree) void voice.listen();
+    if (readAloud) {
+      await autoVoice.speakBounded(voice.speak, t);
+    }
+    if (reopen && handsFreeRef.current) autoVoice.openMic();
   }
 
   // Ask the current question (or speak the decision) whenever it changes.
@@ -161,22 +172,31 @@ function LegacyAssistant() {
   }, [current, res, started, ui, confirm]);
 
   useEffect(() => { logRef.current?.scrollTo({ top: 1e6 }); }, [turns]);
-  useEffect(() => { voice.cancel(); lastAsked.current = ""; /* re-ask in the new language */ }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { autoVoice.stopAutoListen(); voice.cancel(); lastAsked.current = ""; /* re-ask in the new language */ }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const go = () => begin();
+    const go = () => begin(true);
     const pick = (e: Event) => {
       const id = (e as CustomEvent<string>).detail;
       const s = SCHEMES.find(x => x.id === id); if (!s) return;
-      begin();
+      begin(true);
       setTurns(m => [...m, { role: "user", text: s.name }]);
       commit({ ...iv, goal: s.goals[0] ?? null, schemeIds: [s.id] });
     };
-    const away = () => { if (window.location.hash !== "#assistant") voice.cancel(); };
+    const away = () => { if (window.location.hash !== "#assistant") { autoVoice.stopAutoListen(); voice.cancel(); } };
     window.addEventListener("arceus:start", go); window.addEventListener("arceus:scheme", pick); window.addEventListener("hashchange", away);
     return () => { window.removeEventListener("arceus:start", go); window.removeEventListener("arceus:scheme", pick); window.removeEventListener("hashchange", away); };
   }); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function begin() { setStarted(true); setAlert(null); lastAsked.current = ""; }
+  function begin(withAutoMic = true) {
+    if (withAutoMic) {
+      setHandsFree(true);
+      handsFreeRef.current = true;
+      void autoVoice.primeMic();
+    }
+    setStarted(true);
+    setAlert(null);
+    lastAsked.current = "";
+  }
 
   function commit(next: Interview) {
     setIv(next); setEditing(null); setConfirm(null); setHeard(null);
@@ -275,16 +295,17 @@ function LegacyAssistant() {
       <div className="av-grid">
         <div className="av-main">
           <div className="av-status" role="status" aria-live="polite">
-            <span className={`av-dot s-${voice.state}`} aria-hidden />{STATE_TEXT[voice.state]}
+            <span className={`av-dot s-${autoVoice.autoListening ? "listening" : voice.state}`} aria-hidden />{STATE_TEXT[autoVoice.autoListening ? "listening" : voice.state]}
             {voice.usedDeviceVoice && <small> · device voice</small>}
             {voice.needsPlay && <button type="button" className="av-chip" onClick={voice.play}><Play size={16} aria-hidden />Play</button>}
           </div>
           {alert && <p className="form-alert" role="alert">{alert}</p>}
+          {autoVoice.interim && <p className="av-muted">Hearing: “{autoVoice.interim}”</p>}
 
           {!started ? (
             <div className="av-card">
               <p className="av-q">{ui === "hi" ? GOAL_QUESTION.hi[0] : GOAL_QUESTION.en[0]}</p>
-              <button type="button" className="button primary" onClick={begin}><Mic size={18} aria-hidden />Start</button>
+              <button type="button" className="button primary" onClick={() => begin(true)}><Mic size={18} aria-hidden />Start</button>
             </div>
           ) : current ? (
             <div className="av-card">
@@ -300,13 +321,13 @@ function LegacyAssistant() {
                 {!confirm && current.key !== "goal" && current.key !== "subject" && <button type="button" className="av-opt ghost" onClick={doSkip}><SkipForward size={15} aria-hidden />{ui === "hi" ? "छोड़ें" : "Skip"}</button>}
               </div>
               <form className="av-composer" onSubmit={e => { e.preventDefault(); void handle(input || heard || ""); }}>
-                <button type="button" className={`av-mic ${voice.state === "listening" ? "live" : ""}`} onClick={() => void voice.listen()} aria-label={voice.state === "listening" ? "Stop and send recording" : "Answer by voice"} aria-pressed={voice.state === "listening"} style={{ boxShadow: voice.state === "listening" ? `0 0 0 ${4 + voice.level * 10}px var(--av-ring)` : undefined }}>
-                  {voice.state === "listening" ? <Square size={20} aria-hidden /> : <Mic size={22} aria-hidden />}
+                <button type="button" className={`av-mic ${autoVoice.autoListening || voice.state === "listening" ? "live" : ""}`} onClick={() => { if (autoVoice.autoListening || voice.state === "listening") { autoVoice.stopAutoListen(); voice.cancel(); } else { voice.cancel(); autoVoice.openMic(); } }} aria-label={autoVoice.autoListening || voice.state === "listening" ? "Stop and send recording" : "Answer by voice"} aria-pressed={autoVoice.autoListening || voice.state === "listening"} style={{ boxShadow: autoVoice.autoListening || voice.state === "listening" ? `0 0 0 ${4 + voice.level * 10}px var(--av-ring)` : undefined }}>
+                  {autoVoice.autoListening || voice.state === "listening" ? <Square size={20} aria-hidden /> : <Mic size={22} aria-hidden />}
                 </button>
                 <input value={input} onChange={e => setInput(e.target.value)} maxLength={300} aria-label="Type your answer" placeholder={ui === "hi" ? "जवाब लिखें…" : "Type your answer…"} />
                 <button type="submit" className="av-send" disabled={busy || !(input || heard)} aria-label="Send"><Send size={19} aria-hidden /></button>
               </form>
-              {voice.state === "listening" && <button type="button" className="av-link" onClick={() => voice.cancel()}>Cancel recording</button>}
+              {(autoVoice.autoListening || voice.state === "listening") && <button type="button" className="av-link" onClick={() => { autoVoice.stopAutoListen(); voice.cancel(); }}>Cancel recording</button>}
             </div>
           ) : (
             <Results results={res} ui={ui} onSpeak={t => void voice.speak(t)} goal={iv.goal} />

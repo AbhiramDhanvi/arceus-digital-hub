@@ -26,6 +26,7 @@ import {
 } from "@/lib/interview";
 import { synthesizeSpeech, transcribeSpeech } from "@/lib/voice.functions";
 import { useVoice } from "@/hooks/use-voice";
+import { useAutoVoice } from "@/hooks/use-auto-voice";
 import {
   confirmBatch,
   confirmEarlyClaim,
@@ -39,12 +40,7 @@ import {
   type SchemeEvaluation,
 } from "@/lib/adaptive-planner";
 import { formatClaimValue, resolveConflict, type ClaimEntry } from "@/lib/claim-ledger";
-import {
-  createBrowserAutoRecognizer,
-  transcribeWithNirantarEndpoint,
-  type AutoVoiceController,
-} from "@/lib/nirantar-voice";
-import { getNirantarAsrUrl } from "@/lib/feature-flags";
+import { transcribeWithNirantarEndpoint } from "@/lib/nirantar-voice";
 
 const LANGS = [
   ["en", "English", "en-IN"],
@@ -86,12 +82,11 @@ export function AdaptiveAssistant() {
   const [planner, setPlanner] = useState<PlannerState>(() => createPlannerState());
   const [turns, setTurns] = useState<Turn[]>([]);
   const [input, setInput] = useState("");
-  const [interim, setInterim] = useState("");
   const [alert, setAlert] = useState<string | null>(null);
-  const [autoListening, setAutoListening] = useState(false);
 
   const logRef = useRef<HTMLDivElement>(null);
-  const recognizerRef = useRef<AutoVoiceController | null>(null);
+  const handsFreeRef = useRef(true);
+  handsFreeRef.current = handsFree;
   const handleRef = useRef<(text: string, confidence?: number, choice?: Choice) => void>(
     () => undefined,
   );
@@ -99,7 +94,6 @@ export function AdaptiveAssistant() {
   const synthFn = useServerFn(synthesizeSpeech);
   const sttFn = useServerFn(transcribeSpeech);
   const locale = LANGS.find((l) => l[0] === lang)![2];
-  const hasNirantarEndpoint = getNirantarAsrUrl() !== null;
 
   const voice = useVoice({
     locale,
@@ -135,47 +129,24 @@ export function AdaptiveAssistant() {
     },
   });
 
-  // Set up browser automatic voice recognition (Web Speech API)
-  useEffect(() => {
-    const ctrl = createBrowserAutoRecognizer({
-      onStart: () => {
-        setAutoListening(true);
-        setInterim("");
-      },
-      onInterim: (txt) => setInterim(txt),
-      onFinal: (txt, conf) => {
-        setAutoListening(false);
-        setInterim("");
-        handleRef.current(txt, conf);
-      },
-      onError: (code) => {
-        setAutoListening(false);
-        setInterim("");
-        if (code === "not-allowed" || code === "service-not-allowed") {
-          setAlert("Microphone permission was denied. Allow mic access or type your answer.");
-        }
-      },
-      onEnd: () => setAutoListening(false),
-    });
-    recognizerRef.current = ctrl;
-    return () => ctrl.abort();
-  }, []);
+  const autoVoice = useAutoVoice({
+    locale,
+    onFinalTranscript: (txt, conf) => handleRef.current(txt, conf),
+    onFallbackListen: () => void voice.listen(),
+    onError: (msg) => setAlert(msg),
+  });
+  const { autoListening, interim } = autoVoice;
 
   const openMicAutomatically = useCallback(() => {
     setAlert(null);
-    if (!hasNirantarEndpoint && recognizerRef.current?.isSupported) {
-      const ok = recognizerRef.current.start(locale);
-      if (ok) return;
-    }
-    void voice.listen();
-  }, [hasNirantarEndpoint, locale, voice]);
+    voice.cancel();
+    autoVoice.openMic();
+  }, [autoVoice, voice]);
 
   const stopAllVoice = useCallback(() => {
-    recognizerRef.current?.abort();
-    setAutoListening(false);
-    setInterim("");
+    autoVoice.stopAutoListen();
     voice.cancel();
-  }, [voice]);
+  }, [autoVoice, voice]);
 
   const step = useMemo(() => next_question(planner), [planner]);
 
@@ -183,13 +154,13 @@ export function AdaptiveAssistant() {
     async (text: string, reopenMic: boolean) => {
       setTurns((m) => [...m, { role: "agent", text }]);
       if (readAloud) {
-        await voice.speak(text);
+        await autoVoice.speakBounded(voice.speak, text);
       }
-      if (reopenMic && handsFree) {
-        openMicAutomatically();
+      if (reopenMic && handsFreeRef.current) {
+        autoVoice.openMic();
       }
     },
-    [handsFree, openMicAutomatically, readAloud, voice],
+    [autoVoice, readAloud, voice],
   );
 
   // Ask current question (or speak final summary) automatically
@@ -263,10 +234,13 @@ export function AdaptiveAssistant() {
   }, [turns]);
 
   const begin = useCallback(() => {
+    setHandsFree(true);
+    handsFreeRef.current = true;
+    void autoVoice.primeMic();
     setStarted(true);
     setAlert(null);
     lastSig.current = "";
-  }, []);
+  }, [autoVoice]);
 
   // Listen for "Talk to ARCEUS" (`arceus:start`) and scheme quick-picks
   useEffect(() => {
