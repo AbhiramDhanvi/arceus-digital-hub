@@ -11,6 +11,8 @@ import { extractAnswer, translateReply } from "@/lib/assistant.functions";
 import { transcribeSpeech, synthesizeSpeech } from "@/lib/voice.functions";
 import { useVoice } from "@/hooks/use-voice";
 import { supabase } from "@/integrations/supabase/client";
+import { isAdaptivePlannerEnabled } from "@/lib/feature-flags";
+import { AdaptiveAssistant } from "./AdaptiveAssistant";
 
 const LANGS = [
   ["en", "English", "en-IN"], ["hi", "हिन्दी", "hi-IN"], ["te", "తెలుగు", "te-IN"], ["mr", "मराठी", "mr-IN"],
@@ -59,6 +61,10 @@ function show(k: FactKey, v: FactValue, f: Facts): string {
 const SAVEABLE: FactKey[] = ["age", "ageOnAadhaar", "indianCitizen", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
 
 export function Assistant() {
+  if (isAdaptivePlannerEnabled()) return <AdaptiveAssistant />;
+  return <LegacyAssistant />;
+}
+function LegacyAssistant() {
   const [lang, setLang] = useState<Lang>("en");
   const ui: UiLang = lang === "hi" ? "hi" : "en";
   const [voiceId, setVoiceId] = useState<VoiceId>("ishita");
