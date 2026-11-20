@@ -56,7 +56,7 @@ function show(k: FactKey, v: FactValue, f: Facts): string {
   if (opt) return opt.en;
   return v === true ? "Yes" : v === false ? "No" : String(v);
 }
-const SAVEABLE: FactKey[] = ["age", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
+const SAVEABLE: FactKey[] = ["age", "ageOnAadhaar", "indianCitizen", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
 
 export function Assistant() {
   const [lang, setLang] = useState<Lang>("en");
