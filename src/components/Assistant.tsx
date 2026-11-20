@@ -63,6 +63,8 @@ export function Assistant() {
   const ui: UiLang = lang === "hi" ? "hi" : "en";
   const [voiceId, setVoiceId] = useState<VoiceId>("ishita");
   const [handsFree, setHandsFree] = useState(false);
+  const handsFreeRef = useRef(false);
+  useEffect(() => { handsFreeRef.current = handsFree; }, [handsFree]);
   const [readAloud, setReadAloud] = useState(true);
   const [iv, setIv] = useState<Interview>(newInterview);
   const [editing, setEditing] = useState<FactKey | null>(null);
@@ -137,9 +139,9 @@ export function Assistant() {
   async function say(text: string, reopen: boolean) {
     const t = await tr(text);
     setTurns(m => [...m, { role: "agent", text: t }]);
-    if (!readAloud) return;
+    if (!readAloud) { if (reopen && handsFreeRef.current) void voice.listen(); return; }
     const done = await voice.speak(t);
-    if (done && reopen && handsFree) void voice.listen();
+    if (done && reopen && handsFreeRef.current) void voice.listen();
   }
 
   // Ask the current question (or speak the decision) whenever it changes.
@@ -157,7 +159,8 @@ export function Assistant() {
   useEffect(() => { logRef.current?.scrollTo({ top: 1e6 }); }, [turns]);
   useEffect(() => { voice.cancel(); lastAsked.current = ""; /* re-ask in the new language */ }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const go = () => begin();
+    // "Talk to ARCEUS": turn on hands-free so the mic opens after each spoken question.
+    const go = () => { handsFreeRef.current = true; setHandsFree(true); begin(); };
     const pick = (e: Event) => {
       const id = (e as CustomEvent<string>).detail;
       const s = SCHEMES.find(x => x.id === id); if (!s) return;
