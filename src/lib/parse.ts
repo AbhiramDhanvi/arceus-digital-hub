@@ -60,3 +60,12 @@ export function parseMonthlyAmount(text: string, assume: "month" | "year" = "mon
   const monthly = (period ?? assume) === "year" ? Math.round(n / 12) : n;
   return { value: monthly, approx: isApprox(text) || (period ?? assume) === "year", period };
 }
+/** Money per year; a monthly figure is multiplied by 12. A converted monthly figure is treated as approximate. */
+export function parseAnnualAmount(text: string): { value: number; approx: boolean; period: Period } | null {
+  const yn = parseYesNo(text);
+  if (yn === false) return { value: 0, approx: false, period: null };
+  const n = parseNumber(text);
+  if (n === null) return null;
+  const period = parsePeriod(text);
+  return { value: period === "month" ? n * 12 : n, approx: isApprox(text) || period === "month", period };
+}
