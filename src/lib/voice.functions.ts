@@ -11,7 +11,7 @@ export const transcribeSpeech = createServerFn({ method: "POST" })
     try {
       const bytes = Uint8Array.from(atob(data.audio), (c) => c.charCodeAt(0));
       const form = new FormData();
-      form.append("file", new Blob([bytes], { type: data.mime.split(";")[0] }), "speech.webm");
+      form.append("file", new Blob([bytes], { type: data.mime.split(";")[0] ?? "audio/webm" }), "speech.webm");
       form.append("model", "saarika:v2.5");
       form.append("language_code", CODES[data.lang]);
       const r = await fetch("https://api.sarvam.ai/speech-to-text", {
@@ -34,7 +34,7 @@ export const synthesizeSpeech = createServerFn({ method: "POST" })
       const r = await fetch("https://api.sarvam.ai/text-to-speech", {
         method: "POST",
         headers: { "api-subscription-key": process.env["SARVAM_API_KEY"]!, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: data.text.slice(0, 1500), target_language_code: CODES[data.lang], model: "bulbul:v2", speaker: "anushka" }),
+        body: JSON.stringify({ text: data.text.slice(0, 1500), target_language_code: CODES[data.lang], model: "bulbul:v3", speaker: "anushka" }),
       });
       if (!r.ok) { console.error("sarvam tts", r.status, await r.text()); return { audio: null as string | null }; }
       const j = (await r.json()) as { audios?: string[] };
