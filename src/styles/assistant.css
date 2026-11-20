@@ -82,7 +82,7 @@
 @keyframes hv-bar { 0%, 100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
 .hv-evidence { position: absolute; z-index: 1; right: 6%; top: 8%; width: min(44%, 260px); background: var(--white); color: var(--ink); border-radius: 12px; padding: 12px 14px; font-size: 12px; box-shadow: 0 18px 40px -20px #000a; }
 .hv-evidence b { font-size: 13px; display: block; margin-bottom: 6px; }
-.hv-evidence p { margin: 3px 0; display: flex; gap: 6px; align-items: center; }
+.hv-evidence p { margin: 3px 0 !important; display: flex; gap: 6px; align-items: center; color: var(--ink) !important; font-size: 12px !important; line-height: 1.35 !important; max-width: none !important; opacity: 1 !important; }
 .hv-evidence i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--signal); font-size: 10px; flex: none; }
 .hv-evidence i.q { background: var(--accent-soft); }
 .hv-evidence small { color: var(--muted); display: block; margin-top: 6px; }
