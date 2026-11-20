@@ -120,7 +120,7 @@ export function Assistant() {
         stream.getTracks().forEach(t => t.stop());
         setListening(false);
         const blob = new Blob(chunks, { type: rec.mimeType });
-        if (blob.size < 500) return;
+        if (blob.size < 500) { setAlert("I didn't hear anything. Please try again."); return; }
         const buf = new Uint8Array(await blob.arrayBuffer());
         let bin = ""; for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
         setBusy(true); setInput("Listening…");
@@ -129,7 +129,24 @@ export function Assistant() {
         if (r.error || !r.text) { setAlert(r.error ?? "I didn't catch that. Please try again."); return; }
         void handle(r.text);
       };
+      // Auto-stop when the speaker goes quiet (or after 15s).
+      const ctx = new AudioContext();
+      const an = ctx.createAnalyser(); an.fftSize = 1024;
+      ctx.createMediaStreamSource(stream).connect(an);
+      const buf = new Uint8Array(an.fftSize);
+      const t0 = Date.now(); let spoke = false; let lastLoud = Date.now();
+      const tick = () => {
+        if (rec.state !== "recording") { void ctx.close(); return; }
+        an.getByteTimeDomainData(buf);
+        let sum = 0; for (const v of buf) sum += ((v - 128) / 128) ** 2;
+        const rms = Math.sqrt(sum / buf.length);
+        if (rms > 0.03) { spoke = true; lastLoud = Date.now(); }
+        const now = Date.now();
+        if ((spoke && now - lastLoud > 1500) || now - t0 > 15000 || (!spoke && now - t0 > 7000)) { rec.stop(); void ctx.close(); return; }
+        requestAnimationFrame(tick);
+      };
       recRef.current = rec; rec.start(); setListening(true); setAlert(null);
+      requestAnimationFrame(tick);
     } catch {
       setAlert("The microphone is unavailable. Check permission or type your reply.");
     }
