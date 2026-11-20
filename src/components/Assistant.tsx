@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { Mic, MicOff, RotateCcw, Send, Volume2, ExternalLink } from "lucide-react";
 import { evaluateAll, extractFacts, mergeFacts, nextQuestion, QUESTIONS, type Facts, type Result } from "@/lib/assistant-core";
 import { extractWithAI, translateReply } from "@/lib/assistant.functions";
+import { transcribeSpeech, synthesizeSpeech } from "@/lib/voice.functions";
 import { supabase } from "@/integrations/supabase/client";
 
 const LANGS = [
@@ -28,10 +29,13 @@ export function Assistant() {
   const logRef = useRef<HTMLDivElement>(null);
   const aiExtract = useServerFn(extractWithAI);
   const translate = useServerFn(translateReply);
+  const stt = useServerFn(transcribeSpeech);
+  const tts = useServerFn(synthesizeSpeech);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const locale = LANGS.find(l => l[0] === lang)![2];
 
   useEffect(() => { logRef.current?.scrollTo({ top: 1e6, behavior: "smooth" }); }, [msgs]);
-  useEffect(() => () => { window.speechSynthesis?.cancel(); recRef.current?.stop(); }, []);
+  useEffect(() => () => { audioRef.current?.pause(); window.speechSynthesis?.cancel(); recRef.current?.stop(); }, []);
 
   // Load saved household facts for signed-in users.
   useEffect(() => {
@@ -42,9 +46,14 @@ export function Assistant() {
     });
   }, []);
 
-  function speak(text: string) {
-    if (!speakAloud || !("speechSynthesis" in window)) return;
-    window.speechSynthesis.cancel();
+  function stopAudio() { audioRef.current?.pause(); window.speechSynthesis?.cancel(); }
+
+  async function speak(text: string) {
+    if (!speakAloud) return;
+    stopAudio();
+    const { audio } = await tts({ data: { text: text.slice(0, 1500), lang } }).catch(() => ({ audio: null }));
+    if (audio) { const a = new Audio(`data:audio/wav;base64,${audio}`); audioRef.current = a; void a.play(); return; }
+    if (!("speechSynthesis" in window)) return;
     const u = new SpeechSynthesisUtterance(text.slice(0, 400));
     u.lang = locale;
     window.speechSynthesis.speak(u);
@@ -53,13 +62,13 @@ export function Assistant() {
   async function reply(text: string, results?: Result[]) {
     const { text: out } = await translate({ data: { text, lang } });
     setMsgs(m => [...m, { role: "agent", text: out, ...(results ? { results } : {}) }]);
-    speak(out);
+    void speak(out);
   }
 
   async function handle(text: string) {
     const clean = text.trim().slice(0, 500);
     if (!clean || busy) return;
-    window.speechSynthesis?.cancel(); // interruption
+    stopAudio(); // interruption
     setMsgs(m => [...m, { role: "user", text: clean }]);
     setInput(""); setBusy(true); setAlert(null);
     try {
@@ -95,26 +104,36 @@ export function Assistant() {
     if (data.user) await supabase.from("households").upsert({ user_id: data.user.id, facts: f as never, updated_at: new Date().toISOString() });
   }
 
-  function toggleMic() {
+  async function toggleMic() {
     if (listening) { recRef.current?.stop(); return; }
-    const W = window as unknown as { SpeechRecognition?: new () => any; webkitSpeechRecognition?: new () => any };
-    const SR = W.SpeechRecognition ?? W.webkitSpeechRecognition;
-    if (!SR) { setAlert("Voice input isn't supported in this browser. Please type instead."); return; }
-    window.speechSynthesis?.cancel();
-    const rec = new SR();
-    rec.lang = locale; rec.interimResults = true;
-    rec.onresult = (e: any) => {
-      const t = Array.from(e.results as ArrayLike<any>).map((r: any) => r[0].transcript).join("");
-      setInput(t);
-      if (e.results[e.results.length - 1].isFinal) void handle(t);
-    };
-    rec.onerror = () => setAlert("The microphone is unavailable. Check permission or type your reply.");
-    rec.onend = () => setListening(false);
-    recRef.current = rec; rec.start(); setListening(true); setAlert(null);
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") { setAlert("Voice input isn't supported in this browser. Please type instead."); return; }
+    stopAudio();
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const rec = new MediaRecorder(stream);
+      const chunks: Blob[] = [];
+      rec.ondataavailable = e => chunks.push(e.data);
+      rec.onstop = async () => {
+        stream.getTracks().forEach(t => t.stop());
+        setListening(false);
+        const blob = new Blob(chunks, { type: rec.mimeType });
+        if (blob.size < 500) return;
+        const buf = new Uint8Array(await blob.arrayBuffer());
+        let bin = ""; for (let i = 0; i < buf.length; i += 0x8000) bin += String.fromCharCode(...buf.subarray(i, i + 0x8000));
+        setBusy(true); setInput("Listening…");
+        const r = await stt({ data: { audio: btoa(bin), mime: rec.mimeType || "audio/webm", lang } }).catch(() => ({ text: "", error: "Voice service unavailable." }));
+        setBusy(false); setInput("");
+        if (r.error || !r.text) { setAlert(r.error ?? "I didn't catch that. Please try again."); return; }
+        void handle(r.text);
+      };
+      recRef.current = rec; rec.start(); setListening(true); setAlert(null);
+    } catch {
+      setAlert("The microphone is unavailable. Check permission or type your reply.");
+    }
   }
 
   function restart() {
-    window.speechSynthesis?.cancel();
+    stopAudio();
     setMsgs([{ role: "agent", text: GREETING }]); setFacts({}); setExpecting(null); setAlert(null);
   }
 
@@ -149,7 +168,7 @@ export function Assistant() {
             {msgs.map((m, i) => (
               <div key={i} className={`message ${m.role === "agent" ? "agent-message self-start" : "user-message self-end"} rounded-[12px] py-[11px] px-[14px] w-fit max-w-[90%]`}>
                 <p className="wrap-anywhere">{m.text}</p>
-                {m.role === "agent" && <button className="listen-button mt-1" aria-label="Read this reply aloud" onClick={() => speak(m.text)}><Volume2 size={15} /></button>}
+                {m.role === "agent" && <button className="listen-button mt-1" aria-label="Read this reply aloud" onClick={() => void speak(m.text)}><Volume2 size={15} /></button>}
                 {m.results && <div className="grid gap-2 mt-3">{m.results.map(r => (
                   <div key={r.scheme.id} className="rounded-lg border p-3 text-sm">
                     <div className="flex justify-between gap-2"><b>{r.scheme.name}</b><span>{STATUS_LABEL[r.status]}</span></div>
