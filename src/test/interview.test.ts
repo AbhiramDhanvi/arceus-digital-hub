@@ -8,11 +8,11 @@ const get = (id: string) => SCHEMES.find(s => s.id === id)!;
 
 describe("thresholds", () => {
   it("APY: 39 can join, 40 cannot", () => {
-    expect(evaluate(get("apy"), { age: 39, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("likely_eligible");
-    expect(evaluate(get("apy"), { age: 40, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("ineligible");
+    expect(evaluate(get("apy"), { indianCitizen: true, age: 39, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("likely_eligible");
+    expect(evaluate(get("apy"), { indianCitizen: true, age: 40, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("ineligible");
   });
   it("approximate age near a limit stays unverified", () => {
-    expect(evaluate(get("apy"), { age: 40, age_approx: true, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("needs_verification");
+    expect(evaluate(get("apy"), { indianCitizen: true, age: 40, age_approx: true, hasBankAccount: true, incomeTaxPayer: false }).status).toBe("needs_verification");
   });
   it("PMJJBY entry 18–50; PMSBY 18–70", () => {
     expect(evaluate(get("pmjjby"), { age: 51, hasBankAccount: true }).status).toBe("ineligible");
@@ -22,7 +22,7 @@ describe("thresholds", () => {
   it("PM-KISAN pension: yearly ₹1.5 lakh = ₹12,500/month fails; ₹1.2 lakh/yr straddles ₹10,000", () => {
     const m = parseMonthlyAmount("1.5 lakh per year")!;
     expect(m.value).toBe(12500);
-    const base = { ownsCultivableLand: true, institutionalLand: false, incomeTaxLastAY: false, govtEmployee: false, registeredProfessional: false };
+    const base = { ownsCultivableLand: true, institutionalLand: false, constitutionalPost: false, incomeTaxLastAY: false, govtEmployee: false, registeredProfessional: false, govtStaffGroupD: false };
     expect(evaluate(get("pm-kisan"), { ...base, pensionMonthly: 12500 }).status).toBe("ineligible");
     const s = parseMonthlyAmount("1.2 lakh saal")!;
     expect(evaluate(get("pm-kisan"), { ...base, pensionMonthly: s.value, pensionMonthly_approx: s.approx }).status).toBe("needs_verification");
@@ -35,14 +35,14 @@ describe("thresholds", () => {
 
 describe("alternative paths", () => {
   it("PM-JAY: age 72 is likely eligible without any BPL fact", () => {
-    expect(evaluate(get("pmjay"), { age: 72 }).status).toBe("likely_eligible");
+    expect(evaluate(get("pmjay"), { ageOnAadhaar: 72 }).status).toBe("likely_eligible");
   });
   it("PM-JAY: age 45 does not fail while the family list is unchecked", () => {
-    expect(evaluate(get("pmjay"), { age: 45 }).status).toBe("needs_verification");
-    expect(evaluate(get("pmjay"), { age: 45, pmjayListed: UNKNOWN }).status).toBe("needs_verification");
+    expect(evaluate(get("pmjay"), { ageOnAadhaar: 45 }).status).toBe("needs_verification");
+    expect(evaluate(get("pmjay"), { ageOnAadhaar: 45, pmjayListed: UNKNOWN }).status).toBe("needs_verification");
   });
   it("PM-JAY: fails only when both paths fail, with near-miss at 67", () => {
-    const r = evaluate(get("pmjay"), { age: 67, pmjayListed: false });
+    const r = evaluate(get("pmjay"), { ageOnAadhaar: 67, pmjayListed: false });
     expect(r.status).toBe("ineligible");
     expect(r.nearMiss).toMatch(/70/);
   });
@@ -99,7 +99,7 @@ describe("interview", () => {
   });
   it("contradiction removes the fact from the verdict until confirmed", () => {
     let iv = chooseNeed(newInterview(), "", "pension")!;
-    iv = applyFacts(iv, { subject: "self", age: 30, hasBankAccount: true, incomeTaxPayer: false });
+    iv = applyFacts(iv, { subject: "self", indianCitizen: true, age: 30, hasBankAccount: true, incomeTaxPayer: false });
     expect(results(iv)[0]!.status).toBe("likely_eligible");
     const said = statedAge("actually I am 45 years")!;
     iv = applyFacts(iv, { age: said.value });
