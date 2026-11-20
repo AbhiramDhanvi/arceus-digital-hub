@@ -78,7 +78,7 @@ export function Assistant() {
     synth: text => synthFn({ data: { text: text.slice(0, 1200), lang, voice: voiceId } }),
     onError: msg => setAlert(msg),
     onCaptured: (audio, mime) => {
-      void sttFn({ data: { audio, mime, lang } }).then(r => {
+      void Promise.race([sttFn({ data: { audio, mime, lang } }), new Promise<never>((_, rej) => window.setTimeout(() => rej(new Error("timeout")), 30000))]).then(r => {
         voice.setState("ready");
         if (r.error) { setAlert(ERR[r.error] ?? ERR["unavailable"]!); return; }
         handleRef.current(r.text, true);
