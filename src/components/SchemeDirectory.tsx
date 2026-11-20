@@ -42,7 +42,7 @@ export function SchemeDirectory() {
     <section className="wrap landing-section mx-auto sd" id="schemes" aria-labelledby="sd-title">
       <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />ALL SCHEMES</div>
       <h2 id="sd-title">Search {rows ? rows.length.toLocaleString("en-IN") : "the"} schemes listed on myScheme</h2>
-      <p className="sd-note">This list is for finding schemes only — ARCEUS does not decide eligibility for these. {SCHEMES.length} schemes marked “ARCEUS can check” have source-cited rules.</p>
+      <p className="sd-note">This list is for finding schemes only — ARCEUS does not decide eligibility for these. ARCEUS has source-cited rules for {SCHEMES.length} schemes; the ones in this list are marked “ARCEUS can check”.</p>
       <div className="sd-filters" role="search">
         <label><span>Search by name or topic</span><input type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="e.g. scholarship, pension, farmer" /></label>
         <label><span>Level</span><select value={level} onChange={e => { setLevel(e.target.value as "" | "C" | "S"); setPlace(""); }}><option value="">All</option><option value="C">Central</option><option value="S">State / UT</option></select></label>

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Mic, Square, RotateCcw, Send, Volume2, ExternalLink, Check, X, HelpCircle, Play, UserPlus, Pencil, SkipForward } from "lucide-react";
-import { DISCOVERY, UNKNOWN, type FactKey, type FactValue, type Facts, type Result } from "@/lib/eligibility";
+import { DISCOVERY, SCHEMES, UNKNOWN, type FactKey, type FactValue, type Facts, type Result } from "@/lib/eligibility";
 import {
   GOAL_QUESTION, QUESTIONS, applyFacts, chooseNeed, newInterview, nextQuestion, parseAnswer, questionText, results as getResults,
   skip, statedAge, type Choice, type Interview, type Question, type UiLang,
@@ -56,7 +56,7 @@ function show(k: FactKey, v: FactValue, f: Facts): string {
   if (opt) return opt.en;
   return v === true ? "Yes" : v === false ? "No" : String(v);
 }
-const SAVEABLE: FactKey[] = ["age", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
+const SAVEABLE: FactKey[] = ["age", "ageOnAadhaar", "indianCitizen", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
 
 export function Assistant() {
   const [lang, setLang] = useState<Lang>("en");
@@ -158,9 +158,16 @@ export function Assistant() {
   useEffect(() => { voice.cancel(); lastAsked.current = ""; /* re-ask in the new language */ }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const go = () => begin();
+    const pick = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      const s = SCHEMES.find(x => x.id === id); if (!s) return;
+      begin();
+      setTurns(m => [...m, { role: "user", text: s.name }]);
+      commit({ ...iv, goal: s.goals[0] ?? null, schemeIds: [s.id] });
+    };
     const away = () => { if (window.location.hash !== "#assistant") voice.cancel(); };
-    window.addEventListener("arceus:start", go); window.addEventListener("hashchange", away);
-    return () => { window.removeEventListener("arceus:start", go); window.removeEventListener("hashchange", away); };
+    window.addEventListener("arceus:start", go); window.addEventListener("arceus:scheme", pick); window.addEventListener("hashchange", away);
+    return () => { window.removeEventListener("arceus:start", go); window.removeEventListener("arceus:scheme", pick); window.removeEventListener("hashchange", away); };
   }); // eslint-disable-line react-hooks/exhaustive-deps
 
   function begin() { setStarted(true); setAlert(null); lastAsked.current = ""; }
@@ -245,7 +252,7 @@ export function Assistant() {
       <div className="av-toolbar">
         <label>Language
           <select value={lang} onChange={e => setLang(e.target.value as Lang)} aria-label="Assistant language">
-            {LANGS.map(l => <option key={l[0]} value={l[0]}>{l[1]}{l[0] !== "en" && l[0] !== "hi" ? " (AI translated)" : ""}</option>)}
+            {LANGS.map(l => <option key={l[0]} value={l[0]}>{l[1]}{l[0] !== "en" && l[0] !== "hi" ? " (AI translated — sign in)" : ""}</option>)}
           </select>
         </label>
         <fieldset className="av-voices"><legend>Voice</legend>
