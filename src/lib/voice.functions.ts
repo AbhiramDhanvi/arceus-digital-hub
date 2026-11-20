@@ -46,8 +46,8 @@ export const transcribeSpeech = createServerFn({ method: "POST" })
     const base = data.mime.split(";")[0]!.trim().toLowerCase();
     const ext = MIME_EXT[base];
     if (!ext) return { text: "", locale: null, error: "bad_audio" as VoiceError | null };
-    let bytes: Uint8Array;
-    try { bytes = Uint8Array.from(atob(data.audio), (c) => c.charCodeAt(0)); } catch { return { text: "", locale: null, error: "bad_audio" as VoiceError | null }; }
+    let bytes: Uint8Array<ArrayBuffer>;
+    try { const bin = atob(data.audio); bytes = new Uint8Array(new ArrayBuffer(bin.length)); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i); } catch { return { text: "", locale: null, error: "bad_audio" as VoiceError | null }; }
     if (bytes.length > MAX_AUDIO_BYTES) return { text: "", locale: null, error: "too_long" as VoiceError | null };
     if (!(await quota())) return { text: "", locale: null, error: "quota" as VoiceError | null };
     try {

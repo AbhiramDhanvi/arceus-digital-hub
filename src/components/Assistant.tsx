@@ -80,9 +80,9 @@ export function Assistant() {
     onCaptured: (audio, mime) => {
       void sttFn({ data: { audio, mime, lang } }).then(r => {
         voice.setState("ready");
-        if (r.error) { setAlert(ERR[r.error] ?? ERR.unavailable!); return; }
+        if (r.error) { setAlert(ERR[r.error] ?? ERR["unavailable"]!); return; }
         handleRef.current(r.text, true);
-      }).catch(() => { voice.setState("ready"); setAlert(ERR.unavailable!); });
+      }).catch(() => { voice.setState("ready"); setAlert(ERR["unavailable"]!); });
     },
   });
 
