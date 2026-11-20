@@ -36,14 +36,24 @@ const FACT_LABEL: Partial<Record<FactKey, string>> = {
   institutionalLand: "Institutional land", incomeTaxLastAY: "Income tax last year (family)", pensionMonthly: "Pension per month", govtEmployee: "Govt officer/employee in family",
   registeredProfessional: "Registered professional", incomeTaxPayer: "Income-tax payer", householdHasLpg: "LPG already at home", poorHousehold: "Poor household (declaration)",
   nonFarmEnterprise: "Non-farm / allied business", loanAmount: "Loan needed", priorTarunRepaid: "Repaid Tarun loan", pmjayListed: "Found in PM-JAY list", cultivatesCrops: "Grows crops",
+  ageOnAadhaar: "Age on Aadhaar", indianCitizen: "Indian citizen", govtStaffGroupD: "Govt job is MTS / Class IV / Group D", constitutionalPost: "Constitutional post / MP / MLA / mayor in family",
+  cropNotified: "Crop notified this season", cultivationProof: "Land / tenancy proof", familyIncomeAnnual: "Family income", socialCategory: "Category",
+  class12Top20: "Class XII above board cut-off", regularDegree: "Regular degree course", otherScholarship: "Other scholarship / fee waiver", inClass8: "In Class VIII",
+  class7Marks: "Class VII marks", schoolType: "School type", livesUrban: "Lives in urban area", ownsPuccaHouse: "Owns pucca house", govtHouse20y: "Govt house in last 20 years",
+  unorganisedWorker: "Unorganised-sector worker", monthlyIncome: "Monthly income", coveredNpsEsicEpfo: "Covered by NPS / ESIC / EPFO", traditionalTrade: "Traditional artisan trade",
+  govtLoan5y: "PMEGP / SVANidhi / MUDRA loan in 5 years", familyInPmv: "Family member in PM Vishwakarma", govtServiceFamily: "Govt service in family", girlAge: "Girl's age",
+  girlHasSsy: "Girl already has SSY", familySsyGirls: "Other girls with SSY", streetVendor: "Street vendor", vendingCertificate: "Vending certificate / LoR", greenfield: "New enterprise",
 };
+const MONEY: FactKey[] = ["pensionMonthly", "loanAmount", "familyIncomeAnnual", "monthlyIncome"];
 function show(k: FactKey, v: FactValue, f: Facts): string {
   if (v === UNKNOWN) return "Don't know / skipped";
+  const approx = f[`${k}_approx` as FactKey] === true ? "about " : "";
   if (k === "subject") return v === "self" ? "Me" : "A family member";
-  if (k === "age") return `${f.age_approx ? "about " : ""}${v} years`;
-  if (k === "pensionMonthly") return v === 0 ? "None" : `${f.pensionMonthly_approx ? "about " : ""}₹${Number(v).toLocaleString("en-IN")}`;
-  if (k === "loanAmount") return `₹${Number(v).toLocaleString("en-IN")}`;
-  if (k === "gender") return v === "female" ? "Woman" : v === "male" ? "Man" : "Other";
+  if (k === "age" || k === "ageOnAadhaar" || k === "girlAge") return `${approx}${v} years${k === "ageOnAadhaar" ? " (Aadhaar)" : ""}`;
+  if (k === "class7Marks") return `${v}%`;
+  if (MONEY.includes(k)) return v === 0 ? "None" : `${approx}₹${Number(v).toLocaleString("en-IN")}${k === "familyIncomeAnnual" ? " a year" : k === "loanAmount" ? "" : " a month"}`;
+  const opt = QUESTIONS[k]?.kind === "choice" ? QUESTIONS[k].options.find(o => o.value === v) : undefined;
+  if (opt) return opt.en;
   return v === true ? "Yes" : v === false ? "No" : String(v);
 }
 const SAVEABLE: FactKey[] = ["age", "gender", "hasBankAccount", "ownsCultivableLand", "incomeTaxPayer", "cultivatesCrops"];
