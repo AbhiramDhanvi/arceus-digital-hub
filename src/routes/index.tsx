@@ -1,23 +1,38 @@
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import capturedCSS from "../styles/site.css?raw";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "ARCEUS | Your voice. Your benefits." }] }),
+  head: () => ({ meta: [
+    { title: "ARCEUS | Your voice. Your benefits." },
+    { name: "description", content: "Discover Indian government schemes and eligibility guidance for you and your family in four languages." },
+    { property: "og:title", content: "ARCEUS | Your voice. Your benefits." },
+    { property: "og:description", content: "Explore government benefits with multilingual voice and text guidance." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   staticData: { importedDocument: { html: { "lang": "en" }, body: { "data-site-import-popup-incomplete": "document-menu-ownership" } } },
   component: Index,
 });
 
 function Index() {
+  const [assistant, setAssistant] = useState(false);
+  useEffect(() => {
+    const sync = () => setAssistant(window.location.hash === "#assistant");
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
   return (
     <>
       <style>{capturedCSS}</style>
     <style>{"@layer imported-inline{[data-site-import-svg-default-fit=\"contain\"]{object-fit:contain}}"}</style>
       <div id="root">
-        <div className="app home-page flex flex-col min-h-screen">
+        <div className={`app ${assistant ? "" : "home-page"} flex flex-col min-h-screen`}>
           <a className={"skip-link py-[12px] px-[16px] top-[8px] z-12 [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#content">Skip to content</a>
           <ImportedHeader />
           <main className={"flex-1 [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} id="content" tabIndex={-1}>
+            <div hidden={assistant}>
             <div className="hero-ground overflow-hidden">
               <ImportedSectionYourVoiceYourBenefits />
             </div>
@@ -34,7 +49,8 @@ function Index() {
               <ImportedSectionExploreByCategory />
             </div>
             <ImportedSectionPlanningALifeEvent />
-            <div hidden>
+            </div>
+            <div hidden={!assistant}>
               <ImportedSectionTalkToARCEUS />
             </div>
           </main>
@@ -55,6 +71,19 @@ function Index() {
 }
 
 function ImportedHeader() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const close = () => setOpen(false);
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        document.querySelector<HTMLButtonElement>(".menu-toggle")?.focus();
+      }
+    };
+    window.addEventListener("hashchange", close);
+    window.addEventListener("keydown", escape);
+    return () => { window.removeEventListener("hashchange", close); window.removeEventListener("keydown", escape); };
+  }, []);
   return (
     <header className="site-header border-[#ffffff25] relative z-4 [border-bottom:1px_solid_var(--line)]">
       <div className="wrap header-inner items-center flex justify-between mx-auto">
@@ -62,7 +91,7 @@ function ImportedHeader() {
           <img alt="" src="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png" data-site-import-svg-default-fit="contain" />
           <span>ARCEUS<span>.</span></span>
         </a>
-        <nav className="navigation items-center" aria-label="Main">
+        <nav id="main-navigation" className={`navigation items-center ${open ? "open" : ""}`} aria-label="Main">
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-current="page" href="#home">Home</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#assistant">Voice assistant</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#schemes">Explore schemes</a>
@@ -76,29 +105,18 @@ function ImportedHeader() {
               <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" />
               <circle cx="12" cy="12" r="10" />
             </svg>
-            <div>
-              <span className={"[&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="bb-customSelect-vuUyf-panel" aria-activedescendant="bb-customSelect-vuUyf-selectedOption" aria-labelledby="bb-customSelect-vuUyf-label" tabIndex={0}>
-                <span>English</span>
-              </span>
-              <select className={"appearance-none pt-[10px] pr-[17px] pb-[10px] pl-0 [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-label="Language / भाषा" tabIndex={-1} defaultValue="en">
-                <option value="en">English</option>
-                <option value="hi">हिन्दी</option>
-                <option value="te">తెలుగు</option>
-                <option value="mr">मराठी</option>
-              </select>
-              <div id="bb-customSelect-vuUyf-panel" role="listbox">
-                <div role="option" id="bb-customSelect-vuUyf-selectedOption">English</div>
-                <div role="option">हिन्दी</div>
-                <div role="option">తెలుగు</div>
-                <div role="option">मराठी</div>
-              </div>
-            </div>
+            <select className="appearance-none py-[10px] pr-[17px] border-0" aria-label="Language / भाषा" defaultValue="en">
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="te">తెలుగు</option>
+              <option value="mr">मराठी</option>
+            </select>
             <svg className="flex-none pointer-events-none absolute right-[7px] align-middle" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="m6 9 6 6 6-6" />
             </svg>
           </label>
-          <button className={"button header-cta items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>Get started</button>
-          <button className={"icon-button menu-toggle items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-label="Menu" aria-expanded="false">
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button header-cta items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /><path d="M20 2v4" /><path d="M22 4h-4" /><circle cx="4" cy="20" r="2" /></svg>Get started</button>
+          <button className={"icon-button menu-toggle items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-label="Menu" aria-expanded={open} aria-controls="main-navigation" onClick={() => setOpen(value => !value)}>
             <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M4 5h16" />
               <path d="M4 12h16" />
@@ -119,7 +137,7 @@ function ImportedSectionYourVoiceYourBenefits() {
         <h1>Your voice.<br /><em>Your benefits.</em></h1>
         <p className="max-w-[420px]">Find schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.</p>
         <div className="actions items-center flex flex-wrap">
-          <button className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to ARCEUS</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to ARCEUS</button>
           <button className={"button \x6futline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>Explore schemes</button>
         </div>
         <div className="source-line items-center flex gap-[7px]"><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>Guidance based on official government sources</div>
@@ -175,10 +193,10 @@ function ImportedSectionYourVoiceYourBenefits() {
             <span className="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style={{ "--height": "16px", "--bar": "23", transform: "scaleY(1)" } as CSSProperties} />
             <span className="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style={{ "--height": "9px", "--bar": "24", transform: "scaleY(1)" } as CSSProperties} />
           </div>
-          <button className={"voice-card-action items-center border border-solid border-[#a6c4a469] rounded-[6px] flex gap-[8px] py-[6px] px-[8px] text-left w-full [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>Ask about a scheme</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"voice-card-action items-center border border-solid border-[#a6c4a469] rounded-[6px] flex gap-[8px] py-[6px] px-[8px] text-left w-full [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg>Ask about a scheme</button>
         </div>
       </div>
-      <button className={"journey-link items-center inline-flex gap-[8px] left-0 min-h-[34px] pt-[3px] pr-[5px] pb-[3px] pl-0 absolute [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>See how it works</button>
+      <button onClick={() => document.getElementById("how-arceus-works")?.scrollIntoView({ behavior: "smooth" })} className={"journey-link items-center inline-flex gap-[8px] left-0 min-h-[34px] pt-[3px] pr-[5px] pb-[3px] pl-0 absolute [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>See how it works</button>
     </section>
   );
 }
@@ -310,7 +328,7 @@ function ImportedSectionFromAQuestionTo() {
           </article>
         </div>
       </div>
-      <button className={"button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Start an eligibility check</button>
+      <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); }} className={"button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Start an eligibility check</button>
     </section>
   );
 }

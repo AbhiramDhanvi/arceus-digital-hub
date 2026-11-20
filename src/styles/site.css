@@ -1574,3 +1574,12 @@ h1, h2, h3, p { margin: 0px; }
 }
 
 
+
+/* Restore the observed mobile navigation panel and reveal every journey state. */
+@media (width <= 910px) {
+  .navigation.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 24px; background: var(--paper); border-bottom: 1px solid var(--line); }
+}
+.journey-frames { gap: 18px; }
+.journey-frames .journey-frame { grid-area: auto; opacity: 1; transform: none; }
+.journey-visual { position: relative; top: auto; }
+@media (width <= 780px) { .journey-visual { height: auto; } }
