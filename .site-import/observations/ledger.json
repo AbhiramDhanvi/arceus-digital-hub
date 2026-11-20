@@ -1,0 +1,50 @@
+[
+  {
+    "site": "source",
+    "viewport": "desktop",
+    "trigger": "Talk to ARCEUS",
+    "url": "https://arceus-qr7q.onrender.com/#assistant",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nYOUR SCHEME ASSISTANT\nTalk to ARCEUS\n\nAsk in your own words. ARCEUS will ask only for the details it still needs.\n\nEnglish\n\nReady to listen\n\nStart microphone\nRead voice replies aloud\nHands-free follow-up questions\nSign in for Sarvam voice\nYour browser handles speech. Its speech service may process audio online. Keep ID and bank numbers out of the chat.\nARCEUSEligibility conversation\n",
+    "screenshot": "/tmp/browser/arceus/source-Talk-to-ARCEUS.png"
+  },
+  {
+    "site": "source",
+    "viewport": "desktop",
+    "trigger": "Explore schemes",
+    "url": "https://arceus-qr7q.onrender.com/#schemes",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nSCHEME DIRECTORY\nExplore schemes\n\nSearch central and state schemes from myScheme. Use the ARCEUS eligibility interview where available.\n\nAll regions\nCentral government\nAndaman and Nicobar Islands\nAndhra Pradesh\nArunachal Pradesh\nAssam\nBihar\nChandigarh\nChhattisgarh\nDadra and Nagar Haveli and Daman and Diu\nDelhi\nGoa\nGujarat\nHaryana\nHimachal Pradesh\nJammu and Kashmir\nJharkhand\nKarnataka",
+    "screenshot": "/tmp/browser/arceus/source-Explore-schemes.png"
+  },
+  {
+    "site": "source",
+    "viewport": "desktop",
+    "trigger": "My workspace",
+    "url": "https://arceus-qr7q.onrender.com/#workspace",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nYOUR PRIVATE RECORDS\nMy workspace\nSign in to your workspace\n\nSave applications, organise family checks, and keep your documents in a private workspace.\n\nContinue with GitHub\nEmail address\nPassword\nSign in\nCreate an account\nForgot your password?\nARCEUS.\n\nIndependent scheme guidance for citizens.\n\nVisit myScheme",
+    "screenshot": "/tmp/browser/arceus/source-My-workspace.png"
+  },
+  {
+    "site": "preview",
+    "viewport": "desktop",
+    "trigger": "Talk to ARCEUS",
+    "url": "http://localhost:8080/",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nINDIAN GOVERNMENT SCHEMES\nYour voice.\nYour benefits.\n\nFind schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.\n\nTalk to ARCEUS\nExplore schemes\nGuidance based on official government sources\nARCEUS\nScheme assistant\nEnglish\nAsk about a scheme\nSee how it works\n4 languages\nOff",
+    "screenshot": "/tmp/browser/arceus/preview-Talk-to-ARCEUS.png"
+  },
+  {
+    "site": "preview",
+    "viewport": "desktop",
+    "trigger": "Explore schemes",
+    "url": "http://localhost:8080/",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nINDIAN GOVERNMENT SCHEMES\nYour voice.\nYour benefits.\n\nFind schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.\n\nTalk to ARCEUS\nExplore schemes\nGuidance based on official government sources\nARCEUS\nScheme assistant\nEnglish\nAsk about a scheme\nSee how it works\n4 languages\nOff",
+    "screenshot": "/tmp/browser/arceus/preview-Explore-schemes.png"
+  },
+  {
+    "site": "preview",
+    "viewport": "desktop",
+    "trigger": "My workspace",
+    "url": "http://localhost:8080/#workspace",
+    "observed": "Skip to content\nARCEUS.\nHome\nVoice assistant\nExplore schemes\nMy workspace\nEnglish\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nEnglish\n\u0939\u093f\u0928\u094d\u0926\u0940\n\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41\n\u092e\u0930\u093e\u0920\u0940\nGet started\nINDIAN GOVERNMENT SCHEMES\nYour voice.\nYour benefits.\n\nFind schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.\n\nTalk to ARCEUS\nExplore schemes\nGuidance based on official government sources\nARCEUS\nScheme assistant\nEnglish\nAsk about a scheme\nSee how it works\n4 languages\nOff",
+    "screenshot": "/tmp/browser/arceus/preview-My-workspace.png"
+  }
+]

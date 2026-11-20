@@ -1,0 +1,1577 @@
+<!DOCTYPE html><html lang="en" data-tsd-source="/src/routes/__root.tsx:120:5"><head data-tsd-source="/src/routes/__root.tsx:121:7"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="preload" as="image" href="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png"><style data-precedence="imported-inline" data-href="site-import-inline">@layer imported-inline;</style><link rel="stylesheet" href="/@oj-start/fs/dev-server/src/styles.css" data-precedence="default"><title>ARCEUS | Your voice. Your benefits.</title><meta name="description" content="Lovable Generated Project"><meta name="author" content="Lovable"><meta property="og:title" content="Lovable App"><meta property="og:description" content="Lovable Generated Project"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@Lovable"><link rel="modulepreload" href="/@oj-start/client-entry.js"><link rel="icon" href="/favicon.ico" type="image/x-icon"></head><body data-site-import-popup-incomplete="document-menu-ownership" data-tsd-source="/src/routes/__root.tsx:125:7"><!--$--><style data-tsd-source="/src/routes/index.tsx:14:7">@layer base { img, video { max-width: none; } html, body, html *, html::before, html::after, html *::before, html *::after, html *::marker, html *::placeholder, html *::file-selector-button { all: revert-layer; } }
+
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 650;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 650;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 750;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 750;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/site-assets/3bfe4586eb9a33ec.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/site-assets/713ca32c3c8b2ada.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/ad94e0845b567b3e.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/0d985700e8380551.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/41fe32a095c15375.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/site-assets/05103e2a779c2bd1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/32aa484b7f2341a2.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/e8febb32684ab300.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/099dc5879c36abf8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/32aa484b7f2341a2.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/e8febb32684ab300.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/099dc5879c36abf8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/32aa484b7f2341a2.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/e8febb32684ab300.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/099dc5879c36abf8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/32aa484b7f2341a2.woff2) format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF4, U+1CF7-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B0A;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/e8febb32684ab300.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/099dc5879c36abf8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* telugu */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/a0fc426c86c8dbee.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0B83, U+0C00-0C7F, U+1CD5-1CD6, U+1CD8, U+1CDA, U+1CF2, U+200C-200D, U+25CC;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/00fe7ab9f3f0d9cd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/629ec603d9c34358.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* telugu */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/a0fc426c86c8dbee.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0B83, U+0C00-0C7F, U+1CD5-1CD6, U+1CD8, U+1CDA, U+1CF2, U+200C-200D, U+25CC;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/00fe7ab9f3f0d9cd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/629ec603d9c34358.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* telugu */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/a0fc426c86c8dbee.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0B83, U+0C00-0C7F, U+1CD5-1CD6, U+1CD8, U+1CDA, U+1CF2, U+200C-200D, U+25CC;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/00fe7ab9f3f0d9cd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/629ec603d9c34358.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* telugu */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/a0fc426c86c8dbee.woff2) format('woff2');
+  unicode-range: U+0951-0952, U+0964-0965, U+0B83, U+0C00-0C7F, U+1CD5-1CD6, U+1CD8, U+1CDA, U+1CF2, U+200C-200D, U+25CC;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/00fe7ab9f3f0d9cd.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans Telugu';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(/site-assets/629ec603d9c34358.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+:root {
+  color: rgb(24,44,41);
+  font-synthesis: none;
+}
+
+:root {
+  --paper: #f5f3ea;
+  --white: #fffef8;
+  --ink: #182c29;
+  --muted: #53625d;
+  --accent: #286258;
+  --accent-soft: #e7eee4;
+  --signal: #e6f68f;
+  --deep: #0b2825;
+  --orange: #9c4b2b;
+  --line: #dedfd2;
+  --heading: "Instrument Serif", Georgia, serif;
+  --shadow: 0 22px 58px -28px #16362e47;
+}
+
+:root {
+  background: rgb(245,243,234);
+}
+
+:root {
+  font-family: "DM Sans","Noto Sans Devanagari","Noto Sans Telugu",system-ui,sans-serif;
+}
+
+:lang(hi), :lang(mr) { --heading: "Noto Sans Devanagari", sans-serif; }
+:lang(te) { --heading: "Noto Sans Telugu", sans-serif; }
+*, ::before, ::after { box-sizing: border-box; }
+body { min-width: 300px; margin: 0px; }
+button, input, select { font: inherit; }
+button, select { cursor: pointer; }
+button:disabled { cursor: default; opacity: 0.55; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p { margin: 0px; }
+.wrap {
+  width: min(1220px,100% - 96px);
+}
+
+.site-header {
+  background: var(--paper);
+}
+
+.header-inner {
+  gap: 22px;
+  min-height: 77px;
+}
+
+.brand {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.brand img { width: 34px; height: 34px; }
+.brand span span { color: var(--orange); }
+.navigation, .header-actions {
+  gap: clamp(14px,2.1vw,32px);
+  display: flex;
+}
+
+.navigation a { color: var(--muted); padding-block: 27px; font-size: 0.92rem; font-weight: 700; position: relative; }
+.navigation a:hover, .navigation a[aria-current="page"] { color: var(--ink); }
+.navigation a[aria-current="page"]::after {
+  content: "";
+}
+
+.navigation a[aria-current="page"]::after {
+  background: var(--orange);
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+}
+
+.header-actions { gap: 12px; }
+.language-select {
+  color: var(--ink);
+}
+
+.language-select select {
+  color: inherit;
+  background: 0px 0px;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.button, .icon-button, .chip {
+  border: 1px solid rgba(0,0,0,0);
+  font-weight: 750;
+  line-height: 1.22;
+  transition: background 0.2s,color 0.2s,border-color 0.2s,box-shadow 0.2s,transform 0.2s;
+  display: inline-flex;
+}
+
+.button { border-radius: 10px; min-height: 47px; padding: 11px 17px; font-size: 0.91rem; }
+.button:hover:not(:disabled), .chip:hover:not(:disabled) { transform: translateY(-2px); }
+.primary, .header-cta { background: var(--ink); color: rgb(255, 250, 247); }
+.primary:hover:not(:disabled), .header-cta:hover {
+  background: rgb(42,81,72);
+}
+
+.header-cta { min-height: 40px; padding: 9px 13px; font-size: 0.86rem; }
+.header-cta svg { color: var(--signal); }
+.outline { color: var(--ink); background: 0px 0px; border-color: rgb(217, 209, 201); }
+.outline:hover { background: rgb(255, 254, 250); border-color: rgb(154, 172, 157); }
+.actions {
+  gap: 10px;
+}
+
+.icon-button {
+  color: var(--ink);
+  background: 0px 0px;
+  border-radius: 9px;
+}
+
+.icon-button:hover { background: var(--accent-soft); }
+.menu-toggle { display: none; }
+.hero {
+  grid-template-columns: minmax(0px,1.03fr) minmax(0px,0.97fr);
+  gap: clamp(25px,5.6vw,78px);
+  min-height: 531px;
+  padding: 62px 0px 66px;
+}
+
+.hero-copy { animation: 0.65s ease 0s 1 normal both running arrive; }
+.eyebrow {
+  color: rgb(53,99,87);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.eyebrow span {
+  background: rgb(183,82,54);
+}
+
+.hero h1 { font: 400 clamp(4.15rem, 7.5vw, 7.15rem)/.88 var(--heading); letter-spacing: -0.035em; margin: 24px 0px; }
+.hero h1 em { color: var(--orange); font-weight: 400; }
+.hero p, .page-lead {
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.67;
+}
+
+.hero .actions { gap: 12px; margin-top: 29px; }
+.hero .actions .button { min-height: 51px; padding-inline: 17px; }
+.hero .actions .primary svg { color: var(--signal); }
+.source-line {
+  color: var(--muted);
+  margin-top: 25px;
+  font-size: 0.87rem;
+  font-weight: 550;
+}
+
+.source-line svg { color: rgb(83, 121, 90); }
+.value-band {
+  background: rgb(231,235,220);
+}
+
+.value-items {
+  grid-template-columns: repeat(4,1fr);
+  gap: 16px;
+  min-height: 68px;
+}
+
+.value-items div {
+  color: rgb(43,69,58);
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.91rem;
+  font-weight: 700;
+}
+
+.value-items svg {
+  color: rgb(73,115,102);
+  width: 20px;
+}
+
+.landing-section { padding-block: 57px 22px; }
+.landing-section h2, .page-title { font: 400 clamp(2.9rem, 5vw, 4.3rem)/1.02 var(--heading); letter-spacing: -0.025em; margin-top: 8px; }
+.category-grid {
+  grid-template-columns: repeat(7,minmax(0px,1fr));
+}
+
+.category-card, .life-card {
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 15px;
+  transition: transform 0.22s,border-color 0.22s,box-shadow 0.22s;
+}
+
+.category-card:hover, .life-card:hover {
+  border-color: rgb(146,166,152);
+  transform: translateY(-5px);
+}
+
+.category-card b, .life-card b { font-size: 0.95rem; line-height: 1.24; }
+.category-card span, .life-card span { color: var(--muted); font-size: 0.86rem; line-height: 1.5; }
+.tile-icon {
+  color: var(--tile-color,#2e6351);
+  background: var(--tile-bg,#e7ede1);
+}
+
+.tint-agriculture { --tile-bg: #e4efdd; --tile-color: #3f6547; }
+.tint-education { --tile-bg: #e4ecdf; --tile-color: #426452; }
+.tint-health { --tile-bg: #fae5eb; --tile-color: #a24966; }
+.tint-business { --tile-bg: #faead4; --tile-color: #89552d; }
+.tint-marriage { --tile-bg: #f9e4ef; --tile-color: #9d4c78; }
+.tint-insurance { --tile-bg: #e0eaeb; --tile-color: #3c6370; }
+.tint-savings { --tile-bg: #ecebd6; --tile-color: #62642d; }
+.life-grid {
+  grid-template-columns: repeat(5,1fr);
+}
+
+.life-card {
+  padding: 16px;
+}
+
+.life-card svg {
+  color: var(--orange);
+}
+
+.site-footer {
+  color: var(--muted);
+  background: rgb(241,237,231);
+}
+
+.footer-inner {
+  gap: 18px;
+  font-size: 0.89rem;
+}
+
+.footer-inner .brand { color: var(--ink); }
+.footer-inner > a:last-child:hover { color: var(--ink); text-decoration: underline; }
+.page-section { padding-block: 51px 69px; animation: 0.39s ease 0s 1 normal both running arrive; }
+.page-lead { margin-top: 12px; }
+
+.search-field input { min-width: 0px; color: var(--ink); outline-offset: -2px; background: 0px 0px; border: 0px; flex: 1 1 0%; padding: 13px 2px; }
+
+.directory-controls .search-field { flex: 1 1 255px; margin-top: 0px; }
+.directory-controls > select { background: var(--white); border: 1px solid var(--line); min-height: 47px; color: var(--ink); border-radius: 10px; max-width: 100%; padding: 8px 12px; }
+
+.directory-summary label { align-items: center; gap: 6px; display: flex; }
+.directory-card .button { margin-top: auto; }
+.chip {
+  border-color: var(--line);
+  background: var(--white);
+  color: rgb(64,81,73);
+  border-radius: 999px;
+  font-size: 0.88rem;
+}
+
+
+.chip:hover { border-color: rgb(146, 169, 146); }
+
+
+
+
+
+.scheme-card h2 { font-size: 1.21rem; line-height: 1.25; }
+.scheme-card p, .panel p { color: var(--muted); line-height: 1.55; }
+.scheme-card strong { color: rgb(120, 71, 55); margin-top: auto; padding-top: 3px; font-size: 0.93rem; }
+.scheme-card .actions { margin-top: 4px; }
+
+.empty svg { color: var(--accent); }
+.assistant-layout {
+  grid-template-columns: minmax(210px,0.33fr) minmax(0px,1fr);
+}
+
+.assistant-sidebar {
+  background: var(--white);
+  padding: 21px 15px;
+}
+
+.sidebar-orb {
+  background: repeating-radial-gradient(circle,rgb(231,237,224) 0px,rgb(231,237,224) 1px,rgba(0,0,0,0) 2px,rgba(0,0,0,0) 15px);
+  display: grid;
+}
+
+.sidebar-orb div {
+  color: rgb(255,251,250);
+  background: radial-gradient(circle at 33% 21%,rgb(255,218,183),rgba(0,0,0,0) 47%),linear-gradient(135deg,rgb(175,206,140),rgb(70,118,108) 75%);
+}
+
+.sidebar-orb.listening div, .sidebar-orb.speaking div { animation: 1.65s ease-in-out 0s infinite normal none running breathe; }
+.assistant-sidebar h2 { font-size: 1.23rem; }
+.assistant-sidebar p { color: var(--muted); margin: 5px 0px 13px; }
+.assistant-sidebar small {
+  color: var(--muted);
+  margin-top: 14px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.read-toggle {
+  color: rgb(63,91,81);
+  margin-top: 14px;
+  font-size: 0.85rem;
+}
+
+.chat-shell {
+  background: var(--white);
+}
+
+.chat-icon { color: rgb(255, 242, 216); background: linear-gradient(140deg, rgb(78, 128, 110), rgb(36, 74, 64)); }
+.chat-header small { color: var(--muted); font-size: 0.84rem; }
+.transcript {
+  min-height: 302px;
+  max-height: min(520px,60vh);
+  padding: 18px;
+}
+
+.message {
+  max-width: min(92%,700px);
+  line-height: 1.5;
+}
+
+.agent-message {
+  background: rgb(234,240,230);
+  animation: 0.24s ease 0s 1 normal both running arrive;
+}
+
+
+
+
+.message small { color: rgb(76, 100, 88); margin-top: 4px; font-size: 0.82rem; display: block; }
+.listen-button {
+  color: rgb(69,105,90);
+  background: 0px 0px;
+}
+
+.listen-button:hover { background: rgb(220, 233, 220); }
+.composer {
+  background: var(--paper);
+}
+
+.composer input {
+  color: var(--ink);
+  background: 0px 0px;
+}
+
+.send-button { color: rgb(255, 255, 255); background: var(--ink); }
+.send-button:hover { color: rgb(255, 255, 255); background: rgb(62, 104, 90); }
+.mic-button { color: rgb(54, 93, 80); background: rgb(228, 237, 225); }
+
+
+
+
+.state { border-radius: 999px; padding: 2px 8px; font-size: 0.82rem; font-weight: 750; display: inline-block; }
+
+
+
+
+.evidence li { color: var(--muted); align-items: baseline; gap: 6px; font-size: 0.91rem; display: flex; }
+.evidence .pass svg { color: rgb(53, 115, 79); }
+.evidence .fail svg { color: rgb(163, 62, 49); }
+.evidence .unknown span { text-align: center; color: rgb(134, 93, 48); min-width: 15px; font-weight: 800; }
+.result-card a, .muted a, .question-source { text-underline-offset: 3px; color: rgb(47, 98, 82); font-size: 0.88rem; text-decoration: underline; }
+
+
+
+
+.scheme-dialog article { padding: 23px; position: relative; }
+.scheme-dialog .dismiss { position: absolute; top: 10px; right: 10px; }
+.scheme-dialog h2 { margin: 7px 29px 8px 0px; font-size: clamp(1.45rem, 4vw, 2rem); }
+.scheme-dialog p, .scheme-dialog li { color: var(--muted); line-height: 1.5; }
+.scheme-dialog h3 { margin-top: 17px; font-size: 1rem; }
+.scheme-dialog ul, .scheme-dialog ol { margin-block: 5px 14px; padding-left: 22px; }
+.scheme-dialog .muted { margin-top: 11px; font-size: 0.87rem; }
+.workspace-page .page-title { margin-bottom: 19px; }
+
+.panel h2, .panel h3 { margin-bottom: 5px; }
+.panel h2 { font-size: 1.38rem; }
+.panel h3 { font-size: 1.07rem; }
+
+
+
+.workspace-toolbar .filters { margin: 0px; }
+.count { color: rgb(255, 255, 255); background: rgb(63, 117, 100); border-radius: 999px; padding: 1px 6px; font-size: 0.79rem; }
+
+
+
+.form-grid label, .upload-box label { gap: 6px; font-size: 0.94rem; font-weight: 650; display: grid; }
+.form-grid label.check-row { align-items: center; gap: 8px; display: flex; }
+.form-grid label :is(input:not([type="checkbox"]), select) { color: var(--ink); background: rgb(255, 255, 255); border: 1px solid rgb(222, 214, 206); border-radius: 9px; width: 100%; min-height: 43px; padding: 9px 11px; }
+.text-button {
+  color: var(--accent);
+  background: 0px 0px;
+  font-weight: 650;
+}
+
+
+
+
+.form-alert .text-button { margin-left: 10px; }
+
+.record + .record { border-top: 1px solid var(--line); }
+.record p { overflow-wrap: anywhere; }
+
+
+
+
+
+.estimate span { color: rgb(70, 97, 82); font-weight: 650; }
+.estimate strong { font-size: 1.65rem; display: block; }
+.estimate p { color: var(--muted); grid-column: 1 / -1; font-size: 0.9rem; }
+
+.upload-box > svg { color: var(--accent); }
+.upload-box label { flex: 1 1 240px; min-width: 0px; }
+.upload-box input { width: 100%; font-size: 0.85rem; }
+.upload-box small { color: var(--muted); font-weight: 500; }
+.skip-link {
+  background: var(--signal);
+  color: var(--deep);
+  border-radius: 7px;
+  font-weight: 800;
+  position: absolute;
+  left: 12px;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus { transform: translateY(0px); }
+.home-page .site-header {
+  background: var(--deep);
+  color: rgb(249,247,235);
+}
+
+.home-page .navigation a { color: rgb(206, 219, 208); }
+.home-page .navigation a:hover, .home-page .navigation a[aria-current="page"], .home-page .language-select, .home-page .menu-toggle { color: rgb(255, 251, 234); }
+.home-page .navigation a[aria-current="page"]::after { background: var(--signal); }
+.home-page .header-cta { color: rgb(30, 53, 42); background: var(--signal); }
+.home-page .header-cta svg, .home-page .brand > span > span { color: rgb(78, 113, 61); }
+.home-page .brand > span > span { color: var(--signal); }
+.home-page .header-cta:hover { background: rgb(241, 255, 167); }
+.home-page .language-select select option { background: var(--deep); color: rgb(255, 251, 234); }
+.hero-ground {
+  background: radial-gradient(ellipse at 72% 100%,#143e35,transparent 58%),var(--deep);
+  color: rgb(250,247,231);
+}
+
+.home-hero { grid-template-columns: minmax(0px, 0.89fr) minmax(0px, 1.11fr); gap: clamp(20px, 4.8vw, 70px); min-height: min(690px, -77px + 100svh); padding-block: 55px 78px; }
+.home-hero .eyebrow { color: rgb(229, 235, 206); }
+.home-hero .eyebrow span { background: var(--signal); }
+.home-hero h1 { margin-block: 20px 24px; font-size: clamp(4.4rem, 8.5vw, 8.5rem); line-height: 0.84; }
+.home-hero h1 em { color: var(--signal); }
+.home-hero p {
+  color: rgb(207,219,207);
+  font-size: 1.075rem;
+}
+
+.home-hero .primary { color: rgb(34, 53, 38); background: var(--signal); }
+.home-hero .primary:hover { background: rgb(240, 249, 173); }
+.home-hero .actions .primary svg { color: rgb(53, 88, 61); }
+.home-hero .outline { color: rgb(255, 248, 230); border-color: rgba(152, 178, 163, 0.51); }
+.home-hero .outline:hover { background: rgba(255, 255, 255, 0.082); border-color: rgb(164, 198, 175); }
+.home-hero .source-line { color: rgb(199, 212, 198); }
+.home-hero .source-line svg { color: rgb(215, 239, 164); }
+.hero-picture {
+  aspect-ratio: 1.27/1;
+  background: rgb(35,78,62);
+  border: 1px solid rgba(196,219,184,0.204);
+  border-radius: 6px 64px 8px 8px;
+  min-height: 470px;
+  animation: 0.9s cubic-bezier(0.21,0.73,0.26,1) 0s 1 normal both running photo-in;
+}
+
+.hero-picture img {
+  object-position: 61% 50%;
+  transition: transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
+}
+
+.hero-picture:hover img { transform: scale(1.024); }
+.hero-wash {
+  background: radial-gradient(circle at var(--light-x,40%) var(--light-y,52%),#e4ffc51e 0%,transparent 30%),linear-gradient(15deg,#071f1ac9 0%,#0c25185b 30%,transparent 61%);
+}
+
+.voice-card {
+  color: rgb(255,253,240);
+  background: rgba(10,35,30,0.88);
+  width: min(295px,100% - 42px);
+  padding: 13px;
+  animation: 0.6s ease 0.27s 1 normal both running arrive;
+  bottom: 23px;
+  left: 24px;
+}
+
+.voice-card-icon {
+  background: var(--signal);
+  color: rgb(38,70,55);
+}
+
+.voice-card-label b {
+  font-size: 0.87rem;
+}
+
+.voice-card-label small { color: rgb(214, 229, 217); font-size: 0.79rem; }
+.voice-card-label>span {
+  font-size: 0.78rem;
+}
+
+.voice-card-action {
+  color: rgb(252,255,235);
+  background: rgba(252,255,235,0.075);
+  min-height: 39px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background 0.18s;
+}
+
+.voice-card-action:hover { background: rgba(252, 255, 235, 0.173); }
+.voice-wave {
+  height: 73px;
+  color: var(--signal);
+}
+
+.voice-wave span {
+  height: var(--height);
+  transform-origin: 50% center;
+  opacity: 0.87;
+  background: currentcolor;
+}
+
+.compact-wave {
+  height: 43px;
+}
+
+.compact-wave span {
+  height: calc(var(--height) * .48);
+  animation-duration: 1.23s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 3;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-play-state: running;
+  animation-name: waveform;
+  animation-timeline: auto;
+  animation-range: normal;
+  animation-delay: calc(var(--bar) * -38ms);
+}
+
+.journey-link {
+  color: rgb(208,224,206);
+  background: 0px 0px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  bottom: 21px;
+}
+
+.journey-link svg { color: var(--signal); transition: transform 0.2s; }
+.journey-link:hover svg { transform: translateY(4px); }
+.journey {
+  padding-block: 78px 76px;
+}
+
+.journey h2 {
+  font: 400 clamp(2.9rem,5.65vw,5rem)/.99 var(--heading);
+  margin-block: 9px 27px;
+}
+
+.journey-grid {
+  grid-template-columns: minmax(0px,1.08fr) minmax(0px,0.92fr);
+  gap: clamp(23px,8.25vw,115px);
+}
+
+.journey-visual {
+  color: rgb(255,253,235);
+  background: radial-gradient(at 53% 63%,rgb(30,83,71),rgb(18,53,45) 78%);
+  border-radius: 7px 52px 7px 7px;
+  min-height: 380px;
+  position: sticky;
+  top: clamp(25px,14vh,140px);
+}
+
+.journey-visual::before {
+  content: "";
+}
+
+.journey-visual::before {
+  z-index: -2;
+  background-image: radial-gradient(rgba(185,225,189,0.42) 1px,rgba(0,0,0,0) 1px);
+  background-size: 21px 21px;
+  position: absolute;
+  inset: 0px;
+  mask-image: radial-gradient(rgb(0,0,0),rgba(0,0,0,0) 78%);
+}
+
+.journey-lens {
+  opacity: 0.58;
+  transform: translateY(calc((1 - var(--journey-progress,0)) * 15px)) rotate(calc(var(--journey-progress,0) * 23deg));
+}
+
+.journey-lens>div:nth-child(2) {
+  opacity: 0.56;
+}
+
+.journey-lens>div:nth-child(3) {
+  opacity: 0.4;
+}
+
+.journey-progress {
+  height: 16px;
+  position: absolute;
+  top: 23px;
+  left: 24px;
+  right: 26px;
+}
+
+.journey-progress::before, .journey-progress::after {
+  content: "";
+}
+
+.journey-progress::before, .journey-progress::after {
+  background: rgba(228,244,182,0.31);
+  height: 1px;
+  position: absolute;
+  left: 6px;
+  right: 6px;
+}
+
+.journey-progress::after { background: var(--signal); transform-origin: 0px center; transform: scaleX(var(--journey-progress,0)); }
+.journey-progress span {
+  background: rgb(35,68,56);
+  transition: background 0.26s,transform 0.26s;
+}
+
+.journey-grid[data-stage="0"] .journey-progress span:first-child, .journey-grid[data-stage="1"] .journey-progress span:nth-child(-n+2), .journey-grid[data-stage="2"] .journey-progress span { background: var(--signal); transform: scale(1.12); }
+.journey-frames {
+  padding: 52px 26px 30px;
+}
+
+.journey-frame {
+  opacity: 0;
+  background: rgba(16,45,38,0.93);
+  gap: 11px;
+  padding: 22px;
+  transition: opacity 0.3s,transform 0.45s cubic-bezier(0.21,0.73,0.26,1);
+  transform: translateY(17px) scale(0.965);
+}
+
+.journey-grid[data-stage="0"] .frame-ask, .journey-grid[data-stage="1"] .frame-check, .journey-grid[data-stage="2"] .frame-apply { opacity: 1; transform: translateY(0px) scale(1); }
+.frame-icon {
+  color: var(--signal);
+  background: rgba(230,246,143,0.14);
+}
+
+.journey-frame span {
+  color: rgb(225,236,219);
+  font-size: 0.92rem;
+}
+
+.journey-frame span svg { color: var(--signal); }
+.frame-ask .voice-wave span { background: var(--signal); transform: scaleY(calc(.8 + var(--journey-progress,0))); }
+.journey-quote { font-size: 1.05rem; }
+.journey-step {
+  min-height: clamp(185px,33vh,290px);
+  padding-block: clamp(28px,7vh,68px);
+  line-height: 1.62;
+}
+
+.journey-step h3 {
+  margin-bottom: 9px;
+  font-size: clamp(1.22rem,2.4vw,1.7rem);
+  line-height: 1.15;
+}
+
+.journey-step p, .life-intro p { color: var(--muted); line-height: 1.58; }
+.step-icon {
+  color: rgb(57,100,82);
+  background: rgb(226,233,221);
+  transition: background 0.28s,color 0.28s;
+}
+
+.journey-step.current .step-icon { color: rgb(16, 61, 48); background: rgb(220, 234, 175); }
+.directory-ground {
+  background: rgb(233,236,222);
+}
+
+.directory-ground .landing-section { padding-block: 67px 72px; }
+.directory-ground .category-grid {
+  grid-template-columns: repeat(12,minmax(0px,1fr));
+}
+
+.directory-ground .category-card { background: rgb(248, 248, 235); grid-column: span 3; padding: 18px; }
+.life-intro {
+  grid-template-columns: minmax(0px,1.06fr) minmax(0px,0.94fr);
+  gap: clamp(23px,7.5vw,96px);
+}
+
+.life-intro img {
+  border-radius: 7px 45px 7px 7px;
+  max-height: 400px;
+}
+
+.life-intro p {
+  margin-top: 13px;
+}
+
+.life-section { padding-block: 70px 75px; }
+@keyframes waveform { 
+  0%, 100% { transform: scaleY(1); }
+  33% { transform: scaleY(0.48); }
+  64% { transform: scaleY(1.24); }
+}
+@keyframes photo-in { 
+  0% { opacity: 0; transform: translateY(10px) scale(0.99); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes arrive { 
+  0% { opacity: 0; transform: translateY(11px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+@keyframes breathe { 
+  50% { transform: scale(1.08); }
+}
+:is(html[lang="hi"], html[lang="te"], html[lang="mr"]) .hero h1 { letter-spacing: -0.045em; font-size: clamp(2.8rem, 5.6vw, 5.7rem); font-weight: 700; line-height: 1.1; }
+:is(html[lang="hi"], html[lang="te"], html[lang="mr"]) :is(.page-title, .landing-section h2) { font-size: clamp(2.05rem, 4.6vw, 3.4rem); font-weight: 650; line-height: 1.2; }
+:is(html[lang="hi"], html[lang="te"], html[lang="mr"]) .journey h2 { font-size: clamp(1.95rem, 4.2vw, 3.2rem); font-weight: 650; line-height: 1.2; }
+@media (width <= 1140px) {
+  .wrap {
+    width: min(1220px,100% - 55px);
+  }
+}
+
+@media (width <= 1140px) {
+  .header-inner, .navigation {
+    gap: 14px;
+  }
+}
+
+@media (width <= 1140px) {
+  .category-grid {
+    grid-template-columns: repeat(4,minmax(0px,1fr));
+  }
+}
+
+@media (width <= 910px) {
+  .wrap {
+    width: calc(100% - 38px);
+  }
+}
+
+@media (width <= 910px) {
+  .navigation {
+    display: none;
+  }
+}
+
+@media (width <= 910px) {
+  .home-page .navigation.open {
+    background: var(--deep);
+    border-color: rgba(255,255,255,0.14);
+  }
+}
+
+@media (width <= 910px) {
+  .navigation a {
+    padding: 12px 0px;
+  }
+}
+
+@media (width <= 910px) {
+  .navigation a[aria-current="page"]::after {
+    bottom: 50%;
+    left: auto;
+    right: 2px;
+  }
+}
+
+@media (width <= 910px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (width <= 910px) {
+  .hero {
+    gap: 24px;
+    min-height: 475px;
+    padding-block: 42px;
+  }
+}
+
+@media (width <= 910px) {
+  .hero h1 {
+    font-size: clamp(3.5rem,8vw,6.1rem);
+  }
+}
+
+@media (width <= 910px) {
+  .home-hero {
+    padding-bottom: 62px;
+  }
+}
+
+@media (width <= 910px) {
+  .home-hero h1 {
+    font-size: clamp(3.6rem,8.3vw,6.6rem);
+  }
+}
+
+@media (width <= 910px) {
+  .hero-picture {
+    min-height: 365px;
+  }
+}
+
+@media (width <= 910px) {
+  .life-grid {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media (width <= 910px) {
+  .value-items div {
+    gap: 6px;
+    font-size: 0.81rem;
+  }
+}
+
+@media (width <= 780px) {
+  .journey {
+    padding-block: 50px 52px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-visual {
+    z-index: 2;
+    border-top-right-radius: 29px;
+    min-height: 0px;
+    top: 8px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-frames {
+    padding: 39px 15px 13px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-frame {
+    gap: 7px;
+    padding: 13px 14px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-frame .voice-wave {
+    height: 50px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-frame .voice-wave span {
+    height: calc(var(--height) * .73);
+  }
+}
+
+@media (width <= 780px) {
+  .journey-progress {
+    top: 13px;
+  }
+}
+
+@media (width <= 780px) {
+  .journey-step {
+    min-height: clamp(128px,28vh,235px);
+    padding-block: 23px 29px;
+  }
+}
+
+@media (width <= 650px) {
+  .wrap {
+    width: calc(100% - 28px);
+  }
+}
+
+@media (width <= 650px) {
+  .header-inner {
+    gap: 9px;
+    min-height: 59px;
+  }
+}
+
+@media (width <= 650px) {
+  .header-actions {
+    gap: 3px;
+  }
+}
+
+@media (width <= 650px) {
+  .header-cta {
+    display: none;
+  }
+}
+
+@media (width <= 650px) {
+  .brand {
+    font-size: 20px;
+  }
+}
+
+@media (width <= 650px) {
+  .brand img {
+    width: 31px;
+    height: 31px;
+  }
+}
+
+@media (width <= 650px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 27px;
+    padding-block: 36px 31px;
+  }
+}
+
+@media (width <= 650px) {
+  .hero h1 {
+    margin-block: 17px;
+    font-size: clamp(3.6rem,14vw,5.8rem);
+  }
+}
+
+@media (width <= 650px) {
+  .home-hero {
+    gap: 21px;
+    min-height: 0px;
+    padding-block: 32px 52px;
+  }
+}
+
+@media (width <= 650px) {
+  .home-hero h1 {
+    font-size: clamp(3.75rem,14.8vw,6.6rem);
+  }
+}
+
+@media (width <= 650px) {
+  .home-hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (width <= 650px) {
+  .hero-picture {
+    aspect-ratio: auto;
+    border-radius: 6px 37px 7px 7px;
+    min-height: 277px;
+  }
+}
+
+@media (width <= 650px) {
+  .hero-picture img {
+    object-position: 50% 40%;
+  }
+}
+
+@media (width <= 650px) {
+  .voice-card {
+    width: min(255px,100% - 25px);
+    padding: 9px;
+    bottom: 12px;
+    left: 12px;
+  }
+}
+
+@media (width <= 650px) {
+  .voice-card-action {
+    min-height: 44px;
+  }
+}
+
+@media (width <= 650px) {
+  .journey-link {
+    bottom: 10px;
+  }
+}
+
+@media (width <= 650px) {
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (width <= 650px) {
+  .hero .actions {
+    gap: 8px;
+    margin-top: 19px;
+  }
+}
+
+@media (width <= 650px) {
+  .hero .actions .button {
+    min-height: 44px;
+    padding-inline: 11px;
+  }
+}
+
+@media (width <= 650px) {
+  .source-line {
+    margin-top: 16px;
+  }
+}
+
+@media (width <= 650px) {
+  .value-items {
+    grid-template-columns: repeat(2,1fr);
+    gap: 6px;
+    min-height: 82px;
+  }
+}
+
+@media (width <= 650px) {
+  .value-items div {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+
+@media (width <= 650px) {
+  .value-items svg {
+    width: 17px;
+  }
+}
+
+@media (width <= 650px) {
+  .landing-section, .page-section {
+    padding-block: 35px;
+  }
+}
+
+@media (width <= 650px) {
+  .landing-section h2 {
+    font-size: 2.65rem;
+  }
+}
+
+@media (width <= 650px) {
+  .category-grid, .life-grid {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+  }
+}
+
+@media (width <= 650px) {
+  .directory-ground .landing-section {
+    padding-block: 39px;
+  }
+}
+
+@media (width <= 650px) {
+  .directory-ground .category-grid {
+    grid-template-columns: repeat(2,minmax(0px,1fr));
+  }
+}
+
+@media (width <= 650px) {
+  .directory-ground .category-card, .directory-ground .category-card:nth-child(n+5) {
+    grid-column: span 1;
+    padding: 14px;
+  }
+}
+
+@media (width <= 650px) {
+  .directory-ground .category-card:last-child {
+    grid-column: 1/-1;
+  }
+}
+
+@media (width <= 650px) {
+  .life-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (width <= 650px) {
+  .life-intro img {
+    border-radius: 7px 29px 7px 7px;
+    max-height: 300px;
+  }
+}
+
+@media (width <= 650px) {
+  .footer-inner {
+    gap: 10px;
+  }
+}
+
+@media (width <= 650px) {
+  .catalog-grid, .assistant-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 650px) {
+  .assistant-sidebar {
+    padding: 13px;
+  }
+}
+
+@media (width <= 650px) {
+  .assistant-sidebar .sidebar-orb, .assistant-sidebar>.button, .assistant-sidebar>h2, .assistant-sidebar>p {
+    display: none;
+  }
+}
+
+@media (width <= 650px) {
+  .assistant-sidebar small, .read-toggle {
+    margin-top: 2px;
+  }
+}
+
+@media (width <= 650px) {
+  .message {
+    max-width: 97%;
+  }
+}
+
+@media (width <= 650px) {
+  .transcript {
+    min-height: 269px;
+    max-height: 55vh;
+    padding: 11px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *, ::before, ::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .hero-picture:hover img, .hero-wash, .journey-lens {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .hero-wash {
+    background: linear-gradient(15deg,rgba(7,31,26,0.79) 0%,rgba(0,0,0,0) 61%);
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .journey-visual {
+    position: relative;
+    top: auto;
+  }
+}
+
+
+</style><style data-tsd-source="/src/routes/index.tsx:15:5">@layer imported-inline{[data-site-import-svg-default-fit="contain"]{object-fit:contain}}</style><div id="root" data-tsd-source="/src/routes/index.tsx:16:7"><div class="app home-page flex flex-col min-h-screen" data-tsd-source="/src/routes/index.tsx:17:9"><a class="skip-link py-[12px] px-[16px] top-[8px] z-12 [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#content" data-tsd-source="/src/routes/index.tsx:18:11">Skip to content</a><header class="site-header border-[#ffffff25] relative z-4 [border-bottom:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:59:5"><div class="wrap header-inner items-center flex justify-between mx-auto" data-tsd-source="/src/routes/index.tsx:60:7"><a class="brand items-center inline-flex gap-[10px] tracking-[-0.075em] whitespace-nowrap [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#home" data-tsd-source="/src/routes/index.tsx:61:9"><img alt="" src="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png" data-site-import-svg-default-fit="contain" data-tsd-source="/src/routes/index.tsx:62:11"><span data-tsd-source="/src/routes/index.tsx:63:11">ARCEUS<span data-tsd-source="/src/routes/index.tsx:63:23">.</span></span></a><nav class="navigation items-center" aria-label="Main" data-tsd-source="/src/routes/index.tsx:65:9"><a class="[-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" aria-current="page" href="#home" data-tsd-source="/src/routes/index.tsx:66:11">Home</a><a class="[-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#assistant" data-tsd-source="/src/routes/index.tsx:67:11">Voice assistant</a><a class="[-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#schemes" data-tsd-source="/src/routes/index.tsx:68:11">Explore schemes</a><a class="[-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#workspace" data-tsd-source="/src/routes/index.tsx:69:11">My workspace</a></nav><div class="header-actions items-center" data-tsd-source="/src/routes/index.tsx:71:9"><label class="language-select items-center flex gap-[6px] px-[10px] relative" id="bb-customSelect-vuUyf-label" data-tsd-source="/src/routes/index.tsx:72:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:73:13"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" data-tsd-source="/src/routes/index.tsx:74:15"></path><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" data-tsd-source="/src/routes/index.tsx:75:15"></path><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" data-tsd-source="/src/routes/index.tsx:76:15"></path><circle cx="12" cy="12" r="10" data-tsd-source="/src/routes/index.tsx:77:15"></circle></svg><div data-tsd-source="/src/routes/index.tsx:79:13"><span class="[&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="bb-customSelect-vuUyf-panel" aria-activedescendant="bb-customSelect-vuUyf-selectedOption" aria-labelledby="bb-customSelect-vuUyf-label" tabindex="0" data-tsd-source="/src/routes/index.tsx:80:15"><span data-tsd-source="/src/routes/index.tsx:81:17">English</span></span><select class="appearance-none pt-[10px] pr-[17px] pb-[10px] pl-0 [-webkit-tap-highlight-color:transparent] [border:0px] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" aria-label="Language / भाषा" tabindex="-1" data-tsd-source="/src/routes/index.tsx:83:15"><option value="en" data-tsd-source="/src/routes/index.tsx:84:17" selected="">English</option><option value="hi" data-tsd-source="/src/routes/index.tsx:85:17">हिन्दी</option><option value="te" data-tsd-source="/src/routes/index.tsx:86:17">తెలుగు</option><option value="mr" data-tsd-source="/src/routes/index.tsx:87:17">मराठी</option></select><div id="bb-customSelect-vuUyf-panel" role="listbox" data-tsd-source="/src/routes/index.tsx:89:15"><div role="option" id="bb-customSelect-vuUyf-selectedOption" data-tsd-source="/src/routes/index.tsx:90:17">English</div><div role="option" data-tsd-source="/src/routes/index.tsx:91:17">हिन्दी</div><div role="option" data-tsd-source="/src/routes/index.tsx:92:17">తెలుగు</div><div role="option" data-tsd-source="/src/routes/index.tsx:93:17">मराठी</div></div></div><svg class="flex-none pointer-events-none absolute right-[7px] align-middle" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:96:13"><path d="m6 9 6 6 6-6" data-tsd-source="/src/routes/index.tsx:97:15"></path></svg></label><button class="button header-cta items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]" data-tsd-source="/src/routes/index.tsx:100:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:100:333"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" data-tsd-source="/src/routes/index.tsx:100:565"></path><path d="M20 2v4" data-tsd-source="/src/routes/index.tsx:100:840"></path><path d="M22 4h-4" data-tsd-source="/src/routes/index.tsx:100:860"></path><circle cx="4" cy="20" r="2" data-tsd-source="/src/routes/index.tsx:100:881"></circle></svg>Get started</button><button class="icon-button menu-toggle items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" aria-label="Menu" aria-expanded="false" data-tsd-source="/src/routes/index.tsx:101:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:102:13"><path d="M4 5h16" data-tsd-source="/src/routes/index.tsx:103:15"></path><path d="M4 12h16" data-tsd-source="/src/routes/index.tsx:104:15"></path><path d="M4 19h16" data-tsd-source="/src/routes/index.tsx:105:15"></path></svg></button></div></div></header><main class="flex-1 [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" id="content" tabindex="-1" data-tsd-source="/src/routes/index.tsx:20:11"><div class="hero-ground overflow-hidden" data-tsd-source="/src/routes/index.tsx:21:13"><section class="hero wrap home-hero items-center grid mx-auto relative" data-tsd-source="/src/routes/index.tsx:116:5"><div class="hero-copy" style="transform:translateY(0px);opacity:1" data-tsd-source="/src/routes/index.tsx:117:7"><div class="eyebrow items-center flex gap-[8px] tracking-[0.15em]" data-tsd-source="/src/routes/index.tsx:118:9"><span class="h-px w-[16px]" data-tsd-source="/src/routes/index.tsx:118:80"></span>INDIAN GOVERNMENT SCHEMES</div><h1 data-tsd-source="/src/routes/index.tsx:119:9">Your voice.<br data-tsd-source="/src/routes/index.tsx:119:24"><em data-tsd-source="/src/routes/index.tsx:119:30">Your benefits.</em></h1><p class="max-w-[420px]" data-tsd-source="/src/routes/index.tsx:120:9">Find schemes for you and your family. Speak or type in English, Hindi, Telugu, or Marathi to check eligibility and learn how to apply.</p><div class="actions items-center flex flex-wrap" data-tsd-source="/src/routes/index.tsx:121:9"><button class="button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[&amp;:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]" data-tsd-source="/src/routes/index.tsx:122:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:122:349"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:122:581"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:122:602"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:122:641"></rect></svg>Talk to ARCEUS</button><button class="button outline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:123:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:123:278"><circle cx="12" cy="12" r="10" data-tsd-source="/src/routes/index.tsx:123:510"></circle><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" data-tsd-source="/src/routes/index.tsx:123:543"></path></svg>Explore schemes</button></div><div class="source-line items-center flex gap-[7px]" data-tsd-source="/src/routes/index.tsx:125:9"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:125:66"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" data-tsd-source="/src/routes/index.tsx:125:298"></path><path d="m9 12 2 2 4-4" data-tsd-source="/src/routes/index.tsx:125:473"></path></svg>Guidance based on official government sources</div></div><div class="hero-picture [box-shadow:rgba(0,0,0,0.867)_0px_28px_55px_-37px] isolate overflow-hidden relative [@media(width_&lt;=_650px)]:h-[clamp(277px,85vw,400px)]" style="transform:translateY(0px) scale(1);opacity:1" data-tsd-source="/src/routes/index.tsx:127:7"><picture class="inset-0 absolute -z-2" data-tsd-source="/src/routes/index.tsx:128:9"><source media="(max-width: 650px)" srcset="/site-assets/df1ee9f3cab76ebb.webp" data-tsd-source="/src/routes/index.tsx:129:11"><img class="block h-full object-cover w-full" alt="" width="1440" height="960" fetchpriority="high" src="/site-assets/193bfc6f66941b98.webp" data-tsd-source="/src/routes/index.tsx:130:11"></picture><div class="hero-wash inset-0 pointer-events-none absolute -z-1" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:132:9"></div><div class="voice-card border border-solid border-[#e1f4db66] rounded-[12px] [box-shadow:rgba(4,20,15,0.4)_0px_12px_42px] absolute [backdrop-filter:blur(16px)]" style="transform:translateY(0px);opacity:1" data-tsd-source="/src/routes/index.tsx:133:9"><div class="voice-card-label items-center flex gap-[8px]" data-tsd-source="/src/routes/index.tsx:134:11"><div class="voice-card-icon rounded-[7px] grid h-[35px] place-items-center w-[35px]" data-tsd-source="/src/routes/index.tsx:135:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:136:15"><path d="M2 10v3" data-tsd-source="/src/routes/index.tsx:137:17"></path><path d="M6 6v11" data-tsd-source="/src/routes/index.tsx:138:17"></path><path d="M10 3v18" data-tsd-source="/src/routes/index.tsx:139:17"></path><path d="M14 8v7" data-tsd-source="/src/routes/index.tsx:140:17"></path><path d="M18 5v13" data-tsd-source="/src/routes/index.tsx:141:17"></path><path d="M22 10v3" data-tsd-source="/src/routes/index.tsx:142:17"></path></svg></div><div data-tsd-source="/src/routes/index.tsx:145:13"><b class="block tracking-[0.08em]" data-tsd-source="/src/routes/index.tsx:146:15">ARCEUS</b><small class="block" data-tsd-source="/src/routes/index.tsx:147:15">Scheme assistant</small></div><span class="border border-solid border-[#c3d7c36b] rounded-[5px] ml-auto py-[4px] px-[8px]" data-tsd-source="/src/routes/index.tsx:149:13">English</span></div><div class="voice-wave compact-wave items-center flex gap-[5px] justify-center" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:151:11"><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:7px;--bar:0;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:152:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:14px;--bar:1;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:153:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:23px;--bar:2;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:154:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:11px;--bar:3;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:155:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:31px;--bar:4;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:156:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:42px;--bar:5;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:157:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:18px;--bar:6;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:158:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:35px;--bar:7;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:159:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:54px;--bar:8;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:160:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:32px;--bar:9;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:161:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:16px;--bar:10;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:162:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:48px;--bar:11;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:163:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:64px;--bar:12;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:164:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:42px;--bar:13;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:165:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:28px;--bar:14;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:166:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:11px;--bar:15;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:167:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:24px;--bar:16;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:168:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:42px;--bar:17;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:169:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:28px;--bar:18;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:170:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:12px;--bar:19;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:171:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:29px;--bar:20;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:172:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:18px;--bar:21;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:173:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:8px;--bar:22;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:174:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:16px;--bar:23;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:175:13"></span><span class="rounded-[10px] flex-[0_0_4px] basis-[3px]!" style="--height:9px;--bar:24;transform:scaleY(1)" data-tsd-source="/src/routes/index.tsx:176:13"></span></div><button class="voice-card-action items-center border border-solid border-[#a6c4a469] rounded-[6px] flex gap-[8px] py-[6px] px-[8px] text-left w-full [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:178:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:178:344"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" data-tsd-source="/src/routes/index.tsx:178:576"></path></svg>Ask about a scheme</button></div></div><button class="journey-link items-center inline-flex gap-[8px] left-0 min-h-[34px] pt-[3px] pr-[5px] pb-[3px] pl-0 absolute [-webkit-tap-highlight-color:transparent] [border:0px] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:181:7"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:181:328"><path d="m6 9 6 6 6-6" data-tsd-source="/src/routes/index.tsx:181:560"></path></svg>See how it works</button></section></div><div class="value-band [border-block:1px_solid_rgb(217,223,204)]" data-tsd-source="/src/routes/index.tsx:24:13"><div class="wrap value-items items-center grid mx-auto [@media(width_&lt;=_650px)]:py-[10px]" data-tsd-source="/src/routes/index.tsx:25:15"><div class="items-center flex" data-tsd-source="/src/routes/index.tsx:26:17"><svg class="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:26:52"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" data-tsd-source="/src/routes/index.tsx:26:293"></path><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" data-tsd-source="/src/routes/index.tsx:26:337"></path><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" data-tsd-source="/src/routes/index.tsx:26:434"></path><circle cx="12" cy="12" r="10" data-tsd-source="/src/routes/index.tsx:26:509"></circle></svg>4 languages</div><div class="items-center flex" data-tsd-source="/src/routes/index.tsx:27:17"><svg class="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:27:52"><path d="M10 18v-7" data-tsd-source="/src/routes/index.tsx:27:293"></path><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" data-tsd-source="/src/routes/index.tsx:27:315"></path><path d="M14 18v-7" data-tsd-source="/src/routes/index.tsx:27:428"></path><path d="M18 18v-7" data-tsd-source="/src/routes/index.tsx:27:450"></path><path d="M3 22h18" data-tsd-source="/src/routes/index.tsx:27:472"></path><path d="M6 18v-7" data-tsd-source="/src/routes/index.tsx:27:493"></path></svg>Official scheme sources</div><div class="items-center flex" data-tsd-source="/src/routes/index.tsx:28:17"><svg class="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:28:52"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" data-tsd-source="/src/routes/index.tsx:28:293"></path></svg>Voice and text</div><div class="items-center flex" data-tsd-source="/src/routes/index.tsx:29:17"><svg class="flex-none h-[20px] align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:29:52"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" data-tsd-source="/src/routes/index.tsx:29:293"></path><path d="M16 3.128a4 4 0 0 1 0 7.744" data-tsd-source="/src/routes/index.tsx:29:347"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87" data-tsd-source="/src/routes/index.tsx:29:387"></path><circle cx="9" cy="7" r="4" data-tsd-source="/src/routes/index.tsx:29:426"></circle></svg>Support for the whole family</div></div></div><section class="wrap journey mx-auto [scroll-margin-top:20px] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" id="how-arceus-works" tabindex="-1" data-tsd-source="/src/routes/index.tsx:188:5"><div class="eyebrow items-center flex gap-[8px] tracking-[0.15em]" data-tsd-source="/src/routes/index.tsx:189:7"><span class="h-px w-[16px]" data-tsd-source="/src/routes/index.tsx:189:78"></span>HOW IT WORKS</div><h2 class="tracking-tight max-w-[740px]" data-tsd-source="/src/routes/index.tsx:190:7">From a question to the next step</h2><div class="journey-grid items-start grid relative" style="--journey-progress:0.000" data-stage="0" data-tsd-source="/src/routes/index.tsx:191:7"><div class="journey-visual [box-shadow:rgb(24,57,47)_0px_0px_0px_1px_inset] grid isolate overflow-hidden [@media(width_&lt;=_780px)]:h-[min(300px,41svh)]" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:192:9"><div class="journey-lens grid inset-0 place-items-center absolute -z-1 [@media(width_&lt;=_780px)]:[scale:0.75]" data-tsd-source="/src/routes/index.tsx:193:11"><div class="aspect-square border border-solid border-[#d6f5ad5e] rounded-[50%] absolute w-[224px]" data-tsd-source="/src/routes/index.tsx:194:13"></div><div class="aspect-square border border-solid border-[#d6f5ad5e] rounded-[50%] border-dashed! absolute w-[282px]" data-tsd-source="/src/routes/index.tsx:195:13"></div><div class="aspect-square border border-solid border-[#d6f5ad5e] rounded-[50%] absolute w-[339px]" data-tsd-source="/src/routes/index.tsx:196:13"></div></div><div class="journey-progress items-center flex justify-between z-2" data-tsd-source="/src/routes/index.tsx:198:11"><span class="border border-solid border-[#c0d7be] rounded-[50%] h-[10px] relative w-[10px] z-1" data-tsd-source="/src/routes/index.tsx:199:13"></span><span class="border border-solid border-[#c0d7be] rounded-[50%] h-[10px] relative w-[10px] z-1" data-tsd-source="/src/routes/index.tsx:200:13"></span><span class="border border-solid border-[#c0d7be] rounded-[50%] h-[10px] relative w-[10px] z-1" data-tsd-source="/src/routes/index.tsx:201:13"></span></div><div class="journey-frames self-stretch grid place-items-center" data-tsd-source="/src/routes/index.tsx:203:11"><div class="journey-frame frame-ask border border-solid border-[#c7e9c965] rounded-[11px] [box-shadow:rgba(8,31,28,0.737)_0px_19px_39px] grid justify-items-start min-w-0 w-[min(100%,358px)] [grid-area:1/1]" data-tsd-source="/src/routes/index.tsx:204:13"><div class="frame-icon rounded-[8px] grid h-[39px] place-items-center w-[39px]" data-tsd-source="/src/routes/index.tsx:205:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:206:17"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:207:19"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:208:19"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:209:19"></rect></svg></div><div class="voice-wave items-center flex gap-[clamp(3px,0.55vw,7px)] justify-center w-full" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:212:15"><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:7px;--bar:0" data-tsd-source="/src/routes/index.tsx:213:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:14px;--bar:1" data-tsd-source="/src/routes/index.tsx:214:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:23px;--bar:2" data-tsd-source="/src/routes/index.tsx:215:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:11px;--bar:3" data-tsd-source="/src/routes/index.tsx:216:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:31px;--bar:4" data-tsd-source="/src/routes/index.tsx:217:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:42px;--bar:5" data-tsd-source="/src/routes/index.tsx:218:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:18px;--bar:6" data-tsd-source="/src/routes/index.tsx:219:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:35px;--bar:7" data-tsd-source="/src/routes/index.tsx:220:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:54px;--bar:8" data-tsd-source="/src/routes/index.tsx:221:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:32px;--bar:9" data-tsd-source="/src/routes/index.tsx:222:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:16px;--bar:10" data-tsd-source="/src/routes/index.tsx:223:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:48px;--bar:11" data-tsd-source="/src/routes/index.tsx:224:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:64px;--bar:12" data-tsd-source="/src/routes/index.tsx:225:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:42px;--bar:13" data-tsd-source="/src/routes/index.tsx:226:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:28px;--bar:14" data-tsd-source="/src/routes/index.tsx:227:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:11px;--bar:15" data-tsd-source="/src/routes/index.tsx:228:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:24px;--bar:16" data-tsd-source="/src/routes/index.tsx:229:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:42px;--bar:17" data-tsd-source="/src/routes/index.tsx:230:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:28px;--bar:18" data-tsd-source="/src/routes/index.tsx:231:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:12px;--bar:19" data-tsd-source="/src/routes/index.tsx:232:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:29px;--bar:20" data-tsd-source="/src/routes/index.tsx:233:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:18px;--bar:21" data-tsd-source="/src/routes/index.tsx:234:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:8px;--bar:22" data-tsd-source="/src/routes/index.tsx:235:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:16px;--bar:23" data-tsd-source="/src/routes/index.tsx:236:17"></span><span class="items-center rounded-[10px] flex flex-[0_0_4px] gap-[8px]" style="--height:9px;--bar:24" data-tsd-source="/src/routes/index.tsx:237:17"></span></div><div class="journey-quote" data-tsd-source="/src/routes/index.tsx:239:15">“Can my father get health cover?”</div></div><div class="journey-frame frame-check border border-solid border-[#c7e9c965] rounded-[11px] [box-shadow:rgba(8,31,28,0.737)_0px_19px_39px] grid justify-items-start min-w-0 w-[min(100%,358px)] [grid-area:1/1]" data-tsd-source="/src/routes/index.tsx:241:13"><div class="frame-icon rounded-[8px] grid h-[39px] place-items-center w-[39px]" data-tsd-source="/src/routes/index.tsx:242:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:243:17"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" data-tsd-source="/src/routes/index.tsx:244:19"></path><path d="m9 12 2 2 4-4" data-tsd-source="/src/routes/index.tsx:245:19"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:248:15">Ayushman Vay Vandana</b><span class="items-center flex gap-[8px]" data-tsd-source="/src/routes/index.tsx:249:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:249:61"><path d="M20 6 9 17l-5-5" data-tsd-source="/src/routes/index.tsx:249:293"></path></svg>Age 70 or above on Aadhaar</span><span class="items-center flex gap-[8px]" data-tsd-source="/src/routes/index.tsx:250:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:250:61"><path d="M20 6 9 17l-5-5" data-tsd-source="/src/routes/index.tsx:250:293"></path></svg>Lives in India</span></div><div class="journey-frame frame-apply border border-solid border-[#c7e9c965] rounded-[11px] [box-shadow:rgba(8,31,28,0.737)_0px_19px_39px] grid justify-items-start min-w-0 w-[min(100%,358px)] [grid-area:1/1]" data-tsd-source="/src/routes/index.tsx:252:13"><div class="frame-icon rounded-[8px] grid h-[39px] place-items-center w-[39px]" data-tsd-source="/src/routes/index.tsx:253:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:254:17"><path d="M10 18v-7" data-tsd-source="/src/routes/index.tsx:255:19"></path><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" data-tsd-source="/src/routes/index.tsx:256:19"></path><path d="M14 18v-7" data-tsd-source="/src/routes/index.tsx:257:19"></path><path d="M18 18v-7" data-tsd-source="/src/routes/index.tsx:258:19"></path><path d="M3 22h18" data-tsd-source="/src/routes/index.tsx:259:19"></path><path d="M6 18v-7" data-tsd-source="/src/routes/index.tsx:260:19"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:263:15">Prepare to apply</b><span class="items-center flex gap-[8px]" data-tsd-source="/src/routes/index.tsx:264:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:264:61"><path d="M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6" data-tsd-source="/src/routes/index.tsx:264:293"></path><path d="M14 2v5a1 1 0 0 0 1 1h5" data-tsd-source="/src/routes/index.tsx:264:405"></path><path d="m14 20 2 2 4-4" data-tsd-source="/src/routes/index.tsx:264:441"></path></svg>Aadhaar for e-KYC</span><span class="items-center flex gap-[8px]" data-tsd-source="/src/routes/index.tsx:265:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:265:61"><path d="M15 3h6v6" data-tsd-source="/src/routes/index.tsx:265:293"></path><path d="M10 14 21 3" data-tsd-source="/src/routes/index.tsx:265:315"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" data-tsd-source="/src/routes/index.tsx:265:339"></path></svg>NHA beneficiary portal</span></div></div></div><div data-tsd-source="/src/routes/index.tsx:269:9"><article class="journey-step current items-start flex gap-[14px] [border-top:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:270:11"><div class="step-icon rounded-[9px] grid flex-[0_0_45px] h-[45px] place-items-center" data-tsd-source="/src/routes/index.tsx:271:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:272:15"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:273:17"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:274:17"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:275:17"></rect></svg></div><div data-tsd-source="/src/routes/index.tsx:278:13"><h3 class="tracking-[-0.023em]" data-tsd-source="/src/routes/index.tsx:279:15">Ask in your own words</h3><p data-tsd-source="/src/routes/index.tsx:280:15">Tell ARCEUS what you need, such as healthcare for a parent. Speak or type in the language you prefer.</p></div></article><article class="journey-step items-start flex gap-[14px] [border-top:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:283:11"><div class="step-icon rounded-[9px] grid flex-[0_0_45px] h-[45px] place-items-center" data-tsd-source="/src/routes/index.tsx:284:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:285:15"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" data-tsd-source="/src/routes/index.tsx:286:17"></path><path d="m9 12 2 2 4-4" data-tsd-source="/src/routes/index.tsx:287:17"></path></svg></div><div data-tsd-source="/src/routes/index.tsx:290:13"><h3 class="tracking-[-0.023em]" data-tsd-source="/src/routes/index.tsx:291:15">Check the rules that apply</h3><p data-tsd-source="/src/routes/index.tsx:292:15">Answer the few questions that affect your result. If two answers disagree, ARCEUS asks you to confirm before making a recommendation.</p></div></article><article class="journey-step items-start flex gap-[14px] [border-bottom:1px_solid_var(--line)] [border-top:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:295:11"><div class="step-icon rounded-[9px] grid flex-[0_0_45px] h-[45px] place-items-center" data-tsd-source="/src/routes/index.tsx:296:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:297:15"><path d="M10 18v-7" data-tsd-source="/src/routes/index.tsx:298:17"></path><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" data-tsd-source="/src/routes/index.tsx:299:17"></path><path d="M14 18v-7" data-tsd-source="/src/routes/index.tsx:300:17"></path><path d="M18 18v-7" data-tsd-source="/src/routes/index.tsx:301:17"></path><path d="M3 22h18" data-tsd-source="/src/routes/index.tsx:302:17"></path><path d="M6 18v-7" data-tsd-source="/src/routes/index.tsx:303:17"></path></svg></div><div data-tsd-source="/src/routes/index.tsx:306:13"><h3 class="tracking-[-0.023em]" data-tsd-source="/src/routes/index.tsx:307:15">Apply through the official portal</h3><p data-tsd-source="/src/routes/index.tsx:308:15">See why you may qualify, prepare your documents, and follow the steps to the official website. Save the reference in your workspace after applying.</p></div></article></div></div><button class="button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[&amp;:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]" data-tsd-source="/src/routes/index.tsx:313:7"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:313:355"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:313:587"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:313:608"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:313:647"></rect></svg>Start an eligibility check</button></section><div class="directory-ground [border-block:1px_solid_rgb(219,226,209)]" data-tsd-source="/src/routes/index.tsx:33:13"><section class="wrap landing-section mx-auto" data-tsd-source="/src/routes/index.tsx:320:5"><div class="items-end flex gap-[16px] justify-between mb-[23px] [@media(width_&lt;=_650px)]:flex-wrap" data-tsd-source="/src/routes/index.tsx:321:7"><div data-tsd-source="/src/routes/index.tsx:322:9"><div class="eyebrow items-center flex gap-[8px] tracking-[0.15em]" data-tsd-source="/src/routes/index.tsx:323:11"><span class="h-px w-[16px]" data-tsd-source="/src/routes/index.tsx:323:82"></span>SCHEME DIRECTORY</div><h2 data-tsd-source="/src/routes/index.tsx:324:11">Explore by category</h2></div><button class="button outline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:326:9"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:326:276"><path d="M12 7v14" data-tsd-source="/src/routes/index.tsx:326:508"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" data-tsd-source="/src/routes/index.tsx:326:529"></path></svg>View all schemes</button></div><div class="category-grid grid gap-[11px]" data-tsd-source="/src/routes/index.tsx:328:7"><button class="category-card tint-agriculture flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:329:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:330:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:331:13"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" data-tsd-source="/src/routes/index.tsx:332:15"></path><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" data-tsd-source="/src/routes/index.tsx:333:15"></path><path d="M5 21h14" data-tsd-source="/src/routes/index.tsx:334:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:337:11">Agriculture</b><span data-tsd-source="/src/routes/index.tsx:338:11">1 ARCEUS check</span></button><button class="category-card tint-education flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:340:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:341:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:342:13"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" data-tsd-source="/src/routes/index.tsx:343:15"></path><path d="M22 10v6" data-tsd-source="/src/routes/index.tsx:344:15"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" data-tsd-source="/src/routes/index.tsx:345:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:348:11">Education</b><span data-tsd-source="/src/routes/index.tsx:349:11">1 ARCEUS check</span></button><button class="category-card tint-health flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:351:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:352:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:353:13"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" data-tsd-source="/src/routes/index.tsx:354:15"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" data-tsd-source="/src/routes/index.tsx:355:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:358:11">Healthcare</b><span data-tsd-source="/src/routes/index.tsx:359:11">1 ARCEUS check</span></button><button class="category-card tint-business flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:361:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:362:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:363:13"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" data-tsd-source="/src/routes/index.tsx:364:15"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" data-tsd-source="/src/routes/index.tsx:365:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:368:11">Business &amp; loans</b><span data-tsd-source="/src/routes/index.tsx:369:11">2 ARCEUS checks</span></button><button class="category-card tint-marriage flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:371:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:372:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:373:13"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" data-tsd-source="/src/routes/index.tsx:374:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:377:11">Marriage</b><span data-tsd-source="/src/routes/index.tsx:378:11">1 ARCEUS check</span></button><button class="category-card tint-insurance flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:380:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:381:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:382:13"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" data-tsd-source="/src/routes/index.tsx:383:15"></path><path d="m9 12 2 2 4-4" data-tsd-source="/src/routes/index.tsx:384:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:387:11">Insurance</b><span data-tsd-source="/src/routes/index.tsx:388:11">2 ARCEUS checks</span></button><button class="category-card tint-savings flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:390:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:391:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:392:13"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z" data-tsd-source="/src/routes/index.tsx:393:15"></path><path d="M16 10h.01" data-tsd-source="/src/routes/index.tsx:394:15"></path><path d="M2 8v1a2 2 0 0 0 2 2h1" data-tsd-source="/src/routes/index.tsx:395:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:398:11">Savings</b><span data-tsd-source="/src/routes/index.tsx:399:11">2 ARCEUS checks</span></button><button class="category-card flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:401:9"><div class="tile-icon rounded-[11px] grid h-[43px] mb-[5px] place-items-center w-[43px]" data-tsd-source="/src/routes/index.tsx:402:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:403:13"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" data-tsd-source="/src/routes/index.tsx:404:15"></path></svg></div><b data-tsd-source="/src/routes/index.tsx:407:11">Utilities</b><span data-tsd-source="/src/routes/index.tsx:408:11">1 ARCEUS check</span></button></div></section></div><section class="wrap landing-section life-section mx-auto" data-tsd-source="/src/routes/index.tsx:417:5"><div class="life-intro items-center grid mb-[29px]" data-tsd-source="/src/routes/index.tsx:418:7"><img class="h-auto object-cover w-full" width="1080" height="720" loading="lazy" alt="" src="/site-assets/9da2e2a5fb9b53b6.webp" data-tsd-source="/src/routes/index.tsx:419:9"><div data-tsd-source="/src/routes/index.tsx:420:9"><div class="eyebrow items-center flex gap-[8px] tracking-[0.15em]" data-tsd-source="/src/routes/index.tsx:421:11"><span class="h-px w-[16px]" data-tsd-source="/src/routes/index.tsx:421:82"></span>FAMILY PLANNING</div><h2 data-tsd-source="/src/routes/index.tsx:422:11">Planning a life event?</h2><p class="max-w-[430px]" data-tsd-source="/src/routes/index.tsx:423:11">Check benefits for family members and keep their application records and reminders together.</p><button class="button primary items-center gap-[9px] justify-center mt-[20px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[&amp;:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]" data-tsd-source="/src/routes/index.tsx:424:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:424:359"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" data-tsd-source="/src/routes/index.tsx:424:591"></path><path d="M16 3.128a4 4 0 0 1 0 7.744" data-tsd-source="/src/routes/index.tsx:424:645"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87" data-tsd-source="/src/routes/index.tsx:424:685"></path><circle cx="9" cy="7" r="4" data-tsd-source="/src/routes/index.tsx:424:724"></circle></svg>Open my workspace</button></div></div><div class="life-grid grid gap-[12px] mt-[22px]" data-tsd-source="/src/routes/index.tsx:427:7"><button class="life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:428:9"><svg class="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:429:11"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" data-tsd-source="/src/routes/index.tsx:430:13"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" data-tsd-source="/src/routes/index.tsx:431:13"></path></svg><b data-tsd-source="/src/routes/index.tsx:433:11">Starting a business</b><span data-tsd-source="/src/routes/index.tsx:434:11">Explore working capital and microenterprise loans.</span></button><button class="life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:436:9"><svg class="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:437:11"><path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" data-tsd-source="/src/routes/index.tsx:438:13"></path></svg><b data-tsd-source="/src/routes/index.tsx:440:11">Preparing for marriage</b><span data-tsd-source="/src/routes/index.tsx:441:11">Check Telangana marriage assistance and the documents you need.</span></button><button class="life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:443:9"><svg class="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:444:11"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" data-tsd-source="/src/routes/index.tsx:445:13"></path><path d="M22 10v6" data-tsd-source="/src/routes/index.tsx:446:13"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" data-tsd-source="/src/routes/index.tsx:447:13"></path></svg><b data-tsd-source="/src/routes/index.tsx:449:11">Continuing school</b><span data-tsd-source="/src/routes/index.tsx:450:11">Check scholarship screening criteria and selection steps.</span></button><button class="life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:452:9"><svg class="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:453:11"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z" data-tsd-source="/src/routes/index.tsx:454:13"></path><path d="M16 10h.01" data-tsd-source="/src/routes/index.tsx:455:13"></path><path d="M2 8v1a2 2 0 0 0 2 2h1" data-tsd-source="/src/routes/index.tsx:456:13"></path></svg><b data-tsd-source="/src/routes/index.tsx:458:11">Welcoming a daughter</b><span data-tsd-source="/src/routes/index.tsx:459:11">Explore a savings account for your daughter’s future.</span></button><button class="life-card flex flex-col gap-[7px] justify-start min-h-[133px] min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[box-shadow:var(--shadow)]" data-tsd-source="/src/routes/index.tsx:461:9"><svg class="flex-none mb-[3px] align-middle" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:462:11"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" data-tsd-source="/src/routes/index.tsx:463:13"></path><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" data-tsd-source="/src/routes/index.tsx:464:13"></path></svg><b data-tsd-source="/src/routes/index.tsx:466:11">Turning 70</b><span data-tsd-source="/src/routes/index.tsx:467:11">Check senior healthcare eligibility and enrolment steps.</span></button></div></section><div hidden="" data-tsd-source="/src/routes/index.tsx:37:13"><section class="wrap page-section mx-auto" data-tsd-source="/src/routes/index.tsx:476:5"><div class="eyebrow items-center flex gap-[8px] tracking-[0.15em]" data-tsd-source="/src/routes/index.tsx:477:7"><span class="h-px w-[16px]" data-tsd-source="/src/routes/index.tsx:477:78"></span>YOUR SCHEME ASSISTANT</div><h1 class="page-title" data-tsd-source="/src/routes/index.tsx:478:7">Talk to ARCEUS</h1><p class="page-lead max-w-[530px]" data-tsd-source="/src/routes/index.tsx:479:7">Ask in your own words. ARCEUS will ask only for the details it still needs.</p><div class="assistant-layout items-start grid gap-[16px] mt-[24px]" data-tsd-source="/src/routes/index.tsx:480:7"><aside class="assistant-sidebar rounded-[17px] text-center [border:1px_solid_var(--line)] [@media(width_&lt;=_650px)]:items-center [@media(width_&lt;=_650px)]:grid [@media(width_&lt;=_650px)]:gap-[6px] [@media(width_&lt;=_650px)]:grid-cols-[1fr_1fr] [@media(width_&lt;=_650px)]:order-2" data-tsd-source="/src/routes/index.tsx:481:9"><div class="sidebar-orb border border-solid border-[#dbe8da] rounded-[50%] h-[156px] mt-[5px] mr-auto mb-[17px] ml-auto place-items-center w-[156px]" data-tsd-source="/src/routes/index.tsx:482:11"><div class="rounded-[50%] [box-shadow:rgba(81,126,98,0.667)_0px_13px_32px_-9px] grid h-[105px] place-items-center w-[105px]" data-tsd-source="/src/routes/index.tsx:483:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:484:15"><path d="M2 10v3" data-tsd-source="/src/routes/index.tsx:485:17"></path><path d="M6 6v11" data-tsd-source="/src/routes/index.tsx:486:17"></path><path d="M10 3v18" data-tsd-source="/src/routes/index.tsx:487:17"></path><path d="M14 8v7" data-tsd-source="/src/routes/index.tsx:488:17"></path><path d="M18 5v13" data-tsd-source="/src/routes/index.tsx:489:17"></path><path d="M22 10v3" data-tsd-source="/src/routes/index.tsx:490:17"></path></svg></div></div><h2 data-tsd-source="/src/routes/index.tsx:494:11">English</h2><p data-tsd-source="/src/routes/index.tsx:495:11">Ready to listen</p><button class="button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3 [&amp;:hover]:[&amp;:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]" data-tsd-source="/src/routes/index.tsx:496:11"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:496:349"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:496:581"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:496:602"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:496:641"></rect></svg>Start microphone</button><label class="read-toggle items-start flex gap-[7px] justify-center [@media(width_&lt;=_650px)]:col-start-1 [@media(width_&lt;=_650px)]:col-end-[-1]" data-tsd-source="/src/routes/index.tsx:497:11"><input class="accent-(--accent) shrink-0 h-[16px] w-[16px] [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" type="checkbox" data-tsd-source="/src/routes/index.tsx:497:159" checked="" style="">Read voice replies aloud</label><label class="read-toggle items-start flex gap-[7px] justify-center [@media(width_&lt;=_650px)]:col-start-1 [@media(width_&lt;=_650px)]:col-end-[-1]" data-tsd-source="/src/routes/index.tsx:498:11"><input class="accent-(--accent) shrink-0 h-[16px] w-[16px] [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" type="checkbox" data-tsd-source="/src/routes/index.tsx:498:159" style="">Hands-free follow-up questions</label><button class="text-button py-[3px] px-0 underline underline-offset-3 [-webkit-tap-highlight-color:transparent] [border:0px] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:499:11">Sign in for Sarvam voice</button><small class="block [@media(width_&lt;=_650px)]:col-start-1 [@media(width_&lt;=_650px)]:col-end-[-1]" data-tsd-source="/src/routes/index.tsx:500:11">Your browser handles speech. Its speech service may process audio online. Keep ID and bank numbers out of the chat.</small></aside><div class="chat-shell rounded-[17px] min-w-0 overflow-hidden [border:1px_solid_var(--line)] [@media(width_&lt;=_650px)]:min-w-0" data-tsd-source="/src/routes/index.tsx:502:9"><div class="chat-header items-center flex gap-[10px] py-[12px] px-[16px] [border-bottom:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:503:11"><div class="chat-icon rounded-[9px] grid h-[41px] place-items-center w-[41px]" data-tsd-source="/src/routes/index.tsx:504:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:505:15"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" data-tsd-source="/src/routes/index.tsx:506:17"></path><path d="M20 2v4" data-tsd-source="/src/routes/index.tsx:507:17"></path><path d="M22 4h-4" data-tsd-source="/src/routes/index.tsx:508:17"></path><circle cx="4" cy="20" r="2" data-tsd-source="/src/routes/index.tsx:509:17"></circle></svg></div><div data-tsd-source="/src/routes/index.tsx:512:13"><b data-tsd-source="/src/routes/index.tsx:513:15">ARCEUS</b><small data-tsd-source="/src/routes/index.tsx:514:15">Eligibility conversation</small></div><button class="icon-button items-center gap-[9px] justify-center ml-auto min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" title="Restart conversation" aria-label="Restart conversation" data-tsd-source="/src/routes/index.tsx:516:13"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:517:15"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" data-tsd-source="/src/routes/index.tsx:518:17"></path><path d="M3 3v5h5" data-tsd-source="/src/routes/index.tsx:519:17"></path></svg></button></div><div class="transcript flex flex-col gap-[12px] overflow-auto [overscroll-behavior:contain] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" role="log" aria-live="polite" tabindex="0" data-tsd-source="/src/routes/index.tsx:523:11"><div class="message agent-message self-start rounded-[12px] rounded-tl-[3px]! py-[11px] px-[14px] pr-[43px]! relative w-fit" data-tsd-source="/src/routes/index.tsx:524:13"><p class="wrap-anywhere" data-tsd-source="/src/routes/index.tsx:525:15">Namaste! Tell me which scheme you want to check, or what kind of help you need. You can speak or type.</p><button class="listen-button rounded-[5px] h-[29px] absolute right-[7px] top-[7px] w-[29px] [-webkit-tap-highlight-color:transparent] [border:0px] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" aria-label="Read this reply aloud" data-tsd-source="/src/routes/index.tsx:526:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:527:17"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" data-tsd-source="/src/routes/index.tsx:528:19"></path><path d="M16 9a5 5 0 0 1 0 6" data-tsd-source="/src/routes/index.tsx:529:19"></path><path d="M19.364 18.364a9 9 0 0 0 0-12.728" data-tsd-source="/src/routes/index.tsx:530:19"></path></svg></button></div><div class="flex flex-wrap gap-[7px]" data-tsd-source="/src/routes/index.tsx:534:13"><button class="chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:535:15">I’m a farmer <svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:535:314"><path d="m9 18 6-6-6-6" data-tsd-source="/src/routes/index.tsx:535:546"></path></svg></button><button class="chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:536:15">I need a scholarship <svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:536:322"><path d="m9 18 6-6-6-6" data-tsd-source="/src/routes/index.tsx:536:554"></path></svg></button><button class="chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:537:15">Healthcare for a parent <svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:537:325"><path d="m9 18 6-6-6-6" data-tsd-source="/src/routes/index.tsx:537:557"></path></svg></button><button class="chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" data-tsd-source="/src/routes/index.tsx:538:15">I need a business loan <svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:538:324"><path d="m9 18 6-6-6-6" data-tsd-source="/src/routes/index.tsx:538:556"></path></svg></button></div></div><div class="p-[12px] [border-top:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:541:11"><form class="composer items-center rounded-[12px] flex gap-[8px] p-[5px] [border:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:542:13"><button class="icon-button mic-button items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" type="button" aria-label="Start microphone" data-tsd-source="/src/routes/index.tsx:543:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:544:17"><path d="M12 19v3" data-tsd-source="/src/routes/index.tsx:545:19"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-tsd-source="/src/routes/index.tsx:546:19"></path><rect x="9" y="2" width="6" height="13" rx="3" data-tsd-source="/src/routes/index.tsx:547:19"></rect></svg></button><input class="border-current border-none flex-1 min-w-0 py-[8px] px-[2px] [-webkit-tap-highlight-color:transparent] [border-image:none] [border-width:medium] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" maxlength="500" aria-label="Your message" placeholder="Ask a question or type your answer…" data-tsd-source="/src/routes/index.tsx:550:15" value="" style=""><button class="icon-button send-button items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" type="submit" disabled="" aria-label="Send message" data-tsd-source="/src/routes/index.tsx:551:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:552:17"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" data-tsd-source="/src/routes/index.tsx:553:19"></path><path d="m21.854 2.147-10.94 10.939" data-tsd-source="/src/routes/index.tsx:554:19"></path></svg></button></form></div></div></div></section></div></main><footer class="site-footer [border-top:1px_solid_var(--line)]" data-tsd-source="/src/routes/index.tsx:41:11"><div class="wrap footer-inner items-center flex justify-between mx-auto min-h-[88px] [@media(width_&lt;=_650px)]:flex-wrap [@media(width_&lt;=_650px)]:py-[15px]" data-tsd-source="/src/routes/index.tsx:42:13"><a class="brand items-center inline-flex gap-[10px] tracking-[-0.075em] whitespace-nowrap [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="#home" data-tsd-source="/src/routes/index.tsx:43:15"><img alt="" src="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png" data-site-import-svg-default-fit="contain" data-tsd-source="/src/routes/index.tsx:44:17"><span data-tsd-source="/src/routes/index.tsx:45:17">ARCEUS<span data-tsd-source="/src/routes/index.tsx:45:29">.</span></span></a><p class="[@media(width_&lt;=_650px)]:order-3 [@media(width_&lt;=_650px)]:w-full" data-tsd-source="/src/routes/index.tsx:47:15">Independent scheme guidance for citizens.</p><a class="items-center inline-flex gap-[7px] [-webkit-tap-highlight-color:transparent] [&amp;:focus-visible]:outline-[#4a9b84] [&amp;:focus-visible]:outline-solid [&amp;:focus-visible]:outline-[3px] [&amp;:focus-visible]:outline-offset-3" href="https://www.myscheme.gov.in/" rel="noreferrer" target="_blank" data-tsd-source="/src/routes/index.tsx:48:15"><svg class="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-tsd-source="/src/routes/index.tsx:48:313"><circle cx="12" cy="12" r="10" data-tsd-source="/src/routes/index.tsx:48:545"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" data-tsd-source="/src/routes/index.tsx:48:578"></path><path d="M12 17h.01" data-tsd-source="/src/routes/index.tsx:48:627"></path></svg>Visit myScheme</a></div></footer></div></div><!--/$--><script type="module" async="" src="/@oj-start/client-entry.js"></script><script type="module" src="/@oj-start/live-reload.js?g=18e9cc54d8dee54b-1&amp;h=1"></script></body></html>
