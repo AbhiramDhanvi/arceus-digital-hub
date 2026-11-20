@@ -2,6 +2,8 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Assistant } from "@/components/Assistant";
 import capturedCSS from "../styles/site.css?raw";
+import assistantCSS from "../styles/assistant.css?raw";
+import { SCHEMES, VERIFIED_COUNT } from "@/lib/eligibility";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -27,6 +29,7 @@ function Index() {
   return (
     <>
       <style>{capturedCSS}</style>
+      <style>{assistantCSS}</style>
     <style>{"@layer imported-inline{[data-site-import-svg-default-fit=\"contain\"]{object-fit:contain}}"}</style>
       <div id="root">
         <div className={`app ${assistant ? "" : "home-page"} flex flex-col min-h-screen`}>
@@ -144,10 +147,16 @@ function ImportedSectionYourVoiceYourBenefits() {
         <div className="source-line items-center flex gap-[7px]"><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>Guidance based on official government sources</div>
       </div>
       <div className="hero-picture [box-shadow:rgba(0,0,0,0.867)_0px_28px_55px_-37px] isolate overflow-hidden relative [@media(width_<=_650px)]:h-[clamp(277px,85vw,400px)]" style={{ transform: "translateY(0px) scale(1)", opacity: "1" }}>
-        <picture className="inset-0 absolute -z-2">
-          <source media="(max-width: 650px)" srcSet="/site-assets/df1ee9f3cab76ebb.webp" />
-          <img className="block h-full object-cover w-full" alt="" width="1440" height="960" fetchPriority="high" src="/site-assets/193bfc6f66941b98.webp" />
-        </picture>
+        <div className="hv-panel" aria-hidden="true">
+          <div className="hv-wave">{[5,8,12,7,15,10,18,9,14,6,11,16,8,13,7,10,5].map((h, i) => <span key={i} style={{ height: `${h * 5}%`, animationDelay: `${i * 0.12}s` }} />)}</div>
+          <div className="hv-evidence">
+            <b>Atal Pension Yojana</b>
+            <p><i>✓</i>Age 18 to 39 — you said 32</p>
+            <p><i>✓</i>Savings account — yes</p>
+            <p><i className="q">?</i>Income-tax status — confirm</p>
+            <small>Source: financialservices.gov.in · checked 2026-11-20</small>
+          </div>
+        </div>
         <div className="hero-wash inset-0 pointer-events-none absolute -z-1" aria-hidden="true" />
         <div className="voice-card border border-solid border-[#e1f4db66] rounded-[12px] [box-shadow:rgba(4,20,15,0.4)_0px_12px_42px] absolute [backdrop-filter:blur(16px)]" style={{ transform: "translateY(0px)", opacity: "1" }}>
           <div className="voice-card-label items-center flex gap-[8px]">
@@ -435,7 +444,17 @@ function ImportedSectionPlanningALifeEvent() {
   return (
     <section className="wrap landing-section life-section mx-auto">
       <div className="life-intro items-center grid mb-[29px]">
-        <img className="h-auto object-cover w-full" width="1080" height="720" loading="lazy" alt="" src="/site-assets/9da2e2a5fb9b53b6.webp" />
+        <div className="hv-family" aria-hidden="true">
+          <svg viewBox="0 0 460 300" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--accent)" }}>
+            <rect x="170" y="20" width="120" height="56" rx="12" fill="var(--white)" /><text x="230" y="54" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="16" fontWeight="600">Household</text>
+            <path d="M230 76v34M80 110h300M80 110v30M230 110v30M380 110v30" />
+            {[["80","Parent 70+","PM-JAY"],["230","Adult","APY · PMSBY"],["380","Woman","Ujjwala"]].map(([x, who, s]) => (
+              <g key={who}><rect x={Number(x) - 66} y="140" width="132" height="70" rx="12" fill="var(--white)" />
+                <text x={x} y="170" textAnchor="middle" fill="var(--ink)" stroke="none" fontSize="15" fontWeight="600">{who}</text>
+                <text x={x} y="192" textAnchor="middle" fill="var(--muted)" stroke="none" fontSize="12">{s}</text>
+                <path d={`M${x} 210v26`} /><circle cx={x} cy="250" r="12" fill="var(--signal)" stroke="var(--deep)" /><path d={`M${Number(x) - 5} 250l4 4 7-8`} stroke="var(--deep)" /></g>))}
+          </svg>
+        </div>
         <div>
           <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />FAMILY PLANNING</div>
           <h2>Planning a life event?</h2>

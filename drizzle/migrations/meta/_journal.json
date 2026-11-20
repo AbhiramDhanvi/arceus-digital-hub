@@ -8,6 +8,13 @@
       "when": 1795192599489,
       "tag": "0000_arceus_user_data",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795197441268,
+      "tag": "0001_voice_usage_quota",
+      "breakpoints": true
     }
   ]
 }
