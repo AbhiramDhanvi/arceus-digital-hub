@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Assistant } from "@/components/Assistant";
+import { SchemeDirectory } from "@/components/SchemeDirectory";
 import capturedCSS from "../styles/site.css?raw";
 import assistantCSS from "../styles/assistant.css?raw";
 import { SCHEMES, VERIFIED_COUNT } from "@/lib/eligibility";
@@ -51,6 +52,7 @@ function Index() {
             <ImportedSectionFromAQuestionTo />
             <div className="directory-ground [border-block:1px_solid_rgb(219,226,209)]">
               <ImportedSectionExploreByCategory />
+              <SchemeDirectory />
             </div>
             <ImportedSectionPlanningALifeEvent />
             </div>
@@ -351,7 +353,7 @@ function ImportedSectionExploreByCategory() {
           <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />SCHEME DIRECTORY</div>
           <h2>Explore by category</h2>
         </div>
-        <button className={"button \x6futline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>View all schemes</button>
+        <button onClick={() => document.getElementById("schemes")?.scrollIntoView({ behavior: "smooth" })} className={"button \x6futline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>View all schemes</button>
       </div>
       <div className="category-grid grid gap-[11px]">
         <button className={"category-card tint-agriculture flex flex-col gap-[7px] justify-start min-w-0 text-left [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[box-shadow:var(--shadow)]"}>
