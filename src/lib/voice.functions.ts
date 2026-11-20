@@ -12,20 +12,26 @@ export const VOICES = { ishita: "Ishita (female)", ratan: "Ratan (male)" } as co
 const voice = z.enum(["ishita", "ratan"]);
 const MIME_EXT: Record<string, string> = { "audio/webm": "webm", "audio/ogg": "ogg", "audio/mp4": "m4a", "audio/x-m4a": "m4a", "audio/aac": "aac", "audio/wav": "wav", "audio/x-wav": "wav", "audio/mpeg": "mp3" };
 const MAX_AUDIO_BYTES = 1_500_000; // ~25 s of compressed speech
-const LIMITS = { user: 150, guest: 400 }; // requests per UTC day; guests share one global budget
 
 export type VoiceError = "not_configured" | "auth" | "busy" | "quota" | "no_speech" | "too_long" | "bad_audio" | "unavailable";
 
+/** Daily budget enforced in the database: per signed-in user, one shared guest bucket. */
 async function quota(): Promise<boolean> {
-  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  let bucket = "guest";
+  const { createClient } = await import("@supabase/supabase-js");
+  const url = process.env["SUPABASE_URL"], key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+  if (!url || !key) return false;
   const auth = getRequestHeader("authorization");
-  const token = auth?.startsWith("Bearer ") ? auth.slice(7) : null;
-  if (token) {
-    const { data } = await supabaseAdmin.auth.getUser(token);
-    if (data.user) bucket = `user:${data.user.id}`;
-  }
-  const { data, error } = await supabaseAdmin.rpc("consume_voice_quota", { _bucket: bucket, _max: bucket === "guest" ? LIMITS.guest : LIMITS.user });
+  const token = auth?.startsWith("Bearer ") && auth.slice(7) !== key ? auth.slice(7) : null;
+  const client = createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { fetch: (input, init) => {
+      const h = new Headers(init?.headers);
+      h.set("apikey", key);
+      if (token) h.set("Authorization", `Bearer ${token}`); else h.delete("Authorization");
+      return fetch(input, { ...init, headers: h });
+    } },
+  });
+  const { data, error } = await client.rpc("consume_voice_quota");
   if (error) { console.error("voice quota", error.message); return false; }
   return data === true;
 }
