@@ -15,6 +15,13 @@
       "when": 1795197441268,
       "tag": "0001_voice_usage_quota",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795198484701,
+      "tag": "0002_voice_quota_self_bucket",
+      "breakpoints": true
     }
   ]
 }
