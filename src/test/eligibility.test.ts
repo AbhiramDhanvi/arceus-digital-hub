@@ -4,7 +4,7 @@ import { extractFacts } from "@/lib/extract";
 const kisan = SCHEMES.find(s => s.id === "pm-kisan")!;
 describe("eligibility", () => {
   it("land-owning non-taxpayer farmer is likely eligible for PM-KISAN", () => {
-    expect(evaluate(kisan, { ownsFarmland: true, incomeTaxPayer: false }).status).toBe("likely_eligible");
+    expect(evaluate(kisan, { occupation: "farmer", ownsFarmland: true, incomeTaxPayer: false }).status).toBe("likely_eligible");
   });
   it("income tax payer is ineligible for PM-KISAN", () => {
     expect(evaluate(kisan, { ownsFarmland: true, incomeTaxPayer: true }).status).toBe("ineligible");
