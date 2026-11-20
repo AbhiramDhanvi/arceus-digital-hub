@@ -42,3 +42,23 @@ export const translateReply = createServerFn({ method: "POST" })
       return { text: data.text };
     }
   });
+
+/** AI writes a personalized spoken answer from deterministic results; it must not change any verdict. */
+export const personalizeAnswer = createServerFn({ method: "POST" })
+  .inputValidator((d) => z.object({
+    facts: z.record(z.string(), z.union([z.string(), z.number(), z.boolean()])),
+    results: z.array(z.object({ name: z.string().max(120), status: z.string().max(40), reasons: z.array(z.string().max(300)).max(10) })).max(20),
+    lang: z.enum(["en", "hi", "te", "mr", "ta", "kn", "bn"]),
+  }).parse(d))
+  .handler(async ({ data }) => {
+    try {
+      const t = await chat(
+        `You are ARCEUS, a warm voice assistant for Indian government schemes. Write a short spoken answer (max 90 words) in simple ${LANGS[data.lang]} for this person, using their details. Use ONLY the eligibility statuses given; never change or add a verdict. Mention likely eligible schemes first, then the single most useful next step. Say final approval is by the government office. No markdown, no URLs.`,
+        JSON.stringify({ person: data.facts, results: data.results }),
+      );
+      return { text: t || null };
+    } catch (e) {
+      console.error("personalizeAnswer", e);
+      return { text: null as string | null };
+    }
+  });
