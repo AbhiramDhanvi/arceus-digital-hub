@@ -30,3 +30,4 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Keep imported markup and interaction repairs in its route file and retain source CSS separately to preserve the captured cascade.
+- Eligibility decisions live only in src/lib/eligibility.ts (deterministic); AI only extracts facts and translates. Why: trustworthy results.

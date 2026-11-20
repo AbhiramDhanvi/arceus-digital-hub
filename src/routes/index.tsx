@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Assistant } from "@/components/Assistant";
 import capturedCSS from "../styles/site.css?raw";
 
 export const Route = createFileRoute("/")({
@@ -51,7 +52,7 @@ function Index() {
             <ImportedSectionPlanningALifeEvent />
             </div>
             <div hidden={!assistant}>
-              <ImportedSectionTalkToARCEUS />
+              <Assistant />
             </div>
           </main>
           <footer className="site-footer [border-top:1px_solid_var(--line)]">
@@ -95,7 +96,7 @@ function ImportedHeader() {
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-current="page" href="#home">Home</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#assistant">Voice assistant</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#schemes">Explore schemes</a>
-          <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#workspace">My workspace</a>
+          <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="/workspace">My workspace</a>
         </nav>
         <div className="header-actions items-center">
           <label className="language-select items-center flex gap-[6px] px-[10px] relative" id="bb-customSelect-vuUyf-label">
@@ -489,93 +490,3 @@ function ImportedSectionPlanningALifeEvent() {
   );
 }
 
-function ImportedSectionTalkToARCEUS() {
-  return (
-    <section className="wrap page-section mx-auto">
-      <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />YOUR SCHEME ASSISTANT</div>
-      <h1 className="page-title">Talk to ARCEUS</h1>
-      <p className="page-lead max-w-[530px]">Ask in your own words. ARCEUS will ask only for the details it still needs.</p>
-      <div className="assistant-layout items-start grid gap-[16px] mt-[24px]">
-        <aside className="assistant-sidebar rounded-[17px] text-center [border:1px_solid_var(--line)] [@media(width_<=_650px)]:items-center [@media(width_<=_650px)]:grid [@media(width_<=_650px)]:gap-[6px] [@media(width_<=_650px)]:grid-cols-[1fr_1fr] [@media(width_<=_650px)]:order-2">
-          <div className="sidebar-orb border border-solid border-[#dbe8da] rounded-[50%] h-[156px] mt-[5px] mr-auto mb-[17px] ml-auto place-items-center w-[156px]">
-            <div className="rounded-[50%] [box-shadow:rgba(81,126,98,0.667)_0px_13px_32px_-9px] grid h-[105px] place-items-center w-[105px]">
-              <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M2 10v3" />
-                <path d="M6 6v11" />
-                <path d="M10 3v18" />
-                <path d="M14 8v7" />
-                <path d="M18 5v13" />
-                <path d="M22 10v3" />
-              </svg>
-            </div>
-          </div>
-          <h2>English</h2>
-          <p>Ready to listen</p>
-          <button className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Start microphone</button>
-          <label className="read-toggle items-start flex gap-[7px] justify-center [@media(width_<=_650px)]:col-start-1 [@media(width_<=_650px)]:col-end-[-1]"><input className={"accent-(--accent) shrink-0 h-[16px] w-[16px] [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} type="checkbox" defaultChecked />Read voice replies aloud</label>
-          <label className="read-toggle items-start flex gap-[7px] justify-center [@media(width_<=_650px)]:col-start-1 [@media(width_<=_650px)]:col-end-[-1]"><input className={"accent-(--accent) shrink-0 h-[16px] w-[16px] [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} type="checkbox" />Hands-free follow-up questions</label>
-          <button className={"text-button py-[3px] px-0 underline underline-offset-3 [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}>Sign in for Sarvam voice</button>
-          <small className="block [@media(width_<=_650px)]:col-start-1 [@media(width_<=_650px)]:col-end-[-1]">Your browser handles speech. Its speech service may process audio online. Keep ID and bank numbers out of the chat.</small>
-        </aside>
-        <div className="chat-shell rounded-[17px] min-w-0 overflow-hidden [border:1px_solid_var(--line)] [@media(width_<=_650px)]:min-w-0">
-          <div className="chat-header items-center flex gap-[10px] py-[12px] px-[16px] [border-bottom:1px_solid_var(--line)]">
-            <div className="chat-icon rounded-[9px] grid h-[41px] place-items-center w-[41px]">
-              <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
-                <path d="M20 2v4" />
-                <path d="M22 4h-4" />
-                <circle cx="4" cy="20" r="2" />
-              </svg>
-            </div>
-            <div>
-              <b>ARCEUS</b>
-              <small>Eligibility conversation</small>
-            </div>
-            <button className={"icon-button items-center gap-[9px] justify-center ml-auto min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} title="Restart conversation" aria-label="Restart conversation">
-              <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                <path d="M3 3v5h5" />
-              </svg>
-            </button>
-          </div>
-          <div className={"transcript flex flex-col gap-[12px] overflow-auto [overscroll-behavior:contain] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} role="log" aria-live="polite" tabIndex={0}>
-            <div className="message agent-message self-start rounded-[12px] rounded-tl-[3px]! py-[11px] px-[14px] pr-[43px]! relative w-fit">
-              <p className="wrap-anywhere">Namaste! Tell me which scheme you want to check, or what kind of help you need. You can speak or type.</p>
-              <button className={"listen-button rounded-[5px] h-[29px] absolute right-[7px] top-[7px] w-[29px] [-webkit-tap-highlight-color:transparent] [border:0px] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-label="Read this reply aloud">
-                <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z" />
-                  <path d="M16 9a5 5 0 0 1 0 6" />
-                  <path d="M19.364 18.364a9 9 0 0 0 0-12.728" />
-                </svg>
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-[7px]">
-              <button className={"chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}>I’m a farmer <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
-              <button className={"chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}>I need a scholarship <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
-              <button className={"chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}>Healthcare for a parent <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
-              <button className={"chip items-center gap-[9px] justify-center min-h-[36px] py-[7px] px-[12px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}>I need a business loan <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
-            </div>
-          </div>
-          <div className="p-[12px] [border-top:1px_solid_var(--line)]">
-            <form className="composer items-center rounded-[12px] flex gap-[8px] p-[5px] [border:1px_solid_var(--line)]">
-              <button className={"icon-button mic-button items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} type="button" aria-label="Start microphone">
-                <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 19v3" />
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                  <rect x="9" y="2" width="6" height="13" rx="3" />
-                </svg>
-              </button>
-              <input className={"border-current border-none flex-1 min-w-0 py-[8px] px-[2px] [-webkit-tap-highlight-color:transparent] [border-image:none] [border-width:medium] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} maxLength={500} aria-label="Your message" placeholder="Ask a question or type your answer…" defaultValue="" />
-              <button className={"icon-button send-button items-center gap-[9px] justify-center min-h-[38px] min-w-[38px] p-[6px] text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} type="submit" disabled aria-label="Send message">
-                <svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
-                  <path d="m21.854 2.147-10.94 10.939" />
-                </svg>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
