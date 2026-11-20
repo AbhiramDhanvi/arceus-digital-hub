@@ -3,11 +3,19 @@
 
 export const UNKNOWN = "unknown" as const; // explicit "don't know" or skipped
 export type FactKey =
-  | "subject" | "age" | "age_approx" | "gender" | "hasBankAccount"
+  | "subject" | "age" | "age_approx" | "ageOnAadhaar" | "ageOnAadhaar_approx" | "gender" | "hasBankAccount" | "indianCitizen"
   | "ownsCultivableLand" | "institutionalLand" | "incomeTaxLastAY" | "pensionMonthly" | "pensionMonthly_approx"
-  | "govtEmployee" | "registeredProfessional" | "incomeTaxPayer"
+  | "govtEmployee" | "govtStaffGroupD" | "constitutionalPost" | "registeredProfessional" | "incomeTaxPayer"
   | "householdHasLpg" | "poorHousehold" | "nonFarmEnterprise" | "loanAmount" | "priorTarunRepaid"
-  | "pmjayListed" | "cultivatesCrops";
+  | "pmjayListed" | "cultivatesCrops" | "cropNotified" | "cultivationProof"
+  | "familyIncomeAnnual" | "familyIncomeAnnual_approx" | "socialCategory"
+  | "class12Top20" | "regularDegree" | "otherScholarship"
+  | "inClass8" | "class7Marks" | "schoolType"
+  | "livesUrban" | "ownsPuccaHouse" | "govtHouse20y"
+  | "unorganisedWorker" | "monthlyIncome" | "monthlyIncome_approx" | "coveredNpsEsicEpfo"
+  | "traditionalTrade" | "govtLoan5y" | "familyInPmv" | "govtServiceFamily"
+  | "girlAge" | "girlHasSsy" | "familySsyGirls"
+  | "streetVendor" | "vendingCertificate" | "greenfield";
 export type FactValue = boolean | number | string;
 export type Facts = Partial<Record<FactKey, FactValue>>;
 /** Legacy alias kept for saved households. */
@@ -33,12 +41,13 @@ export interface Scheme {
   alwaysVerify?: { requirement: string; excerpt: string; source: Source };
   nearMiss?: (f: Facts) => string | null;
 }
-export type Goal = "farming" | "health" | "insurance" | "pension" | "business" | "lpg";
+export type Goal = "farming" | "health" | "insurance" | "pension" | "business" | "lpg" | "education" | "housing" | "savings";
 
 const CHECKED = "2026-11-20";
 const known = (v: FactValue | undefined) => v !== undefined && v !== UNKNOWN;
 const yesNo = (v: FactValue | undefined) => (v === true ? "Yes" : v === false ? "No" : v === UNKNOWN ? "Don't know" : "Not answered");
 const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+const notNum = (v: FactValue | undefined) => ({ outcome: "unknown" as const, answer: v === UNKNOWN ? "Don't know" : "Not answered" });
 
 function boolRule(id: string, key: FactKey, want: boolean, requirement: string, excerpt: string, source: Source, failNote?: string): Criterion {
   return { id, facts: [key], requirement, excerpt, source, check: f => {
@@ -49,15 +58,27 @@ function boolRule(id: string, key: FactKey, want: boolean, requirement: string, 
 }
 
 /** Age within [min, maxExclusive). Approximate ages within 2 years of a boundary stay unknown. */
-function ageRule(id: string, min: number, maxExclusive: number, requirement: string, excerpt: string, source: Source): Criterion {
-  return { id, facts: ["age"], requirement, excerpt, source, check: f => {
-    const a = f.age;
-    if (typeof a !== "number") return { outcome: "unknown", answer: a === UNKNOWN ? "Don't know" : "Not answered" };
-    const approx = f.age_approx === true;
-    const answer = `${approx ? "about " : ""}${a} years`;
+function ageRule(id: string, min: number, maxExclusive: number, requirement: string, excerpt: string, source: Source, key: "age" | "ageOnAadhaar" | "girlAge" = "age"): Criterion {
+  return { id, facts: [key], requirement, excerpt, source, check: f => {
+    const a = f[key];
+    if (typeof a !== "number") return notNum(a);
+    const approx = key !== "girlAge" && f[`${key}_approx` as FactKey] === true;
+    const answer = `${approx ? "about " : ""}${a} years${key === "ageOnAadhaar" ? " (as on Aadhaar)" : ""}`;
     if (approx && (Math.abs(a - min) <= 2 || Math.abs(a - maxExclusive) <= 2))
       return { outcome: "unknown", answer, note: "Your approximate age is close to the limit — check the date of birth on Aadhaar." };
     return a >= min && a < maxExclusive ? { outcome: "pass", answer } : { outcome: "fail", answer };
+  } };
+}
+
+/** Money at most `max`. Approximate answers within 10% of the limit stay unknown. */
+function maxMoneyRule(id: string, key: "familyIncomeAnnual" | "monthlyIncome", max: number, per: string, requirement: string, excerpt: string, source: Source): Criterion {
+  return { id, facts: [key], requirement, excerpt, source, check: f => {
+    const v = f[key];
+    if (typeof v !== "number") return notNum(v);
+    const approx = f[`${key}_approx` as FactKey] === true;
+    const answer = `${approx ? "about " : ""}${rupees(v)} ${per}`;
+    if (approx && Math.abs(v - max) <= max * 0.1) return { outcome: "unknown", answer, note: `Close to the ${rupees(max)} limit — the income certificate decides.` };
+    return v <= max ? { outcome: "pass", answer } : { outcome: "fail", answer };
   } };
 }
 
