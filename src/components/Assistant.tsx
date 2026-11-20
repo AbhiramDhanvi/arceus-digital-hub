@@ -252,7 +252,7 @@ export function Assistant() {
       <div className="av-toolbar">
         <label>Language
           <select value={lang} onChange={e => setLang(e.target.value as Lang)} aria-label="Assistant language">
-            {LANGS.map(l => <option key={l[0]} value={l[0]}>{l[1]}{l[0] !== "en" && l[0] !== "hi" ? " (AI translated)" : ""}</option>)}
+            {LANGS.map(l => <option key={l[0]} value={l[0]}>{l[1]}{l[0] !== "en" && l[0] !== "hi" ? " (AI translated — sign in)" : ""}</option>)}
           </select>
         </label>
         <fieldset className="av-voices"><legend>Voice</legend>
