@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { Mic, MicOff, RotateCcw, Send, Volume2, ExternalLink } from "lucide-react";
 import { evaluateAll, extractFacts, mergeFacts, nextQuestion, QUESTIONS, type Facts, type Result } from "@/lib/assistant-core";
-import { extractWithAI, translateReply } from "@/lib/assistant.functions";
+import { extractWithAI, translateReply, personalizeAnswer } from "@/lib/assistant.functions";
 import { transcribeSpeech, synthesizeSpeech } from "@/lib/voice.functions";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -30,6 +30,7 @@ export function Assistant() {
   const aiExtract = useServerFn(extractWithAI);
   const translate = useServerFn(translateReply);
   const stt = useServerFn(transcribeSpeech);
+  const personalize = useServerFn(personalizeAnswer);
   const tts = useServerFn(synthesizeSpeech);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const locale = LANGS.find(l => l[0] === lang)![2];
@@ -91,6 +92,8 @@ export function Assistant() {
       if (q) await reply(QUESTIONS[q]);
       else {
         const ok = results.filter(r => r.status === "likely_eligible");
+        const p = await personalize({ data: { facts: merged as Record<string, string | number | boolean>, lang, results: results.map(r => ({ name: r.scheme.name, status: r.status, reasons: [...r.met, ...r.failed].slice(0, 10) })) } }).catch(() => ({ text: null }));
+        if (p.text) { setMsgs(m => [...m, { role: "agent", text: p.text!, results }]); void speak(p.text); return; }
         await reply(ok.length ? `Based on your answers, you are likely eligible for ${ok.map(r => r.scheme.name).join(", ")}. Final approval is decided by the government office.` : "Based on your answers, I could not find a scheme you're likely eligible for among the verified ones. See details below.", results);
       }
     } catch (e) {
