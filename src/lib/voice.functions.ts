@@ -34,7 +34,7 @@ export const synthesizeSpeech = createServerFn({ method: "POST" })
       const r = await fetch("https://api.sarvam.ai/text-to-speech", {
         method: "POST",
         headers: { "api-subscription-key": process.env["SARVAM_API_KEY"]!, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: data.text.slice(0, 1500), target_language_code: CODES[data.lang], model: "bulbul:v3", speaker: "anushka" }),
+        body: JSON.stringify({ text: data.text.slice(0, 1500), target_language_code: CODES[data.lang], model: "bulbul:v3", speaker: "priya" }),
       });
       if (!r.ok) { console.error("sarvam tts", r.status, await r.text()); return { audio: null as string | null }; }
       const j = (await r.json()) as { audios?: string[] };
