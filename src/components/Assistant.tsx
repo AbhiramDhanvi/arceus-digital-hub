@@ -82,6 +82,7 @@ function LegacyAssistant() {
   const [alert, setAlert] = useState<string | null>(null);
   const [saved, setSaved] = useState<Facts | null>(null);
   const [started, setStarted] = useState(false);
+  const [startTick, setStartTick] = useState(0);
   const [translated, setTranslated] = useState<Record<string, string>>({});
   const logRef = useRef<HTMLDivElement>(null);
 
@@ -110,6 +111,7 @@ function LegacyAssistant() {
     onFinalTranscript: text => handleRef.current(text, true),
     onFallbackListen: () => void voice.listen(),
     onError: msg => setAlert(msg),
+    onResetVoiceState: () => voice.setState("ready"),
   });
 
   // Saved household (signed-in "me" only); never overwritten by a new-person check.
@@ -156,20 +158,20 @@ function LegacyAssistant() {
     if (readAloud) {
       await autoVoice.speakBounded(voice.speak, t);
     }
-    if (reopen && handsFreeRef.current) autoVoice.openMic();
+    if (reopen && handsFreeRef.current) void autoVoice.openMic();
   }
 
   // Ask the current question (or speak the decision) whenever it changes.
   const lastAsked = useRef<string>("");
   useEffect(() => {
     if (!started) return;
-    const sig = current ? `${current.key}:${ui}:${iv.facts.subject ?? ""}:${confirm ? "c" : ""}` : `done:${res.map(r => r.status).join()}`;
+    const sig = current ? `${current.key}:${ui}:${iv.facts.subject ?? ""}:${confirm ? "c" : ""}:${startTick}` : `done:${res.map(r => r.status).join()}:${startTick}`;
     if (sig === lastAsked.current || confirm) return;
     lastAsked.current = sig;
     if (current) void say(qText, true);
     else if (res.length) void say(summarySpeech(res, ui), false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, res, started, ui, confirm]);
+  }, [current, res, started, startTick, ui, confirm]);
 
   useEffect(() => { logRef.current?.scrollTo({ top: 1e6 }); }, [turns]);
   useEffect(() => { autoVoice.stopAutoListen(); voice.cancel(); lastAsked.current = ""; /* re-ask in the new language */ }, [lang]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -194,6 +196,7 @@ function LegacyAssistant() {
       void autoVoice.primeMic();
     }
     setStarted(true);
+    setStartTick(t => t + 1);
     setAlert(null);
     lastAsked.current = "";
   }
@@ -257,9 +260,10 @@ function LegacyAssistant() {
   }
 
   function newPerson() {
+    autoVoice.stopAutoListen();
     voice.cancel();
     setIv(newInterview()); setEditing(null); setConfirm(null); setHeard(null); setTurns([]); setAlert(null);
-    lastAsked.current = ""; setStarted(true);
+    lastAsked.current = ""; setStarted(true); setStartTick(t => t + 1);
   }
 
   function doSkip() { if (current && current.key !== "goal") { setTurns(m => [...m, { role: "user", text: ui === "hi" ? "छोड़ें" : "Skip" }]); commit(skip(iv, current.key as FactKey)); } }

@@ -337,3 +337,77 @@ describe("Adaptive Question Planner: split-maximizing, tie-breaking, multi-field
     expect(res.step.early_confirmation?.value).toBe(39);
   });
 });
+
+describe("Automatic voice recognition & mic controller", () => {
+  it("starts browser SpeechRecognition, emits interim & final transcripts with confidence, and aborts cleanly", async () => {
+    const { createBrowserAutoRecognizer } = await import("@/lib/nirantar-voice");
+    const ref: { current: MockRecognition | null } = { current: null };
+    let startedCount = 0;
+    let abortedCount = 0;
+
+    class MockRecognition {
+      lang = "";
+      continuous = false;
+      interimResults = false;
+      maxAlternatives = 1;
+      onstart: (() => void) | null = null;
+      onend: (() => void) | null = null;
+      onerror: ((ev: { error: string }) => void) | null = null;
+      onresult: ((ev: unknown) => void) | null = null;
+      start() {
+        startedCount++;
+        ref.current = this;
+        this.onstart?.();
+      }
+      stop() {
+        this.onend?.();
+      }
+      abort() {
+        abortedCount++;
+        this.onend?.();
+      }
+    }
+
+    const w = window as unknown as Record<string, unknown>;
+    const prev = w["webkitSpeechRecognition"];
+    w["webkitSpeechRecognition"] = MockRecognition;
+
+    try {
+      const interimLog: string[] = [];
+      const finalLog: Array<{ text: string; conf: number }> = [];
+      const ctrl = createBrowserAutoRecognizer({
+        onInterim: (t) => interimLog.push(t),
+        onFinal: (text, conf) => finalLog.push({ text, conf }),
+      });
+
+      expect(ctrl.isSupported).toBe(true);
+      expect(ctrl.start("hi-IN")).toBe(true);
+      expect(startedCount).toBe(1);
+      expect(ref.current?.lang).toBe("hi-IN");
+
+      ref.current?.onresult?.({
+        resultIndex: 0,
+        results: {
+          length: 1,
+          0: { isFinal: false, length: 1, 0: { transcript: "पेंशन", confidence: 0.7 } },
+        },
+      });
+      expect(interimLog).toEqual(["पेंशन"]);
+
+      ref.current?.onresult?.({
+        resultIndex: 0,
+        results: {
+          length: 1,
+          0: { isFinal: true, length: 1, 0: { transcript: "पेंशन चाहिए", confidence: 0.94 } },
+        },
+      });
+      expect(finalLog).toEqual([{ text: "पेंशन चाहिए", conf: 0.94 }]);
+
+      ctrl.abort();
+      expect(abortedCount).toBe(1);
+    } finally {
+      if (prev === undefined) delete w["webkitSpeechRecognition"];
+      else w["webkitSpeechRecognition"] = prev;
+    }
+  });
+});

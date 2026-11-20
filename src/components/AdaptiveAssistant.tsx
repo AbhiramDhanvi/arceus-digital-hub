@@ -78,6 +78,7 @@ export function AdaptiveAssistant() {
   const [handsFree, setHandsFree] = useState(true);
   const [readAloud, setReadAloud] = useState(true);
   const [started, setStarted] = useState(false);
+  const [startTick, setStartTick] = useState(0);
   const [goalSelected, setGoalSelected] = useState(false);
   const [planner, setPlanner] = useState<PlannerState>(() => createPlannerState());
   const [turns, setTurns] = useState<Turn[]>([]);
@@ -134,6 +135,7 @@ export function AdaptiveAssistant() {
     onFinalTranscript: (txt, conf) => handleRef.current(txt, conf),
     onFallbackListen: () => void voice.listen(),
     onError: (msg) => setAlert(msg),
+    onResetVoiceState: () => voice.setState("ready"),
   });
   const { autoListening, interim } = autoVoice;
 
@@ -157,7 +159,7 @@ export function AdaptiveAssistant() {
         await autoVoice.speakBounded(voice.speak, text);
       }
       if (reopenMic && handsFreeRef.current) {
-        autoVoice.openMic();
+        void autoVoice.openMic();
       }
     },
     [autoVoice, readAloud, voice],
@@ -169,7 +171,7 @@ export function AdaptiveAssistant() {
     if (!started) return;
 
     if (!goalSelected) {
-      const sig = `goal:${ui}`;
+      const sig = `goal:${ui}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       void say(getOpeningQuestion(ui), true);
@@ -178,7 +180,7 @@ export function AdaptiveAssistant() {
 
     if (step.early_confirmation) {
       const c = step.early_confirmation;
-      const sig = `early:${c.key}:${c.turn}:${ui}`;
+      const sig = `early:${c.key}:${c.turn}:${ui}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       const valStr = formatClaimValue(c, c.key);
@@ -192,7 +194,7 @@ export function AdaptiveAssistant() {
 
     if (step.question) {
       const q = step.question;
-      const sig = `q:${q.kind}:${q.key ?? ""}:${q.straddle?.schemeId ?? ""}:${q.conflict?.id ?? ""}:${ui}`;
+      const sig = `q:${q.kind}:${q.key ?? ""}:${q.straddle?.schemeId ?? ""}:${q.conflict?.id ?? ""}:${ui}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       void say(q.question[ui], true);
@@ -200,7 +202,7 @@ export function AdaptiveAssistant() {
     }
 
     if (step.needs_batch_confirmation) {
-      const sig = `batch:${planner.ledger.turn}:${ui}`;
+      const sig = `batch:${planner.ledger.turn}:${ui}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       const prompt =
@@ -212,7 +214,7 @@ export function AdaptiveAssistant() {
     }
 
     const verdicts = Object.values(step.statuses);
-    const sig = `done:${verdicts.map((v) => `${v.scheme.id}:${v.verdict}`).join(",")}:${ui}`;
+    const sig = `done:${verdicts.map((v) => `${v.scheme.id}:${v.verdict}`).join(",")}:${ui}:${startTick}`;
     if (sig === lastSig.current) return;
     lastSig.current = sig;
     const eligibleNames = verdicts
@@ -227,7 +229,7 @@ export function AdaptiveAssistant() {
           ? "जाँच पूरी हुई। नीचे हर योजना का विस्तृत परिणाम देखें।"
           : "Check complete. Review the detailed eligibility breakdown below.";
     void say(msg, false);
-  }, [goalSelected, planner.ledger.turn, say, started, step, ui]);
+  }, [goalSelected, planner.ledger.turn, say, started, startTick, step, ui]);
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: 1e6 });
@@ -238,6 +240,7 @@ export function AdaptiveAssistant() {
     handsFreeRef.current = true;
     void autoVoice.primeMic();
     setStarted(true);
+    setStartTick((t) => t + 1);
     setAlert(null);
     lastSig.current = "";
   }, [autoVoice]);
