@@ -7,7 +7,7 @@ const HI: Record<string, number> = {
 };
 const DEV_DIGITS = "०१२३४५६७८९";
 export function normalize(text: string) {
-  return text.toLowerCase().replace(/[०-९]/g, d => String(DEV_DIGITS.indexOf(d))).replace(/(\d)[.,](\d)/g, "$1\u0000$2").replace(/[.,!?।]/g, " ").replace(/\u0000/g, ".").replace(/\s+/g, " ").trim();
+  return text.toLowerCase().replace(/[०-९]/g, d => String(DEV_DIGITS.indexOf(d))).replace(/(\d),(?=\d)/g, "$1").replace(/(\d)\.(\d)/g, "$1\u0000$2").replace(/[.,!?।]/g, " ").replace(/\u0000/g, ".").replace(/\s+/g, " ").trim();
 }
 const words = (t: string) => t.split(" ");
 
