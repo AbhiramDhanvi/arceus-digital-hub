@@ -1,4 +1,4 @@
-// Feature flags for additive ARCEUS capabilities. All default OFF.
+// Feature flags for additive MiraiAi capabilities. All default OFF.
 
 function parseBoolFlag(raw: unknown): boolean {
   if (typeof raw === "boolean") return raw;
@@ -9,7 +9,7 @@ function parseBoolFlag(raw: unknown): boolean {
 
 /**
  * Returns true only when ENABLE_ADAPTIVE_PLANNER is explicitly enabled.
- * Default is OFF so existing ARCEUS behaviour is completely unchanged.
+ * Default is OFF so existing MiraiAi behaviour is completely unchanged.
  */
 export function isAdaptivePlannerEnabled(override?: boolean): boolean {
   if (typeof override === "boolean") return override;

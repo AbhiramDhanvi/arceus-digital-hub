@@ -6,9 +6,9 @@ import { decisionSentence } from "@/lib/decision-text";
 
 export const Route = createFileRoute("/_authenticated/workspace")({
   head: () => ({ meta: [
-    { title: "My workspace | ARCEUS" },
+    { title: "My workspace | MiraiAi" },
     { name: "description", content: "Your saved household details and scheme eligibility results." },
-    { property: "og:title", content: "My workspace | ARCEUS" },
+    { property: "og:title", content: "My workspace | MiraiAi" },
     { property: "og:description", content: "Your saved household details and scheme eligibility." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary" },
@@ -37,13 +37,13 @@ function Workspace() {
     <main className="min-h-screen bg-background px-4 py-10">
       <div className="mx-auto max-w-3xl grid gap-6">
         <header className="flex items-center justify-between">
-          <Link to="/" className="font-bold text-xl text-foreground">ARCEUS<span className="text-primary">.</span></Link>
+          <Link to="/" className="font-bold text-xl text-foreground">MiraiAi<span className="text-primary">.</span></Link>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">{email}<button onClick={signOut} className="underline">Sign out</button></div>
         </header>
         <h1 className="text-3xl font-semibold text-foreground">My workspace</h1>
         <section className="rounded-2xl border border-border bg-card p-5">
           <div className="flex justify-between"><h2 className="font-semibold text-foreground">Household details</h2><button onClick={clear} className="text-sm underline text-muted-foreground">Clear</button></div>
-          {Object.keys(facts).length === 0 ? <p className="text-muted-foreground mt-2">Nothing saved yet. <a href="/#assistant" className="underline">Talk to ARCEUS</a> to get started.</p> :
+          {Object.keys(facts).length === 0 ? <p className="text-muted-foreground mt-2">Nothing saved yet. <a href="/#assistant" className="underline">Talk to MiraiAi</a> to get started.</p> :
             <dl className="mt-2 grid grid-cols-2 gap-1 text-sm">{Object.entries(facts).map(([k, v]) => <div key={k} className="contents"><dt className="text-muted-foreground">{k}</dt><dd className="text-foreground">{String(v)}</dd></div>)}</dl>}
         </section>
         <section className="grid gap-3">

@@ -82,10 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ARCEUS" },
+      { title: "MiraiAi" },
       { name: "description", content: "Multilingual Indian government scheme guidance for citizens." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "ARCEUS" },
+      { property: "og:title", content: "MiraiAi" },
       { property: "og:description", content: "Multilingual Indian government scheme guidance for citizens." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -91,7 +91,7 @@ const S = {
   pmuy: { url: "https://pmuy.gov.in/Ujjwala2.html", citation: "PMUY, 'Eligibility criteria to avail connection under PMUY' items 1–3", checked: CHECKED },
   mudra: { url: "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy", citation: "DFS, PMMY 'Features' — Purposes and Categories", checked: CHECKED },
   pmkisan: { url: "https://pmkisan.gov.in/", citation: "PM-KISAN portal — 'Scheme Exclusion' table (page last updated 20/06/2025)", checked: CHECKED },
-  pmjay70: { url: "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2053883&lang=2&reg=3", citation: "PIB (MoHFW), 11 Sep 2024 — senior citizens aged 70+. Age is taken from Aadhaar (NHA senior-citizen FAQ, nha.gov.in — not retrievable by ARCEUS: HTTP 403)", checked: CHECKED },
+  pmjay70: { url: "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2053883&lang=2&reg=3", citation: "PIB (MoHFW), 11 Sep 2024 — senior citizens aged 70+. Age is taken from Aadhaar (NHA senior-citizen FAQ, nha.gov.in — not retrievable by MiraiAi: HTTP 403)", checked: CHECKED },
   pmjayList: { url: "https://beneficiary.nha.gov.in/", citation: "NHA beneficiary lookup — family entitlement is decided by the official database", checked: CHECKED },
   pmfby: { url: "https://pmfby.gov.in/pdf/Revamped%20Operational%20Guidelines_17th%20August%202020.pdf", citation: "PMFBY Revamped Operational Guidelines (17 Aug 2020), para 3.1 'Coverage of Farmers'", checked: CHECKED },
   pmusp: { url: "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf", citation: "PM-USP CSSS Guidelines (AY 2022-23 onwards, NSP copy 07-02-2024), para 4 (i)–(v). The education.gov.in link returned 'Page Not Found'", checked: CHECKED },
@@ -389,7 +389,7 @@ export const SCHEMES: Scheme[] = [
   },
 ];
 
-/** Listed for discovery only — not checked by ARCEUS rules; open the official page. */
+/** Listed for discovery only — not checked by MiraiAi rules; open the official page. */
 export const DISCOVERY = [
   { name: "NSAP Old Age / Widow / Disability Pension", link: "https://nsap.nic.in/", goal: "pension" as Goal },
   { name: "Kisan Credit Card", link: "https://www.myscheme.gov.in/schemes/kcc", goal: "farming" as Goal },

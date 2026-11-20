@@ -4,9 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({ meta: [
-    { title: "Sign in | ARCEUS" },
-    { name: "description", content: "Sign in or create your ARCEUS account to save your household details and schemes." },
-    { property: "og:title", content: "Sign in | ARCEUS" },
+    { title: "Sign in | MiraiAi" },
+    { name: "description", content: "Sign in or create your MiraiAi account to save your household details and schemes." },
+    { property: "og:title", content: "Sign in | MiraiAi" },
     { property: "og:description", content: "Save your household details and eligible schemes." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary" },
@@ -40,7 +40,7 @@ function AuthPage() {
   return (
     <main className="min-h-screen grid place-items-center bg-background px-4">
       <form onSubmit={submit} className="w-full max-w-sm grid gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <Link to="/" className="font-bold text-xl text-foreground">ARCEUS<span className="text-primary">.</span></Link>
+        <Link to="/" className="font-bold text-xl text-foreground">MiraiAi<span className="text-primary">.</span></Link>
         <h1 className="text-2xl font-semibold text-foreground">{mode === "up" ? "Create account" : mode === "forgot" ? "Reset password" : "Sign in"}</h1>
         <label className="grid gap-1 text-sm text-foreground">Email<input required type="email" className="rounded-md border border-input bg-background p-2" value={email} onChange={e => setEmail(e.target.value)} /></label>
         {mode !== "forgot" && <label className="grid gap-1 text-sm text-foreground">Password<input required minLength={8} type="password" className="rounded-md border border-input bg-background p-2" value={password} onChange={e => setPassword(e.target.value)} /></label>}

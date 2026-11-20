@@ -4,7 +4,7 @@ import { createBrowserAutoRecognizer, type AutoVoiceController } from "@/lib/nir
 
 /**
  * Automatic voice recognition + auto-mic controller.
- * - Primes microphone permission immediately on click gesture ("Talk to ARCEUS") and
+ * - Primes microphone permission immediately on click gesture ("Talk to MiraiAi") and
  *   awaits any in-flight permission prompt before opening recognition.
  * - Uses browser Web Speech API (en-IN / hi-IN / etc.) when available and no custom Nirantar endpoint overrides it.
  * - Falls back cleanly to MediaRecorder (Nirantar endpoint or Sarvam STT) if browser SpeechRecognition

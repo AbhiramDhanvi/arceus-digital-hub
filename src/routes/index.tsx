@@ -8,9 +8,9 @@ import { SCHEMES, VERIFIED_COUNT } from "@/lib/eligibility";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "ARCEUS | Your voice. Your benefits." },
+    { title: "MiraiAi | Your voice. Your benefits." },
     { name: "description", content: "Search 2,066 Indian government schemes and check source-cited eligibility for key central schemes by voice or text in Hindi and English." },
-    { property: "og:title", content: "ARCEUS | Your voice. Your benefits." },
+    { property: "og:title", content: "MiraiAi | Your voice. Your benefits." },
     { property: "og:description", content: "Search government schemes and check eligibility with official sources, by voice or text." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -64,7 +64,7 @@ function Index() {
             <div className="wrap footer-inner items-center flex justify-between mx-auto min-h-[88px] [@media(width_<=_650px)]:flex-wrap [@media(width_<=_650px)]:py-[15px]">
               <a className={"brand items-center inline-flex gap-[10px] tracking-[-0.075em] whitespace-nowrap [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#home">
                 <img alt="" src="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png" data-site-import-svg-default-fit="contain" />
-                <span>ARCEUS<span>.</span></span>
+                <span>MiraiAi<span>.</span></span>
               </a>
               <p className="[@media(width_<=_650px)]:order-3 [@media(width_<=_650px)]:w-full">Independent scheme guidance for citizens.</p>
               <a className={"items-center inline-flex gap-[7px] [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="https://www.myscheme.gov.in/" rel="noreferrer" target="_blank"><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><path d="M12 17h.01" /></svg>Visit myScheme</a>
@@ -95,7 +95,7 @@ function ImportedHeader() {
       <div className="wrap header-inner items-center flex justify-between mx-auto">
         <a className={"brand items-center inline-flex gap-[10px] tracking-[-0.075em] whitespace-nowrap [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#home">
           <img alt="" src="/site-assets/bce0e0ed77805734-989645a5c1acd1a734922ab1c10cf3e1.png" data-site-import-svg-default-fit="contain" />
-          <span>ARCEUS<span>.</span></span>
+          <span>MiraiAi<span>.</span></span>
         </a>
         <nav id="main-navigation" className={`navigation items-center ${open ? "open" : ""}`} aria-label="Main">
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-current="page" href="#home">Home</a>
@@ -143,7 +143,7 @@ function ImportedSectionYourVoiceYourBenefits() {
         <h1>Your voice.<br /><em>Your benefits.</em></h1>
         <p className="max-w-[420px]">Find schemes for you and your family. Speak or type in Hindi or English (more languages via translation) to check eligibility and learn how to apply.</p>
         <div className="actions items-center flex flex-wrap">
-          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.dispatchEvent(new Event("arceus:start")); }} className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to ARCEUS</button>
+          <button onClick={() => { window.location.hash = "assistant"; window.scrollTo(0, 0); window.dispatchEvent(new Event("arceus:start")); }} className={"button primary items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3 [&:hover]:[&:not(:disabled)]:[box-shadow:rgb(23,60,52)_0px_8px_15px_-9px]"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19v3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><rect x="9" y="2" width="6" height="13" rx="3" /></svg>Talk to MiraiAi</button>
           <button className={"button \x6futline items-center gap-[9px] justify-center text-center [-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"}><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" /></svg>Explore schemes</button>
         </div>
         <div className="source-line items-center flex gap-[7px]"><svg className="flex-none align-middle" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>Guidance based on official government sources</div>
@@ -173,7 +173,7 @@ function ImportedSectionYourVoiceYourBenefits() {
               </svg>
             </div>
             <div>
-              <b className="block tracking-[0.08em]">ARCEUS</b>
+              <b className="block tracking-[0.08em]">MiraiAi</b>
               <small className="block">Scheme assistant</small>
             </div>
             <span className="border border-solid border-[#c3d7c36b] rounded-[5px] ml-auto py-[4px] px-[8px]">English</span>
@@ -307,7 +307,7 @@ function ImportedSectionFromAQuestionTo() {
             </div>
             <div>
               <h3 className="tracking-[-0.023em]">Ask in your own words</h3>
-              <p>Tell ARCEUS what you need, such as healthcare for a parent. Speak or type in the language you prefer.</p>
+              <p>Tell MiraiAi what you need, such as healthcare for a parent. Speak or type in the language you prefer.</p>
             </div>
           </article>
           <article className="journey-step items-start flex gap-[14px] [border-top:1px_solid_var(--line)]">
@@ -319,7 +319,7 @@ function ImportedSectionFromAQuestionTo() {
             </div>
             <div>
               <h3 className="tracking-[-0.023em]">Check the rules that apply</h3>
-              <p>Answer the few questions that affect your result. If two answers disagree, ARCEUS asks you to confirm before making a recommendation.</p>
+              <p>Answer the few questions that affect your result. If two answers disagree, MiraiAi asks you to confirm before making a recommendation.</p>
             </div>
           </article>
           <article className="journey-step items-start flex gap-[14px] [border-bottom:1px_solid_var(--line)] [border-top:1px_solid_var(--line)]">

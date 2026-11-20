@@ -3,7 +3,7 @@ import { SCHEMES } from "@/lib/eligibility";
 
 /** [slug, name, level C|S, state or ministry, tags] — factual myScheme index; discovery only, never a verdict. */
 type Row = [string, string, "C" | "S", string, string];
-/** myScheme slug → ARCEUS rule-coded scheme id (only these can be checked). */
+/** myScheme slug → MiraiAi rule-coded scheme id (only these can be checked). */
 export const CHECKABLE: Record<string, string> = {
   "pm-kisan": "pm-kisan", pmfby: "pmfby", pmsby: "pmsby", pmjjby: "pmjjby", apy: "apy", pmuy: "pmuy", pmmy: "mudra",
   "pm-svanidhi": "svanidhi", pmv: "pmv", sui: "standup", "csss-cus": "pmusp", nmmss: "nmmss", "pmay-u": "pmayu", ssy: "ssy",
@@ -42,7 +42,7 @@ export function SchemeDirectory() {
     <section className="wrap landing-section mx-auto sd" id="schemes" aria-labelledby="sd-title">
       <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />ALL SCHEMES</div>
       <h2 id="sd-title">Search {rows ? rows.length.toLocaleString("en-IN") : "the"} schemes listed on myScheme</h2>
-      <p className="sd-note">This list is for finding schemes only — ARCEUS does not decide eligibility for these. ARCEUS has source-cited rules for {SCHEMES.length} schemes; the ones in this list are marked “ARCEUS can check”.</p>
+      <p className="sd-note">This list is for finding schemes only — MiraiAi does not decide eligibility for these. MiraiAi has source-cited rules for {SCHEMES.length} schemes; the ones in this list are marked “MiraiAi can check”.</p>
       <div className="sd-filters" role="search">
         <label><span>Search by name or topic</span><input type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="e.g. scholarship, pension, farmer" /></label>
         <label><span>Level</span><select value={level} onChange={e => { setLevel(e.target.value as "" | "C" | "S"); setPlace(""); }}><option value="">All</option><option value="C">Central</option><option value="S">State / UT</option></select></label>
@@ -60,7 +60,7 @@ export function SchemeDirectory() {
                 <a href={`https://www.myscheme.gov.in/schemes/${r[0]}`} target="_blank" rel="noreferrer">{r[1]}</a>
                 <span className="sd-meta"><b>{r[2] === "C" ? "Central" : "State"}</b> · {r[3]}{r[4] ? ` · ${r[4].split(",").slice(0, 3).join(",")}` : ""}</span>
               </div>
-              {id && <button type="button" className="sd-check" onClick={() => check(id)}>ARCEUS can check</button>}
+              {id && <button type="button" className="sd-check" onClick={() => check(id)}>MiraiAi can check</button>}
             </li>
           );
         })}

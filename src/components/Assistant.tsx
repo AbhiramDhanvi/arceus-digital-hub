@@ -22,7 +22,7 @@ const LANGS = [
 type Lang = (typeof LANGS)[number][0];
 type VoiceId = "ishita" | "ratan";
 type Turn = { role: "agent" | "user"; text: string };
-const SAMPLE = { en: "Namaste! I'm ARCEUS. Tell me what you need, and I'll check the official rules with you.", hi: "नमस्ते! मैं ARCEUS हूँ। बताइए आपको क्या चाहिए, मैं आपके साथ सरकारी नियम जाँचूँगी।" };
+const SAMPLE = { en: "Namaste! I'm MiraiAi. Tell me what you need, and I'll check the official rules with you.", hi: "नमस्ते! मैं MiraiAi हूँ। बताइए आपको क्या चाहिए, मैं आपके साथ सरकारी नियम जाँचूँगी।" };
 const STATE_TEXT = { ready: "Ready", listening: "Listening… speak now", transcribing: "Transcribing…", thinking: "Checking…", speaking: "Speaking…", error: "Something needs attention" };
 const ERR: Record<string, string> = {
   not_configured: "Voice service is not set up. You can still type or tap answers.",
@@ -276,8 +276,8 @@ function LegacyAssistant() {
   return (
     <section className="wrap page-section mx-auto assistant-v2">
       <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />YOUR SCHEME ASSISTANT</div>
-      <h1 className="page-title">Talk to ARCEUS</h1>
-      <p className="page-lead max-w-[560px]">Tell ARCEUS what you need. It asks only the questions that decide the official rules, and shows the exact rule and source behind every answer.</p>
+      <h1 className="page-title">Talk to MiraiAi</h1>
+      <p className="page-lead max-w-[560px]">Tell MiraiAi what you need. It asks only the questions that decide the official rules, and shows the exact rule and source behind every answer.</p>
 
       <div className="av-toolbar">
         <label>Language
@@ -340,7 +340,7 @@ function LegacyAssistant() {
           {started && turns.length > 0 && (
             <details className="av-transcript">
               <summary>Conversation transcript</summary>
-              <div ref={logRef} role="log" aria-live="off">{turns.map((t, i) => <p key={i} className={t.role}>{t.role === "agent" ? "ARCEUS: " : "You: "}{t.text}</p>)}</div>
+              <div ref={logRef} role="log" aria-live="off">{turns.map((t, i) => <p key={i} className={t.role}>{t.role === "agent" ? "MiraiAi: " : "You: "}{t.text}</p>)}</div>
             </details>
           )}
         </div>
@@ -376,7 +376,7 @@ function Results({ results, ui, onSpeak, goal }: { results: Result[]; ui: UiLang
           </header>
           <p className="av-reason">{decisionSentence(r, ui)} <button type="button" className="av-link" onClick={() => onSpeak(decisionSentence(r, ui))} aria-label="Read this result aloud"><Volume2 size={14} aria-hidden /></button></p>
           {r.nearMiss && <p className="av-muted">{r.nearMiss}</p>}
-          {!r.scheme.verified && <p className="av-muted">ARCEUS could not retrieve this scheme's official guideline on the check date, so it never shows “likely eligible” — confirm on the official site.</p>}
+          {!r.scheme.verified && <p className="av-muted">MiraiAi could not retrieve this scheme's official guideline on the check date, so it never shows “likely eligible” — confirm on the official site.</p>}
           <details>
             <summary>Rules checked ({r.criteria.length})</summary>
             <ul className="av-criteria">{r.criteria.map(c => (
@@ -386,7 +386,7 @@ function Results({ results, ui, onSpeak, goal }: { results: Result[]; ui: UiLang
                   <b>{c.requirement}</b> <span className="sr-only">{c.outcome}</span>
                   <p>Your answer: {c.answer}{c.note ? ` — ${c.note}` : ""}</p>
                   <blockquote>“{c.excerpt}”</blockquote>
-                  <small><a href={c.source.url} target="_blank" rel="noreferrer">{c.source.citation}</a> · {c.source.checked ? `checked ${c.source.checked}` : "not verified by ARCEUS"}</small>
+                  <small><a href={c.source.url} target="_blank" rel="noreferrer">{c.source.citation}</a> · {c.source.checked ? `checked ${c.source.checked}` : "not verified by MiraiAi"}</small>
                 </div>
               </li>))}</ul>
           </details>
@@ -394,7 +394,7 @@ function Results({ results, ui, onSpeak, goal }: { results: Result[]; ui: UiLang
           <a className="av-official" href={r.scheme.link} target="_blank" rel="noreferrer">Official website <ExternalLink size={13} aria-hidden /></a>
         </article>
       ))}
-      {extra.length > 0 && <div className="av-discovery"><b>Also worth looking at (not checked by ARCEUS):</b>{extra.map(d => <a key={d.name} href={d.link} target="_blank" rel="noreferrer">{d.name} <ExternalLink size={12} aria-hidden /></a>)}</div>}
+      {extra.length > 0 && <div className="av-discovery"><b>Also worth looking at (not checked by MiraiAi):</b>{extra.map(d => <a key={d.name} href={d.link} target="_blank" rel="noreferrer">{d.name} <ExternalLink size={12} aria-hidden /></a>)}</div>}
     </div>
   );
 }

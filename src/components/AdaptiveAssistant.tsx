@@ -74,7 +74,7 @@ export function AdaptiveAssistant() {
   const [lang, setLang] = useState<Lang>("en");
   const ui: UiLang = lang === "hi" ? "hi" : "en";
   const [voiceId, setVoiceId] = useState<VoiceId>("ishita");
-  // Hands-free auto-mic is ON by default so clicking "Talk to ARCEUS" opens mic automatically.
+  // Hands-free auto-mic is ON by default so clicking "Talk to MiraiAi" opens mic automatically.
   const [handsFree, setHandsFree] = useState(true);
   const [readAloud, setReadAloud] = useState(true);
   const [started, setStarted] = useState(false);
@@ -245,7 +245,7 @@ export function AdaptiveAssistant() {
     lastSig.current = "";
   }, [autoVoice]);
 
-  // Listen for "Talk to ARCEUS" (`arceus:start`) and scheme quick-picks
+  // Listen for "Talk to MiraiAi" (`arceus:start`) and scheme quick-picks
   useEffect(() => {
     const onStart = () => {
       setHandsFree(true);
@@ -354,9 +354,9 @@ export function AdaptiveAssistant() {
         <span className="h-px w-[16px]" />
         ADAPTIVE SCHEME ASSISTANT
       </div>
-      <h1 className="page-title">Talk to ARCEUS</h1>
+      <h1 className="page-title">Talk to MiraiAi</h1>
       <p className="page-lead max-w-[560px]">
-        Speak naturally — you can share multiple details in one sentence. ARCEUS asks the fewest
+        Speak naturally — you can share multiple details in one sentence. MiraiAi asks the fewest
         high-impact questions, tracks ranges and contradictions, and checks official rules
         deterministically.
       </p>
@@ -738,7 +738,7 @@ export function AdaptiveAssistant() {
               <div ref={logRef} role="log" aria-live="off">
                 {turns.map((t, i) => (
                   <p key={i} className={t.role}>
-                    {t.role === "agent" ? "ARCEUS: " : "You: "}
+                    {t.role === "agent" ? "MiraiAi: " : "You: "}
                     {t.text}
                   </p>
                 ))}
