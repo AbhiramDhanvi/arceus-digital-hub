@@ -1,0 +1,28 @@
+[
+  {
+    "viewport": [
+      1280,
+      1800
+    ],
+    "menu": "desktop navigation visible",
+    "hero CTA": "opens #assistant",
+    "journey": "all frames visible in normal flow; source pinning not retained",
+    "assistant conversation": "failed: source logic not captured",
+    "schemes": "failed: hash view not captured",
+    "workspace": "blocked: sign-in and source application unavailable",
+    "errors": []
+  },
+  {
+    "viewport": [
+      390,
+      844
+    ],
+    "menu": "passed",
+    "hero CTA": "opens #assistant",
+    "journey": "all frames visible in normal flow; source pinning not retained",
+    "assistant conversation": "failed: source logic not captured",
+    "schemes": "failed: hash view not captured",
+    "workspace": "blocked: sign-in and source application unavailable",
+    "errors": []
+  }
+]
