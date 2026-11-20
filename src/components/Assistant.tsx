@@ -193,7 +193,8 @@ export function Assistant() {
     const r = await aiFn({ data: { text: clean, kind: q.kind === "goal" ? "choice" : q.kind, choices } }).catch(() => ({ value: null, error: "unavailable" }));
     voice.setState("ready");
     if (r.value === null) {
-      void say(ui === "hi" ? `माफ़ कीजिए, समझ नहीं आया। ${qText}` : `Sorry, I didn't catch that. ${qText}`, true);
+      const hint = r.error === "signin" ? (ui === "hi" ? " ऊपर दिए विकल्प चुनें या सीधे संख्या/हाँ/नहीं बोलें।" : " Pick one of the options, or answer with a number or yes/no.") : "";
+      void say(ui === "hi" ? `माफ़ कीजिए, समझ नहीं आया।${hint} ${qText}` : `Sorry, I didn't catch that.${hint} ${qText}`, true);
       return;
     }
     let value: FactValue = r.value;

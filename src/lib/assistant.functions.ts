@@ -37,7 +37,7 @@ async function chat(system: string, user: string): Promise<string> {
 export const extractAnswer = createServerFn({ method: "POST" })
   .inputValidator((d) => z.object({
     text: z.string().min(1).max(300),
-    kind: z.enum(["yesno", "age", "money", "monthly", "choice"]),
+    kind: z.enum(["yesno", "age", "money", "monthly", "annual", "pct", "count", "choice"]),
     choices: z.array(z.string().max(40)).max(8),
   }).parse(d))
   .handler(async ({ data }) => {
@@ -45,7 +45,7 @@ export const extractAnswer = createServerFn({ method: "POST" })
     try {
       const out = await chat(
         `You convert one spoken answer (Indian English or Hindi, maybe a speech transcript) into a single value. Expected type: ${data.kind}.
-yesno -> true|false|"unknown"; age -> integer years; money -> integer rupees; monthly -> integer rupees per month (divide yearly by 12); choice -> exactly one of ${JSON.stringify(data.choices)}.
+yesno -> true|false|"unknown"; age -> integer years; money -> integer rupees; monthly -> integer rupees per month (divide yearly by 12); annual -> integer rupees per year (multiply monthly by 12); pct -> number 0-100; count -> integer 0-20; choice -> exactly one of ${JSON.stringify(data.choices)}.
 Reply ONLY JSON {"value": <value or null>}. Use null if the answer does not clearly give the value. Never guess.`,
         data.text,
       );
@@ -54,7 +54,9 @@ Reply ONLY JSON {"value": <value or null>}. Use null if the answer does not clea
       const ok =
         (data.kind === "yesno" && (v === true || v === false || v === "unknown")) ||
         ((data.kind === "age") && typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= 120) ||
-        ((data.kind === "money" || data.kind === "monthly") && typeof v === "number" && v >= 0 && v < 1e9) ||
+        ((data.kind === "money" || data.kind === "monthly" || data.kind === "annual") && typeof v === "number" && v >= 0 && v < 1e9) ||
+        (data.kind === "pct" && typeof v === "number" && v >= 0 && v <= 100) ||
+        (data.kind === "count" && typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= 20) ||
         (data.kind === "choice" && typeof v === "string" && data.choices.includes(v));
       return { value: ok ? (v as string | number | boolean) : null, error: null as string | null };
     } catch (e) {
