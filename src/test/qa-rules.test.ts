@@ -123,7 +123,8 @@ describe("new verified records — thresholds", () => {
     expect(st("pmfby", { cultivatesCrops: true, cropNotified: false })).toBe("ineligible");
     expect(st("pmfby", { cultivatesCrops: true, cropNotified: true, cultivationProof: true })).toBe("needs_verification");
   });
-  it("SVANidhi: without CoV/LoR it is not a likely result", () => {
-    expect(st("svanidhi", { streetVendor: true, vendingCertificate: false })).toBe("ineligible");
+  it("SVANidhi: without CoV/LoR it is not a likely result, and not a rejection", () => {
+    expect(st("svanidhi", { streetVendor: true, vendingCertificate: false })).toBe("needs_verification");
+    expect(st("svanidhi", { streetVendor: false, vendingCertificate: true })).toBe("ineligible");
   });
 });

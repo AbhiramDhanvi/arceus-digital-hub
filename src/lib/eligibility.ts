@@ -266,7 +266,11 @@ export const SCHEMES: Scheme[] = [
     verified: true,
     rules: [
       boolRule("vendor", "streetVendor", true, "Street vendor / hawker", "Any person engaged in the vending of articles, goods, wares, food items, or merchandise of daily use or offering services to the public in a street, footpath, pavement, etc.", S.svan),
-      boolRule("cov", "vendingCertificate", true, "Holds a Certificate of Vending or Letter of Recommendation", "A street vendor holding a valid Letter of Recommendation or Certificate of Vending can apply for a PM SVANidhi loan", S.svan, "Ask your Urban Local Body for a Letter of Recommendation first."),
+      { id: "cov", facts: ["vendingCertificate"], requirement: "Holds a Certificate of Vending or Letter of Recommendation", excerpt: "A street vendor holding a valid Letter of Recommendation or Certificate of Vending can apply for a PM SVANidhi loan", source: S.svan, check: f => {
+        const v = f.vendingCertificate;
+        if (v === true) return { outcome: "pass", answer: "Yes" };
+        return { outcome: "unknown", answer: yesNo(v), ...(v === false ? { note: "Ask your Urban Local Body for a Letter of Recommendation or Certificate of Vending first." } : {}) };
+      } },
     ],
     alwaysVerify: { requirement: "Loan approval after verification by the lender", excerpt: "On average, it takes about 23 days … subject to verification and completion of required formalities.", source: S.svan },
   },
