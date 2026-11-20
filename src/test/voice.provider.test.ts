@@ -1,4 +1,3 @@
-// @vitest-environment node
 // Live Sarvam round-trip with synthetic text only. Skipped when SARVAM_API_KEY is not set.
 import { describe, it, expect } from "vitest";
 const key = process.env["SARVAM_API_KEY"];
@@ -9,10 +8,12 @@ const tts = async (text: string, language_code: string, speaker: string) => {
   return Buffer.from(((await r.json()) as { audios: string[] }).audios[0]!, "base64");
 };
 const stt = async (audio: Buffer, language_code: string) => {
-  const f = new FormData();
-  f.append("file", new Blob([new Uint8Array(audio)], { type: "audio/mpeg" }), "speech.mp3");
-  f.append("model", "saaras:v4"); f.append("mode", "transcribe"); f.append("language_code", language_code);
-  const r = await fetch("https://api.sarvam.ai/speech-to-text", { method: "POST", headers: { "api-subscription-key": key! }, body: f });
+  // Hand-built multipart body (the jsdom test environment's FormData is not fetch-compatible).
+  const bd = "----arceus" + Date.now();
+  const field = (n: string, v: string) => `--${bd}\r\nContent-Disposition: form-data; name="${n}"\r\n\r\n${v}\r\n`;
+  const head = Buffer.from(field("model", "saaras:v4") + field("mode", "transcribe") + field("language_code", language_code) + `--${bd}\r\nContent-Disposition: form-data; name="file"; filename="speech.mp3"\r\nContent-Type: audio/mpeg\r\n\r\n`);
+  const body = Buffer.concat([head, audio, Buffer.from(`\r\n--${bd}--\r\n`)]);
+  const r = await fetch("https://api.sarvam.ai/speech-to-text", { method: "POST", headers: { "api-subscription-key": key!, "Content-Type": `multipart/form-data; boundary=${bd}` }, body });
   expect(r.status).toBe(200);
   return (await r.json()) as { transcript: string; language_code: string | null };
 };
