@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Assistant } from "@/components/Assistant";
 import capturedCSS from "../styles/site.css?raw";
 
 export const Route = createFileRoute("/")({
@@ -51,7 +52,7 @@ function Index() {
             <ImportedSectionPlanningALifeEvent />
             </div>
             <div hidden={!assistant}>
-              <ImportedSectionTalkToARCEUS />
+              <Assistant />
             </div>
           </main>
           <footer className="site-footer [border-top:1px_solid_var(--line)]">
@@ -95,7 +96,7 @@ function ImportedHeader() {
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} aria-current="page" href="#home">Home</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#assistant">Voice assistant</a>
           <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#schemes">Explore schemes</a>
-          <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="#workspace">My workspace</a>
+          <a className={"[-webkit-tap-highlight-color:transparent] [&:focus-visible]:outline-[#4a9b84] [&:focus-visible]:outline-solid [&:focus-visible]:outline-[3px] [&:focus-visible]:outline-offset-3"} href="/workspace">My workspace</a>
         </nav>
         <div className="header-actions items-center">
           <label className="language-select items-center flex gap-[6px] px-[10px] relative" id="bb-customSelect-vuUyf-label">
