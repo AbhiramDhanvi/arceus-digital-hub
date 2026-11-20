@@ -1,3 +1,4 @@
+// @vitest-environment node
 // Live Sarvam round-trip with synthetic text only. Skipped when SARVAM_API_KEY is not set.
 import { describe, it, expect } from "vitest";
 const key = process.env["SARVAM_API_KEY"];
