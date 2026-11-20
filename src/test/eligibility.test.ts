@@ -19,3 +19,16 @@ describe("eligibility", () => {
     expect(extractFacts("I am 34 years old, income 2 lakh")).toMatchObject({ age: 34, annualIncome: 200000 });
   });
 });
+import { nextQuestionnaireItem } from "@/lib/eligibility";
+describe("questionnaire", () => {
+  it("asks occupation first", () => { expect(nextQuestionnaireItem({})?.key).toBe("occupation"); });
+  it("asks about farmland only for farmers", () => {
+    const base = { age: 30, gender: "male" as const, category: "general" as const, annualIncome: 200000, state: "Telangana", area: "rural" as const, bpl: false, disability: false, incomeTaxPayer: false };
+    expect(nextQuestionnaireItem({ ...base, occupation: "farmer" })?.key).toBe("ownsFarmland");
+    expect(nextQuestionnaireItem({ ...base, occupation: "salaried" })).toBeNull();
+  });
+  it("score is share of met rules", () => {
+    const kcc = SCHEMES.find(s => s.id === "kcc")!;
+    expect(evaluate(kcc, { occupation: "farmer" }).score).toBe(50);
+  });
+});
