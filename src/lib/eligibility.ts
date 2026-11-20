@@ -172,7 +172,11 @@ export const SCHEMES: Scheme[] = [
     steps: ["Apply at pmuy.gov.in or any LPG distributor", "Submit KYC and the deprivation declaration", "Distributor verifies and releases the connection"],
     verified: true,
     rules: [
-      boolRule("woman", "gender", true, "Applicant is a woman", "The applicant must be a woman who has attained 18 years of age.", S.pmuy),
+      { id: "woman", facts: ["gender"], requirement: "Applicant is a woman", excerpt: "The applicant must be a woman who has attained 18 years of age.", source: S.pmuy, check: f => {
+        const g = f.gender;
+        if (!known(g)) return { outcome: "unknown", answer: yesNo(g) };
+        return g === "female" ? { outcome: "pass", answer: "Woman" } : { outcome: "fail", answer: g === "male" ? "Man" : "Other", note: "An adult woman of the household can apply instead." };
+      } },
       ageRule("age", 18, 200, "Age 18 or older", "The applicant must be a woman who has attained 18 years of age.", S.pmuy),
       boolRule("nolpg", "householdHasLpg", false, "No LPG connection already in the household", "There should be no other LPG connection from any Oil Marketing Company (OMC) within the same household.", S.pmuy),
       boolRule("poor", "poorHousehold", true, "Poor household (can sign the deprivation declaration)", "The adult woman must belong to a poor household based on submission of a deprivation declaration", S.pmuy),
@@ -235,9 +239,15 @@ export function evaluate(scheme: Scheme, f: Facts): Result {
   if (scheme.alwaysVerify) criteria.push({ id: "route", requirement: scheme.alwaysVerify.requirement, excerpt: scheme.alwaysVerify.excerpt, answer: "Decided by the office / lender", outcome: "unknown", source: scheme.alwaysVerify.source });
   const failed = top.includes("fail");
   const status: Status = failed ? "ineligible" : top.every(o => o === "pass") && !scheme.alwaysVerify && scheme.verified ? "likely_eligible" : "needs_verification";
-  const decisive = failed ? criteria.find(c => c.outcome === "fail" && !scheme.rules.some(r => "anyOf" in r && r.anyOf.some(a => a.id === c.id) && criteria.some(x => x.outcome !== "fail" && r.anyOf.some(a => a.id === x.id)))) ?? null
-    : status === "likely_eligible" ? criteria.find(c => c.outcome === "pass") ?? null
-    : criteria.find(c => c.outcome === "unknown") ?? null;
+  let decisive: CriterionResult | null = null;
+  if (failed) {
+    scheme.rules.forEach((rule, i) => {
+      if (decisive || top[i] !== "fail") return;
+      const ids = "anyOf" in rule ? rule.anyOf.map(c => c.id) : [rule.id];
+      decisive = criteria.find(c => ids.includes(c.id) && c.outcome === "fail") ?? null;
+    });
+  } else if (status === "likely_eligible") decisive = criteria.find(c => c.outcome === "pass") ?? null;
+  else decisive = criteria.find(c => c.outcome === "unknown") ?? null;
   return { scheme, status, criteria, decisive, nearMiss: scheme.nearMiss?.(f) ?? null };
 }
 
