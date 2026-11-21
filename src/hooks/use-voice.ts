@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { pickBrowserVoice } from "@/lib/voice-styles";
 
 export type VoiceState = "ready" | "listening" | "transcribing" | "thinking" | "speaking" | "error";
 const PREFERRED = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4", "audio/wav"];
@@ -9,6 +10,9 @@ export function useVoice(opts: {
   onCaptured: (b64: string, mime: string) => void;
   onError: (msg: string) => void;
   locale: string;
+  rate?: number;
+  pitch?: number;
+  speaker?: "ishita" | "ratan";
 }) {
   const [state, setState] = useState<VoiceState>("ready");
   const [level, setLevel] = useState(0);
@@ -66,7 +70,13 @@ export function useVoice(opts: {
     if (!("speechSynthesis" in window)) { setState("ready"); return false; }
     setUsedDeviceVoice(true);
     return await new Promise<boolean>(res => {
-      const u = new SpeechSynthesisUtterance(text); u.lang = o.current.locale;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = o.current.locale;
+      u.rate = o.current.rate ?? 1.0;
+      u.pitch = o.current.pitch ?? 1.0;
+      const voices = window.speechSynthesis.getVoices?.() ?? [];
+      const matched = pickBrowserVoice(voices, o.current.locale, o.current.speaker ?? "ishita");
+      if (matched) u.voice = matched;
       u.onend = () => { if (my === token.current) setState("ready"); res(true); };
       u.onerror = () => { if (my === token.current) setState("ready"); res(false); };
       window.speechSynthesis.speak(u);

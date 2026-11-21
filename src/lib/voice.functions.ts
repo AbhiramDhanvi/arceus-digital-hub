@@ -73,18 +73,22 @@ export const transcribeSpeech = createServerFn({ method: "POST" })
     }
   });
 
+const STYLE_PACE: Record<"normal" | "funny" | "interactive", number> = { normal: 1.0, funny: 1.12, interactive: 1.05 };
+const style = z.enum(["normal", "funny", "interactive"]).optional();
+
 /** Text-to-speech; returns base64 MP3 (audio/mpeg, 24 kHz). */
 export const synthesizeSpeech = createServerFn({ method: "POST" })
-  .inputValidator((d) => z.object({ text: z.string().min(1).max(1200), lang, voice }).parse(d))
+  .inputValidator((d) => z.object({ text: z.string().min(1).max(1200), lang, voice, style }).parse(d))
   .handler(async ({ data }) => {
     const key = process.env["SARVAM_API_KEY"];
     if (!key) return { audio: null as string | null, mime: null as string | null, error: "not_configured" as VoiceError | null };
     if (!(await quota())) return { audio: null, mime: null, error: "quota" as VoiceError | null };
     try {
+      const pace = data.style ? STYLE_PACE[data.style] : 1.0;
       const r = await fetch("https://api.sarvam.ai/text-to-speech", {
         method: "POST",
         headers: { "api-subscription-key": key, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: data.text, language_code: LOCALES[data.lang], model: "bulbul:v3", speaker: data.voice, speech_sample_rate: 24000, output_audio_codec: "mp3" }),
+        body: JSON.stringify({ text: data.text, language_code: LOCALES[data.lang], model: "bulbul:v3", speaker: data.voice, pace, speech_sample_rate: 24000, output_audio_codec: "mp3" }),
         signal: AbortSignal.timeout(20000),
       });
       if (!r.ok) { console.error("sarvam tts status", r.status); return { audio: null, mime: null, error: statusError(r.status) as VoiceError | null }; }

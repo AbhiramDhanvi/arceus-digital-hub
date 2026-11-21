@@ -111,11 +111,14 @@ function ImportedHeader() {
               <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" />
               <circle cx="12" cy="12" r="10" />
             </svg>
-            <select className="appearance-none py-[10px] pr-[17px] border-0" aria-label="Language / भाषा" defaultValue="en">
+            <select className="appearance-none py-[10px] pr-[17px] border-0" aria-label="Language / भाषा" defaultValue="en" onChange={e => window.dispatchEvent(new CustomEvent("arceus:lang", { detail: e.target.value }))}>
               <option value="en">English</option>
               <option value="hi">हिन्दी</option>
               <option value="te">తెలుగు</option>
               <option value="mr">मराठी</option>
+              <option value="ta">தமிழ்</option>
+              <option value="kn">ಕನ್ನಡ</option>
+              <option value="bn">বাংলা</option>
             </select>
             <svg className="flex-none pointer-events-none absolute right-[7px] align-middle" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="m6 9 6 6 6-6" />
@@ -150,7 +153,7 @@ function ImportedSectionYourVoiceYourBenefits() {
       </div>
       <div className="hero-picture [box-shadow:rgba(0,0,0,0.867)_0px_28px_55px_-37px] isolate overflow-hidden relative [@media(width_<=_650px)]:h-[clamp(277px,85vw,400px)]" style={{ transform: "translateY(0px) scale(1)", opacity: "1" }}>
         <div className="hv-panel" aria-hidden="true">
-          <div className="hv-wave">{[5,8,12,7,15,10,18,9,14,6,11,16,8,13,7,10,5].map((h, i) => <span key={i} style={{ height: `${h * 5}%`, animationDelay: `${i * 0.12}s` }} />)}</div>
+          <div className="hv-wave">{[5,8,12,7,15,10,18,9,14,6,11,16,8,13,7,10,5].map((h, i) => <span key={i} style={{ height: `${h * 5}%`, animationDelay: `${(i * 12) / 100}s` }} />)}</div>
           <div className="hv-evidence">
             <b>Atal Pension Yojana</b>
             <p><i>✓</i>Age 18 to 39 — you said 32</p>

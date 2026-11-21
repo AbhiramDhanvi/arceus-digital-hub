@@ -117,12 +117,12 @@ declare module "@tanstack/react-router" {
 function RootShell({ children }: { children: ReactNode }) {
   const importedDocument = useImportedMatches({ select: matches => matches.at(-1)?.staticData.importedDocument });
   return (
-    <html lang="en" {...importedDocument?.html}>
+    <html lang="en" {...importedDocument?.html} suppressHydrationWarning>
       <head>
         <style href="site-import-inline" precedence="imported-inline">{"@layer imported-inline;"}</style>
         <HeadContent />
       </head>
-      <body {...importedDocument?.body}>
+      <body {...importedDocument?.body} suppressHydrationWarning>
         {children}
         <Scripts />
       </body>

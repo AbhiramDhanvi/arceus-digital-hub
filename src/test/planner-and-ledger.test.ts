@@ -411,3 +411,108 @@ describe("Automatic voice recognition & mic controller", () => {
     }
   });
 });
+
+describe("SSR hydration integrity", () => {
+  it("hydrates the home page (Index + Assistant + SchemeDirectory) without hydration mismatches", async () => {
+    const React = await import("react");
+    const { renderToString } = await import("react-dom/server");
+    const { hydrateRoot } = await import("react-dom/client");
+    const { Route: IndexRoute } = await import("@/routes/index");
+    const IndexComponent = IndexRoute.options.component as React.ComponentType;
+
+    const ssrHtml = renderToString(React.createElement(IndexComponent));
+    // Verify hero animationDelay has no floating-point precision artifacts
+    expect(ssrHtml).not.toContain("1.3199999999999998s");
+    expect(ssrHtml).not.toContain("1.7999999999999998s");
+
+    const container = document.createElement("div");
+    container.innerHTML = ssrHtml;
+    document.body.appendChild(container);
+
+    const errors: string[] = [];
+    const origError = console.error;
+    const origWarn = console.warn;
+    console.error = (...args: unknown[]) => {
+      errors.push(args.map(String).join(" "));
+    };
+    console.warn = () => undefined;
+
+    try {
+      const root = hydrateRoot(container, React.createElement(IndexComponent));
+      await new Promise((r) => setTimeout(r, 50));
+      root.unmount();
+    } finally {
+      console.error = origError;
+      console.warn = origWarn;
+      container.remove();
+    }
+
+    const hydrationErrors = errors.filter((e) => e.toLowerCase().includes("hydrat"));
+    expect(hydrationErrors).toEqual([]);
+  });
+});
+
+describe("Multilingual voice languages and voice styles (Normal, Funny, Interactive)", () => {
+  it("provides native voice samples and distinct acoustic profiles for all 7 languages x 3 styles", async () => {
+    const {
+      VOICE_LANGS,
+      VOICE_SAMPLES,
+      VOICE_STYLES,
+      VOICE_STYLE_LIST,
+      styleSpokenText,
+      localizedQuestionText,
+    } = await import("@/lib/voice-styles");
+    const { GOAL_QUESTION } = await import("@/lib/interview");
+
+    expect(VOICE_LANGS.map((l) => l[0])).toEqual(["en", "hi", "te", "mr", "ta", "kn", "bn"]);
+    expect(VOICE_STYLE_LIST.map((s) => s.id)).toEqual(["normal", "funny", "interactive"]);
+
+    // Acoustic profiles are distinct across normal, funny, and interactive
+    expect(VOICE_STYLES.funny.speechPitch).toBeGreaterThan(VOICE_STYLES.normal.speechPitch);
+    expect(VOICE_STYLES.funny.sarvamPace).toBeGreaterThan(VOICE_STYLES.normal.sarvamPace);
+    expect(VOICE_STYLES.interactive.speechPitch).toBeGreaterThan(VOICE_STYLES.normal.speechPitch);
+
+    for (const [lang] of VOICE_LANGS) {
+      const normal = VOICE_SAMPLES[lang].normal;
+      const funny = VOICE_SAMPLES[lang].funny;
+      const interactive = VOICE_SAMPLES[lang].interactive;
+      expect(normal.length).toBeGreaterThan(15);
+      expect(funny.length).toBeGreaterThan(15);
+      expect(interactive.length).toBeGreaterThan(15);
+      // All 3 styles must produce distinct voice scripts in every language
+      expect(new Set([normal, funny, interactive]).size).toBe(3);
+
+      // Opening question & styled phrasing are distinct across styles
+      const q = localizedQuestionText(GOAL_QUESTION, lang, undefined);
+      expect(q.length).toBeGreaterThan(10);
+      const qNormal = styleSpokenText(q, lang, "normal", "question");
+      const qFunny = styleSpokenText(q, lang, "funny", "question");
+      const qInteractive = styleSpokenText(q, lang, "interactive", "question");
+      expect(qNormal).toBe(q);
+      expect(qFunny).not.toBe(qNormal);
+      expect(qInteractive).not.toBe(qNormal);
+      expect(qFunny).not.toBe(qInteractive);
+    }
+  });
+
+  it("recognizes spoken regional goals and yes/no answers in Telugu, Marathi, Tamil, Kannada, and Bengali", async () => {
+    const { matchRegionalGoal, matchRegionalYesNo } = await import("@/lib/voice-styles");
+
+    expect(matchRegionalGoal("నాకు వ్యవసాయం పథకం కావాలి")).toBe("farming");
+    expect(matchRegionalGoal("मला पेन्शन योजना हवी आहे")).toBe("pension");
+    expect(matchRegionalGoal("மருத்துவக் காப்பீடு வேண்டும்")).toBe("health");
+    expect(matchRegionalGoal("ನನಗೆ ವ್ಯಾಪಾರ ಸಾಲ ಬೇಕು")).toBe("business");
+    expect(matchRegionalGoal("আমার মেয়ের জন্য সঞ্চয় দরকার")).toBe("savings");
+
+    expect(matchRegionalYesNo("అవును")).toBe(true);
+    expect(matchRegionalYesNo("కాదు")).toBe(false);
+    expect(matchRegionalYesNo("होय")).toBe(true);
+    expect(matchRegionalYesNo("नाही")).toBe(false);
+    expect(matchRegionalYesNo("ஆம்")).toBe(true);
+    expect(matchRegionalYesNo("இல்லை")).toBe(false);
+    expect(matchRegionalYesNo("ಹೌದು")).toBe(true);
+    expect(matchRegionalYesNo("ಇಲ್ಲ")).toBe(false);
+    expect(matchRegionalYesNo("হ্যাঁ")).toBe(true);
+    expect(matchRegionalYesNo("না")).toBe(false);
+  });
+});

@@ -14,16 +14,19 @@ function parseBoolFlag(raw: unknown): boolean {
 export function isAdaptivePlannerEnabled(override?: boolean): boolean {
   if (typeof override === "boolean") return override;
 
+  const metaEnv = (import.meta as { env?: Record<string, unknown> }).env;
+  if (metaEnv && metaEnv["VITE_ENABLE_ADAPTIVE_PLANNER"] !== undefined) {
+    return parseBoolFlag(metaEnv["VITE_ENABLE_ADAPTIVE_PLANNER"]);
+  }
+
   if (typeof process !== "undefined" && process.env) {
     const nodeFlag =
-      process.env["ENABLE_ADAPTIVE_PLANNER"] ?? process.env["VITE_ENABLE_ADAPTIVE_PLANNER"];
+      process.env["VITE_ENABLE_ADAPTIVE_PLANNER"] ?? process.env["ENABLE_ADAPTIVE_PLANNER"];
     if (nodeFlag !== undefined) return parseBoolFlag(nodeFlag);
   }
 
-  const metaEnv = (import.meta as { env?: Record<string, unknown> }).env;
-  if (metaEnv) {
-    const viteFlag = metaEnv["VITE_ENABLE_ADAPTIVE_PLANNER"] ?? metaEnv["ENABLE_ADAPTIVE_PLANNER"];
-    if (viteFlag !== undefined) return parseBoolFlag(viteFlag);
+  if (metaEnv && metaEnv["ENABLE_ADAPTIVE_PLANNER"] !== undefined) {
+    return parseBoolFlag(metaEnv["ENABLE_ADAPTIVE_PLANNER"]);
   }
 
   return false;
