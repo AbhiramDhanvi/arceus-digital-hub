@@ -25,6 +25,24 @@ import {
   type UiLang,
 } from "@/lib/interview";
 import { synthesizeSpeech, transcribeSpeech } from "@/lib/voice.functions";
+import {
+  LOCALIZED_GOAL_LABELS,
+  LOCALIZED_GOAL_QUESTION,
+  VOICE_LANGS,
+  VOICE_SAMPLES,
+  VOICE_STYLES,
+  VOICE_STYLE_LIST,
+  getCommonLabels,
+  localizedChoiceLabel,
+  localizedQuestionText,
+  localizedRetryMessage,
+  matchRegionalGoal,
+  matchRegionalYesNo,
+  styleSpokenText,
+  type VoiceLang,
+  type VoiceStyleId,
+} from "@/lib/voice-styles";
+import { getSiteStrings, useAppLanguage } from "@/lib/i18n";
 import { useVoice } from "@/hooks/use-voice";
 import { useAutoVoice } from "@/hooks/use-auto-voice";
 import {
@@ -35,45 +53,25 @@ import {
   next_question,
   skipCurrentQuestion,
   submitUtterance,
-  type AdaptiveVerdict,
   type PlannerState,
   type SchemeEvaluation,
 } from "@/lib/adaptive-planner";
 import { formatClaimValue, resolveConflict, type ClaimEntry } from "@/lib/claim-ledger";
 import { transcribeWithNirantarEndpoint } from "@/lib/nirantar-voice";
 
-const LANGS = [
-  ["en", "English", "en-IN"],
-  ["hi", "हिन्दी", "hi-IN"],
-  ["te", "తెలుగు", "te-IN"],
-  ["mr", "मराठी", "mr-IN"],
-  ["ta", "தமிழ்", "ta-IN"],
-  ["kn", "ಕನ್ನಡ", "kn-IN"],
-  ["bn", "বাংলা", "bn-IN"],
-] as const;
-type Lang = (typeof LANGS)[number][0];
+const LANGS = VOICE_LANGS;
+type Lang = VoiceLang;
 type VoiceId = "ishita" | "ratan";
 type Turn = { role: "agent" | "user"; text: string };
 
-const VERDICT_LABEL: Record<UiLang, Record<AdaptiveVerdict, string>> = {
-  en: {
-    ELIGIBLE: "Eligible",
-    INELIGIBLE: "Not eligible",
-    UNDECIDED: "Undecided",
-    CONDITIONAL: "Conditional",
-  },
-  hi: {
-    ELIGIBLE: "पात्र",
-    INELIGIBLE: "पात्र नहीं",
-    UNDECIDED: "अनिश्चित",
-    CONDITIONAL: "सशर्त",
-  },
-};
-
 export function AdaptiveAssistant() {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useAppLanguage();
   const ui: UiLang = lang === "hi" ? "hi" : "en";
+  const a = getSiteStrings(lang).assistant;
   const [voiceId, setVoiceId] = useState<VoiceId>("ishita");
+  const [voiceStyle, setVoiceStyle] = useState<VoiceStyleId>("normal");
+  const styleProfile = VOICE_STYLES[voiceStyle];
+  const commonLabels = getCommonLabels(lang);
   // Hands-free auto-mic is ON by default so clicking "Talk to MiraiAi" opens mic automatically.
   const [handsFree, setHandsFree] = useState(true);
   const [readAloud, setReadAloud] = useState(true);
@@ -98,7 +96,11 @@ export function AdaptiveAssistant() {
 
   const voice = useVoice({
     locale,
-    synth: (text) => synthFn({ data: { text: text.slice(0, 1200), lang, voice: voiceId } }),
+    rate: styleProfile.speechRate,
+    pitch: styleProfile.speechPitch,
+    speaker: voiceId,
+    synth: (text) =>
+      synthFn({ data: { text: text.slice(0, 1200), lang, voice: voiceId, style: voiceStyle } }),
     onError: (msg) => setAlert(msg),
     onCaptured: (audio, mime) => {
       const run = async () => {
@@ -153,17 +155,31 @@ export function AdaptiveAssistant() {
   const step = useMemo(() => next_question(planner), [planner]);
 
   const say = useCallback(
-    async (text: string, reopenMic: boolean) => {
-      setTurns((m) => [...m, { role: "agent", text }]);
+    async (
+      text: string,
+      reopenMic: boolean,
+      kind: "question" | "retry" | "result" | "confirm" = "question",
+    ) => {
+      const spoken = kind === "retry" ? text : styleSpokenText(text, lang, voiceStyle, kind);
+      setTurns((m) => [...m, { role: "agent", text: spoken }]);
       if (readAloud) {
-        await autoVoice.speakBounded(voice.speak, text);
+        await autoVoice.speakBounded(voice.speak, spoken);
       }
       if (reopenMic && handsFreeRef.current) {
         void autoVoice.openMic();
       }
     },
-    [autoVoice, readAloud, voice],
+    [autoVoice, lang, readAloud, voice, voiceStyle],
   );
+
+  const currentQuestionDisplay = step.question
+    ? step.question.baseQuestion
+      ? localizedQuestionText(step.question.baseQuestion, lang, undefined)
+      : step.question.question[ui]
+    : "";
+
+  const openingDisplay =
+    lang === "en" || lang === "hi" ? getOpeningQuestion(ui) : LOCALIZED_GOAL_QUESTION[lang];
 
   // Ask current question (or speak final summary) automatically
   const lastSig = useRef("");
@@ -171,16 +187,16 @@ export function AdaptiveAssistant() {
     if (!started) return;
 
     if (!goalSelected) {
-      const sig = `goal:${ui}:${startTick}`;
+      const sig = `goal:${lang}:${voiceStyle}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
-      void say(getOpeningQuestion(ui), true);
+      void say(openingDisplay, true, "question");
       return;
     }
 
     if (step.early_confirmation) {
       const c = step.early_confirmation;
-      const sig = `early:${c.key}:${c.turn}:${ui}:${startTick}`;
+      const sig = `early:${c.key}:${c.turn}:${lang}:${voiceStyle}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       const valStr = formatClaimValue(c, c.key);
@@ -188,33 +204,33 @@ export function AdaptiveAssistant() {
         ui === "hi"
           ? `कृपया पुष्टि करें — क्या ${c.key} के लिए "${valStr}" सही है?`
           : `Quick check because this is close to a rule limit or uncertain: is ${valStr} right?`;
-      void say(prompt, true);
+      void say(prompt, true, "confirm");
       return;
     }
 
     if (step.question) {
       const q = step.question;
-      const sig = `q:${q.kind}:${q.key ?? ""}:${q.straddle?.schemeId ?? ""}:${q.conflict?.id ?? ""}:${ui}:${startTick}`;
+      const sig = `q:${q.kind}:${q.key ?? ""}:${q.straddle?.schemeId ?? ""}:${q.conflict?.id ?? ""}:${lang}:${voiceStyle}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
-      void say(q.question[ui], true);
+      void say(currentQuestionDisplay, true, "question");
       return;
     }
 
     if (step.needs_batch_confirmation) {
-      const sig = `batch:${planner.ledger.turn}:${ui}:${startTick}`;
+      const sig = `batch:${planner.ledger.turn}:${lang}:${voiceStyle}:${startTick}`;
       if (sig === lastSig.current) return;
       lastSig.current = sig;
       const prompt =
         ui === "hi"
           ? "मैंने आपकी सारी जानकारी नोट कर ली है। कृपया एक बार पुष्टि करें ताकि अंतिम परिणाम दिखा सकूँ।"
           : "I have noted all your details. Please review and confirm once to see your final eligibility results.";
-      void say(prompt, false);
+      void say(prompt, false, "confirm");
       return;
     }
 
     const verdicts = Object.values(step.statuses);
-    const sig = `done:${verdicts.map((v) => `${v.scheme.id}:${v.verdict}`).join(",")}:${ui}:${startTick}`;
+    const sig = `done:${verdicts.map((v) => `${v.scheme.id}:${v.verdict}`).join(",")}:${lang}:${voiceStyle}:${startTick}`;
     if (sig === lastSig.current) return;
     lastSig.current = sig;
     const eligibleNames = verdicts
@@ -228,8 +244,20 @@ export function AdaptiveAssistant() {
         : ui === "hi"
           ? "जाँच पूरी हुई। नीचे हर योजना का विस्तृत परिणाम देखें।"
           : "Check complete. Review the detailed eligibility breakdown below.";
-    void say(msg, false);
-  }, [goalSelected, planner.ledger.turn, say, started, startTick, step, ui]);
+    void say(msg, false, "result");
+  }, [
+    currentQuestionDisplay,
+    goalSelected,
+    lang,
+    openingDisplay,
+    planner.ledger.turn,
+    say,
+    started,
+    startTick,
+    step,
+    ui,
+    voiceStyle,
+  ]);
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: 1e6 });
@@ -283,10 +311,11 @@ export function AdaptiveAssistant() {
 
       // Step 0: goal / need selection (also accepts multi-field intro right away!)
       if (!goalSelected) {
+        const regGoal = !choice ? matchRegionalGoal(clean) : null;
         const picked = chooseNeed(
           newInterview(),
           clean,
-          choice ? (choice.value as Goal) : undefined,
+          choice ? (choice.value as Goal) : (regGoal ?? undefined),
         );
         const schemeIds = picked ? picked.schemeIds : SCHEMES.map((s) => s.id);
         const initial = createPlannerState(schemeIds);
@@ -301,8 +330,10 @@ export function AdaptiveAssistant() {
       // Early single-field confirmation handling
       if (step.early_confirmation) {
         const lower = clean.toLowerCase();
-        const isYes = /\b(yes|yeah|correct|right|haan|han|ji)\b|हाँ|सही/.test(lower);
-        const isNo = /\b(no|wrong|nahi|nahin)\b|नहीं|गलत/.test(lower);
+        const regYn = matchRegionalYesNo(clean);
+        const isYes =
+          regYn === true || /\b(yes|yeah|correct|right|haan|han|ji)\b|हाँ|सही/.test(lower);
+        const isNo = regYn === false || /\b(no|wrong|nahi|nahin)\b|नहीं|गलत/.test(lower);
         if (isYes || isNo) {
           setPlanner((p) => confirmEarlyClaim(p, step.early_confirmation!.key, isYes));
           lastSig.current = "";
@@ -310,24 +341,31 @@ export function AdaptiveAssistant() {
         }
       }
 
-      const res = submitUtterance(planner, clean, { lang: ui, confidence, currentStep: step });
+      const normalizedInput = (() => {
+        if (choice) return choice.en;
+        const regYn = matchRegionalYesNo(clean);
+        if (regYn === true) return "Yes";
+        if (regYn === false) return "No";
+        return clean;
+      })();
+
+      const res = submitUtterance(planner, normalizedInput, {
+        lang: ui,
+        confidence,
+        currentStep: step,
+      });
       if (
         res.extracted.length === 0 &&
         res.conflicts.length === 0 &&
         step.question?.kind !== "straddle"
       ) {
-        void say(
-          ui === "hi"
-            ? `माफ़ कीजिए, समझ नहीं आया। कृपया फिर से बोलें या नीचे विकल्प चुनें। ${step.question?.question.hi ?? ""}`
-            : `Sorry, I didn't catch that. Please repeat or pick an option below. ${step.question?.question.en ?? ""}`,
-          true,
-        );
+        void say(localizedRetryMessage(lang, currentQuestionDisplay, voiceStyle), true, "retry");
         return;
       }
       setPlanner(res.state);
       lastSig.current = "";
     },
-    [goalSelected, planner, say, step, ui],
+    [currentQuestionDisplay, goalSelected, lang, planner, say, step, ui, voiceStyle],
   );
 
   handleRef.current = handleUtterance;
@@ -352,22 +390,18 @@ export function AdaptiveAssistant() {
     <section className="wrap page-section mx-auto assistant-v2">
       <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]">
         <span className="h-px w-[16px]" />
-        ADAPTIVE SCHEME ASSISTANT
+        {a.adaptiveEyebrow}
       </div>
-      <h1 className="page-title">Talk to MiraiAi</h1>
-      <p className="page-lead max-w-[560px]">
-        Speak naturally — you can share multiple details in one sentence. MiraiAi asks the fewest
-        high-impact questions, tracks ranges and contradictions, and checks official rules
-        deterministically.
-      </p>
+      <h1 className="page-title">{a.title}</h1>
+      <p className="page-lead max-w-[560px]">{a.adaptiveLead}</p>
 
       <div className="av-toolbar">
         <label>
-          Language
+          {a.languageLabel}
           <select
             value={lang}
             onChange={(e) => setLang(e.target.value as Lang)}
-            aria-label="Assistant language"
+            aria-label={a.languageLabel}
           >
             {LANGS.map((l) => (
               <option key={l[0]} value={l[0]}>
@@ -377,7 +411,7 @@ export function AdaptiveAssistant() {
           </select>
         </label>
         <fieldset className="av-voices">
-          <legend>Voice</legend>
+          <legend>{a.voiceLabel}</legend>
           {(["ishita", "ratan"] as const).map((v) => (
             <label key={v} className={voiceId === v ? "on" : ""}>
               <input
@@ -391,13 +425,36 @@ export function AdaptiveAssistant() {
             </label>
           ))}
         </fieldset>
+        <fieldset className="av-voices">
+          <legend>{a.voiceStyleLabel}</legend>
+          {VOICE_STYLE_LIST.map((st) => (
+            <label key={st.id} className={voiceStyle === st.id ? "on" : ""} title={st.description}>
+              <input
+                type="radio"
+                name="voice-style"
+                value={st.id}
+                checked={voiceStyle === st.id}
+                onChange={() => setVoiceStyle(st.id)}
+              />
+              {a.styleNames[st.id]}
+            </label>
+          ))}
+          <button
+            type="button"
+            className="av-chip"
+            onClick={() => void voice.speak(VOICE_SAMPLES[lang][voiceStyle])}
+          >
+            <Volume2 size={16} aria-hidden />
+            {a.playSample}
+          </button>
+        </fieldset>
         <label className="av-check">
           <input
             type="checkbox"
             checked={readAloud}
             onChange={(e) => setReadAloud(e.target.checked)}
           />
-          Read aloud
+          {a.readAloud}
         </label>
         <label className="av-check">
           <input
@@ -405,11 +462,11 @@ export function AdaptiveAssistant() {
             checked={handsFree}
             onChange={(e) => setHandsFree(e.target.checked)}
           />
-          Auto-mic (reopens automatically)
+          {a.autoMic}
         </label>
         <button type="button" className="av-chip" onClick={resetAll}>
           <UserPlus size={16} aria-hidden />
-          New person
+          {a.newPerson}
         </button>
       </div>
 
@@ -418,21 +475,25 @@ export function AdaptiveAssistant() {
           <div className="av-status" role="status" aria-live="polite">
             <span className={`av-dot s-${isListening ? "listening" : voice.state}`} aria-hidden />
             {isListening
-              ? "Listening automatically… speak now"
+              ? a.status.autoListening
               : voice.state === "speaking"
-                ? "Speaking…"
-                : "Ready"}
+                ? a.status.speaking
+                : a.status.ready}
+            <small>
+              {" "}
+              · {LANGS.find((l) => l[0] === lang)![1]} · {a.styleNames[voiceStyle]} {a.styleSuffix}
+            </small>
             {goalSelected && (
               <small>
                 {" "}
-                · Asked: {step.questions_asked.length} · Skipped: {step.questions_skipped.length} ·
-                Open schemes: {step.schemes_open.length}
+                · {step.questions_asked.length} / {step.questions_skipped.length} /{" "}
+                {step.schemes_open.length}
               </small>
             )}
             {voice.needsPlay && (
               <button type="button" className="av-chip" onClick={voice.play}>
                 <Play size={16} aria-hidden />
-                Play
+                {a.play}
               </button>
             )}
           </div>
@@ -441,19 +502,23 @@ export function AdaptiveAssistant() {
               {alert}
             </p>
           )}
-          {interim && <p className="av-muted">Hearing: “{interim}”</p>}
+          {interim && (
+            <p className="av-muted">
+              {a.hearing} “{interim}”
+            </p>
+          )}
 
           {!started ? (
             <div className="av-card">
-              <p className="av-q">{getOpeningQuestion(ui)}</p>
+              <p className="av-q">{openingDisplay}</p>
               <button type="button" className="button primary" onClick={begin}>
                 <Mic size={18} aria-hidden />
-                Start talking
+                {a.startTalking}
               </button>
             </div>
           ) : !goalSelected ? (
             <div className="av-card">
-              <p className="av-q">{getOpeningQuestion(ui)}</p>
+              <p className="av-q">{openingDisplay}</p>
               <div className="av-options">
                 {GOALS.map((g) => (
                   <button
@@ -461,14 +526,14 @@ export function AdaptiveAssistant() {
                     type="button"
                     className="av-opt"
                     onClick={() =>
-                      handleUtterance(ui === "hi" ? g.hi : g.en, 1, {
+                      handleUtterance(LOCALIZED_GOAL_LABELS[lang][g.goal] ?? g.en, 1, {
                         value: g.goal,
                         en: g.en,
                         hi: g.hi,
                       })
                     }
                   >
-                    {ui === "hi" ? g.hi : g.en}
+                    {LOCALIZED_GOAL_LABELS[lang][g.goal] ?? g.en}
                   </button>
                 ))}
                 <button
@@ -480,11 +545,11 @@ export function AdaptiveAssistant() {
                     lastSig.current = "";
                   }}
                 >
-                  {ui === "hi" ? "सभी योजनाएँ जाँचें" : "Check all schemes"}
+                  {a.checkAllSchemes}
                 </button>
               </div>
               <Composer
-                ui={ui}
+                placeholder={a.adaptivePlaceholder}
                 input={input}
                 setInput={setInput}
                 isListening={isListening}
@@ -528,7 +593,7 @@ export function AdaptiveAssistant() {
             </div>
           ) : step.question ? (
             <div className="av-card">
-              <p className="av-q">{step.question.question[ui]}</p>
+              <p className="av-q">{currentQuestionDisplay}</p>
 
               {step.question.kind === "conflict" && step.question.conflict ? (
                 <div className="av-options">
@@ -585,10 +650,10 @@ export function AdaptiveAssistant() {
                     className="av-opt"
                     onClick={() => handleUtterance("Yes", 1)}
                   >
-                    {ui === "hi" ? "हाँ" : "Yes"}
+                    {commonLabels.yes}
                   </button>
                   <button type="button" className="av-opt" onClick={() => handleUtterance("No", 1)}>
-                    {ui === "hi" ? "नहीं" : "No"}
+                    {commonLabels.no}
                   </button>
                   <button
                     type="button"
@@ -600,7 +665,7 @@ export function AdaptiveAssistant() {
                     }}
                   >
                     <SkipForward size={15} aria-hidden />
-                    {ui === "hi" ? "छोड़ें" : "Not sure"}
+                    {commonLabels.skip}
                   </button>
                 </div>
               ) : (
@@ -610,9 +675,15 @@ export function AdaptiveAssistant() {
                       key={String(o.value)}
                       type="button"
                       className="av-opt"
-                      onClick={() => handleUtterance(ui === "hi" ? o.hi : o.en, 1, o)}
+                      onClick={() =>
+                        handleUtterance(
+                          localizedChoiceLabel(o, step.question!.baseQuestion!.key, lang),
+                          1,
+                          o,
+                        )
+                      }
                     >
-                      {ui === "hi" ? o.hi : o.en}
+                      {localizedChoiceLabel(o, step.question!.baseQuestion!.key, lang)}
                     </button>
                   ))}
                   <button
@@ -625,13 +696,13 @@ export function AdaptiveAssistant() {
                     }}
                   >
                     <SkipForward size={15} aria-hidden />
-                    {ui === "hi" ? "छोड़ें" : "Skip"}
+                    {commonLabels.skip}
                   </button>
                 </div>
               )}
 
               <Composer
-                ui={ui}
+                placeholder={a.adaptivePlaceholder}
                 input={input}
                 setInput={setInput}
                 isListening={isListening}
@@ -641,11 +712,7 @@ export function AdaptiveAssistant() {
             </div>
           ) : step.needs_batch_confirmation ? (
             <div className="av-card">
-              <p className="av-q">
-                {ui === "hi"
-                  ? "कृपया एक बार अपने सभी विवरण की पुष्टि करें:"
-                  : "Please confirm your answers once:"}
-              </p>
+              <p className="av-q">{a.confirmBatchHeading}</p>
               <ul className="av-criteria">
                 {claimsList.map((c) => (
                   <li key={c.key}>
@@ -666,13 +733,13 @@ export function AdaptiveAssistant() {
                   }}
                 >
                   <Check size={16} aria-hidden />
-                  {ui === "hi" ? "सब सही है, परिणाम दिखाएँ" : "Confirm all & view results"}
+                  {a.confirmBatchBtn}
                 </button>
               </div>
             </div>
           ) : (
             <div className="av-results">
-              <h2>{ui === "hi" ? "आपका परिणाम" : "Your adaptive eligibility results"}</h2>
+              <h2>{a.adaptiveResultsHeading}</h2>
               {verdictsList.map((ev) => (
                 <article
                   key={ev.scheme.id}
@@ -684,7 +751,7 @@ export function AdaptiveAssistant() {
                       <h3>{ev.scheme.name}</h3>
                       <p>{ev.scheme.benefit}</p>
                     </div>
-                    <span className="av-badge">{VERDICT_LABEL[ui][ev.verdict]}</span>
+                    <span className="av-badge">{a.verdictBadge[ev.verdict]}</span>
                   </header>
                   {ev.decisiveReason && <p className="av-reason">{ev.decisiveReason}</p>}
                   {ev.officeVerificationNote && (
@@ -702,7 +769,7 @@ export function AdaptiveAssistant() {
                         {ev.branches.map((b, i) => (
                           <li key={i}>
                             <b>If {b.assumption}</b> (turn {b.turn}: “{b.source_quote}”) →{" "}
-                            <b>{VERDICT_LABEL[ui][b.verdict]}</b> — {b.reason}
+                            <b>{a.verdictBadge[b.verdict]}</b> — {b.reason}
                           </li>
                         ))}
                       </ol>
@@ -715,16 +782,16 @@ export function AdaptiveAssistant() {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Official website <ExternalLink size={13} aria-hidden />
+                      {a.officialWebsite} <ExternalLink size={13} aria-hidden />
                     </a>
                     <button
                       type="button"
                       className="av-link"
                       onClick={() =>
-                        void voice.speak(`${ev.scheme.name}: ${VERDICT_LABEL[ui][ev.verdict]}`)
+                        void voice.speak(`${ev.scheme.name}: ${a.verdictBadge[ev.verdict]}`)
                       }
                     >
-                      <Volume2 size={14} aria-hidden /> Read aloud
+                      <Volume2 size={14} aria-hidden /> {a.readAloud}
                     </button>
                   </div>
                 </article>
@@ -734,11 +801,11 @@ export function AdaptiveAssistant() {
 
           {started && turns.length > 0 && (
             <details className="av-transcript">
-              <summary>Conversation transcript</summary>
+              <summary>{a.transcript}</summary>
               <div ref={logRef} role="log" aria-live="off">
                 {turns.map((t, i) => (
                   <p key={i} className={t.role}>
-                    {t.role === "agent" ? "MiraiAi: " : "You: "}
+                    {t.role === "agent" ? "MiraiAi: " : a.youPrefix}
                     {t.text}
                   </p>
                 ))}
@@ -747,12 +814,10 @@ export function AdaptiveAssistant() {
           )}
         </div>
 
-        <aside className="av-side" aria-label="Claim Ledger">
-          <h2>Claim Ledger</h2>
+        <aside className="av-side" aria-label={a.claimLedger}>
+          <h2>{a.claimLedger}</h2>
           {claimsList.length === 0 ? (
-            <p className="av-muted">
-              Facts, ranges, and provenance quotes appear here as you speak.
-            </p>
+            <p className="av-muted">{a.ledgerEmpty}</p>
           ) : (
             <dl>
               {claimsList.map((c) => (
@@ -781,7 +846,7 @@ export function AdaptiveAssistant() {
               }}
             >
               <RotateCcw size={13} aria-hidden />
-              Choose a different need
+              {a.chooseDifferentNeed}
             </button>
           )}
         </aside>
@@ -791,14 +856,14 @@ export function AdaptiveAssistant() {
 }
 
 function Composer({
-  ui,
+  placeholder,
   input,
   setInput,
   isListening,
   onMic,
   onSend,
 }: {
-  ui: UiLang;
+  placeholder: string;
   input: string;
   setInput: (v: string) => void;
   isListening: boolean;
@@ -826,12 +891,8 @@ function Composer({
         value={input}
         onChange={(e) => setInput(e.target.value)}
         maxLength={400}
-        aria-label="Type your answer"
-        placeholder={
-          ui === "hi"
-            ? "बोलें या लिखें (एक साथ कई जानकारी दे सकते हैं)…"
-            : "Speak or type (multiple details ok)…"
-        }
+        aria-label={placeholder}
+        placeholder={placeholder}
       />
       <button type="submit" className="av-send" disabled={!input.trim()} aria-label="Send">
         <Send size={19} aria-hidden />

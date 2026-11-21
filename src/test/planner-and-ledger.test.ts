@@ -515,4 +515,63 @@ describe("Multilingual voice languages and voice styles (Normal, Funny, Interact
     expect(matchRegionalYesNo("হ্যাঁ")).toBe(true);
     expect(matchRegionalYesNo("না")).toBe(false);
   });
+
+  it("switches the complete page text across all 7 languages when the language dropdown changes", async () => {
+    const React = await import("react");
+    const { createRoot } = await import("react-dom/client");
+    const { act } = await import("react");
+    const { Route: IndexRoute } = await import("@/routes/index");
+    const { SITE_STRINGS, VALID_LANGS } = await import("@/lib/i18n");
+    const IndexComponent = IndexRoute.options.component as React.ComponentType;
+
+    // Verify all 7 languages have distinct hero headlines, nav labels, directory headers, and footer taglines
+    expect(VALID_LANGS).toEqual(["en", "hi", "te", "mr", "ta", "kn", "bn"]);
+    expect(new Set(VALID_LANGS.map((l) => SITE_STRINGS[l].hero.titleLine1)).size).toBe(7);
+    expect(new Set(VALID_LANGS.map((l) => SITE_STRINGS[l].nav.exploreSchemes)).size).toBe(7);
+    expect(new Set(VALID_LANGS.map((l) => SITE_STRINGS[l].assistant.title)).size).toBe(7);
+    expect(new Set(VALID_LANGS.map((l) => SITE_STRINGS[l].footer.tagline)).size).toBe(7);
+
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+
+    try {
+      await act(async () => {
+        root.render(React.createElement(IndexComponent));
+      });
+
+      const headerSelect = container.querySelector<HTMLSelectElement>(
+        'select[aria-label="Language / भाषा"]',
+      );
+      expect(headerSelect).not.toBeNull();
+      expect(container.textContent).toContain("Your voice.");
+
+      // Switch dropdown to Telugu ("te") and verify entire page + assistant sync
+      await act(async () => {
+        headerSelect!.value = "te";
+        headerSelect!.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      expect(container.textContent).toContain(SITE_STRINGS.te.hero.titleLine1);
+      expect(container.textContent).toContain(SITE_STRINGS.te.nav.exploreSchemes);
+      expect(container.textContent).toContain(SITE_STRINGS.te.howItWorks.heading);
+      expect(container.textContent).toContain(SITE_STRINGS.te.categories.heading);
+      expect(container.textContent).toContain(SITE_STRINGS.te.footer.tagline);
+      expect(container.textContent).toContain(SITE_STRINGS.te.assistant.playSample);
+
+      // Switch dropdown to Tamil ("ta") and verify entire page updates again
+      await act(async () => {
+        headerSelect!.value = "ta";
+        headerSelect!.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+      expect(container.textContent).toContain(SITE_STRINGS.ta.hero.titleLine1);
+      expect(container.textContent).toContain(SITE_STRINGS.ta.life.heading);
+      expect(container.textContent).toContain(SITE_STRINGS.ta.assistant.voiceStyleLabel);
+    } finally {
+      await act(async () => {
+        root.unmount();
+      });
+      container.remove();
+      window.localStorage.removeItem("miraiai:lang");
+    }
+  });
 });

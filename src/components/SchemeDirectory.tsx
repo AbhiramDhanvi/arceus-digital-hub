@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { SCHEMES } from "@/lib/eligibility";
+import { getSiteStrings, useAppLanguage } from "@/lib/i18n";
 
 /** [slug, name, level C|S, state or ministry, tags] — factual myScheme index; discovery only, never a verdict. */
 type Row = [string, string, "C" | "S", string, string];
@@ -11,6 +12,8 @@ export const CHECKABLE: Record<string, string> = {
 const PAGE = 20;
 
 export function SchemeDirectory() {
+  const [lang] = useAppLanguage();
+  const d = getSiteStrings(lang).directory;
   const [rows, setRows] = useState<Row[] | null>(null);
   const [err, setErr] = useState(false);
   const [q, setQ] = useState("");
@@ -20,7 +23,7 @@ export function SchemeDirectory() {
 
   useEffect(() => {
     let live = true;
-    fetch("/data/myscheme-index.json").then(r => r.json() as Promise<Row[]>).then(d => { if (live) setRows(d); }).catch(() => { if (live) setErr(true); });
+    fetch("/data/myscheme-index.json").then(r => r.json() as Promise<Row[]>).then(data => { if (live) setRows(data); }).catch(() => { if (live) setErr(true); });
     return () => { live = false; };
   }, []);
   useEffect(() => setShown(PAGE), [q, level, place]);
@@ -40,17 +43,17 @@ export function SchemeDirectory() {
 
   return (
     <section className="wrap landing-section mx-auto sd" id="schemes" aria-labelledby="sd-title">
-      <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />ALL SCHEMES</div>
-      <h2 id="sd-title">Search {rows ? rows.length.toLocaleString("en-IN") : "the"} schemes listed on myScheme</h2>
-      <p className="sd-note">This list is for finding schemes only — MiraiAi does not decide eligibility for these. MiraiAi has source-cited rules for {SCHEMES.length} schemes; the ones in this list are marked “MiraiAi can check”.</p>
+      <div className="eyebrow items-center flex gap-[8px] tracking-[0.15em]"><span className="h-px w-[16px]" />{d.eyebrow}</div>
+      <h2 id="sd-title">{d.heading(rows ? rows.length.toLocaleString("en-IN") : null)}</h2>
+      <p className="sd-note">{d.note(SCHEMES.length)}</p>
       <div className="sd-filters" role="search">
-        <label><span>Search by name or topic</span><input type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="e.g. scholarship, pension, farmer" /></label>
-        <label><span>Level</span><select value={level} onChange={e => { setLevel(e.target.value as "" | "C" | "S"); setPlace(""); }}><option value="">All</option><option value="C">Central</option><option value="S">State / UT</option></select></label>
-        <label><span>{level === "C" ? "Ministry" : "State / ministry"}</span><select value={place} onChange={e => setPlace(e.target.value)}><option value="">All</option>{places.map(p => <option key={p} value={p}>{p}</option>)}</select></label>
+        <label><span>{d.searchLabel}</span><input type="search" value={q} onChange={e => setQ(e.target.value)} placeholder={d.searchPlaceholder} /></label>
+        <label><span>{d.levelLabel}</span><select value={level} onChange={e => { setLevel(e.target.value as "" | "C" | "S"); setPlace(""); }}><option value="">{d.all}</option><option value="C">{d.central}</option><option value="S">{d.stateUt}</option></select></label>
+        <label><span>{level === "C" ? d.ministry : d.stateOrMinistry}</span><select value={place} onChange={e => setPlace(e.target.value)}><option value="">{d.all}</option>{places.map(p => <option key={p} value={p}>{p}</option>)}</select></label>
       </div>
-      {err && <p role="alert" className="sd-note">The scheme list could not load. Try myscheme.gov.in directly.</p>}
-      {!rows && !err && <p className="sd-note" aria-live="polite">Loading the list…</p>}
-      {rows && <p className="sd-count" aria-live="polite">{list.length.toLocaleString("en-IN")} result{list.length === 1 ? "" : "s"}</p>}
+      {err && <p role="alert" className="sd-note">{d.loadError}</p>}
+      {!rows && !err && <p className="sd-note" aria-live="polite">{d.loading}</p>}
+      {rows && <p className="sd-count" aria-live="polite">{d.resultsCount(list.length)}</p>}
       <ul className="sd-list">
         {list.slice(0, shown).map(r => {
           const id = CHECKABLE[r[0]];
@@ -58,14 +61,14 @@ export function SchemeDirectory() {
             <li key={r[0]} className="sd-item">
               <div className="sd-main">
                 <a href={`https://www.myscheme.gov.in/schemes/${r[0]}`} target="_blank" rel="noreferrer">{r[1]}</a>
-                <span className="sd-meta"><b>{r[2] === "C" ? "Central" : "State"}</b> · {r[3]}{r[4] ? ` · ${r[4].split(",").slice(0, 3).join(",")}` : ""}</span>
+                <span className="sd-meta"><b>{r[2] === "C" ? d.central : d.stateShort}</b> · {r[3]}{r[4] ? ` · ${r[4].split(",").slice(0, 3).join(",")}` : ""}</span>
               </div>
-              {id && <button type="button" className="sd-check" onClick={() => check(id)}>MiraiAi can check</button>}
+              {id && <button type="button" className="sd-check" onClick={() => check(id)}>{d.canCheck}</button>}
             </li>
           );
         })}
       </ul>
-      {shown < list.length && <button type="button" className="button outline sd-more" onClick={() => setShown(n => n + PAGE)}>Show {Math.min(PAGE, list.length - shown)} more</button>}
+      {shown < list.length && <button type="button" className="button outline sd-more" onClick={() => setShown(n => n + PAGE)}>{d.showMore(Math.min(PAGE, list.length - shown))}</button>}
     </section>
   );
 }
